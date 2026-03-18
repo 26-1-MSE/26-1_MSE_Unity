@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -69,11 +72,11 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Initialize Scene 0 if flag is set
-        if (_shouldInitializeScene0Load && scene.name == _sceneNames[0])
-        {
-            _shouldInitializeScene0Load = false;
-            Initialize();
-        }
+        // if (_shouldInitializeScene0Load && scene.name == _sceneNames[0])
+        // {
+        //     _shouldInitializeScene0Load = false;
+        //     Initialize();
+        // }
     }
     
     /// <summary>
@@ -96,11 +99,11 @@ public class GameManager : MonoBehaviour
                 TransitionToScene(3);
                 break;
             case GameState.Defeat:
-                _isDead = true;
+                // _isDead = true;
                 Debug.Log("Defeat");
-                SetFailUIActive(true);
+                // SetFailUIActive(true);
                 if (AudioManager) AudioManager.PlayAudio(1);
-                SetMissionState(MissionState.Ending);
+                // SetMissionState(MissionState.Ending);
 
                 // Return to main scene after delay
                 TransitionToScene(0);
@@ -124,8 +127,8 @@ public class GameManager : MonoBehaviour
 
         if (sceneIndex == 0)
         {
-            _shouldInitializeScene0Load = true;
-            Initialize();
+            // _shouldInitializeScene0Load = true;
+            // Initialize();
 
             if (AudioManager.BGMInstance)
                 Destroy(AudioManager.BGMInstance.gameObject);
