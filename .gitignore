@@ -97,3 +97,8 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+.DS_Store
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json
+26-1_MSE_Unity.slnx
