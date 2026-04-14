@@ -10,14 +10,14 @@ public class Portal : MonoBehaviour, IInteractable
         Island
     }
 
-    [Header("ÀÌµ¿ÇÒ ¾À")]
+    [Header("ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½")]
     [SerializeField] private TargetScene targetScene;
 
     public void Interact(PlayerInteraction player)
     {
         if (GameManager.Instance == null)
         {
-            Debug.LogWarning("GameManager.Instance°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogWarning("GameManager.Instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
 
@@ -37,4 +37,9 @@ public class Portal : MonoBehaviour, IInteractable
                 break;
         }
     }
+    public string GetInteractMessage()
+    {
+        return null; // í¬íƒˆì€ ìƒí˜¸ì‘ìš© í…ìŠ¤íŠ¸ í•„ìš”ì—†ìœ¼ë‹ˆ null ë°˜í™˜
+    }
+    
 }
