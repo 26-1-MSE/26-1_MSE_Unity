@@ -16,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
             interactText.transform.position = screenPos;
         }
 
-        if (Keyboard.current != null && Keyboard.current.sKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             if (currentInteractable != null)
             {
@@ -48,4 +48,9 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("��ȣ�ۿ� ������ ������Ʈ �������� ����");
         }
     }
+    public void EndChop()
+    {
+        GetComponent<Animator>().SetBool("isChopping", false);
+    }  
+
 }

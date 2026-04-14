@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour, IInteractable
     }
     public string GetInteractMessage()
     {
-        return null; // 포탈은 상호작용 텍스트 필요없으니 null 반환
+        return null;
     }
     
 }
