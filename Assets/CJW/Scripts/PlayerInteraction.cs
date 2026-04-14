@@ -1,12 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
     private IInteractable currentInteractable;
+    [SerializeField] private TextMeshProUGUI interactText; 
+    [SerializeField] private Camera mainCamera;
 
     private void Update()
     {
+        if (interactText != null && interactText.gameObject.activeSelf)
+        {
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position + Vector3.up * 2f);
+            interactText.transform.position = screenPos;
+        }
+
         if (Keyboard.current != null && Keyboard.current.sKey.wasPressedThisFrame)
         {
             if (currentInteractable != null)
@@ -22,7 +31,9 @@ public class PlayerInteraction : MonoBehaviour
         if (interactable != null)
         {
             currentInteractable = interactable;
-            Debug.Log("»óÈ£ÀÛ¿ë °¡´ÉÇÑ ¿ÀºêÁ§Æ® ¹üÀ§¿¡ µé¾î¿È");
+            if (interactText != null && interactable.GetInteractMessage() != null)
+                interactText.gameObject.SetActive(true);
+            Debug.Log("ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
     }
 
@@ -32,7 +43,9 @@ public class PlayerInteraction : MonoBehaviour
         if (interactable != null && currentInteractable == interactable)
         {
             currentInteractable = null;
-            Debug.Log("»óÈ£ÀÛ¿ë °¡´ÉÇÑ ¿ÀºêÁ§Æ® ¹üÀ§¿¡¼­ ³ª°¨");
+            if (interactText != null)
+                interactText.gameObject.SetActive(false);
+            Debug.Log("ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
     }
 }
