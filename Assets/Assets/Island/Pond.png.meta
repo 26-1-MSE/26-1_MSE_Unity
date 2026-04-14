@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 916df8f92e2985a4bae3e6d185a3a1b5
+guid: 6d579d0e2bc4b4262b29dca00ea22997
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1791077664755881492
-    second: FloatWater_0
-  - first:
-      213: -6832077655693182654
-    second: FloatWater_1
-  - first:
-      213: -1370373969508017416
-    second: FloatWater_2
+      213: -4716231556726295973
+    second: Pond_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 190
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FloatWater_0
+      name: Pond_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 11
         y: 0
-        width: 77
-        height: 121
+        width: 1449
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41619e485af2bd810800000000000000
-      internalID: 1791077664755881492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FloatWater_1
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 0
-        width: 63
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 249368ee1959f21a0800000000000000
-      internalID: -6832077655693182654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FloatWater_2
-      rect:
-        serializedVersion: 2
-        x: 328
-        y: 0
-        width: 57
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8fa5802a2247bfce0800000000000000
-      internalID: -1370373969508017416
+      spriteID: b5277d603649c8eb0800000000000000
+      internalID: -4716231556726295973
       vertices: []
       indices: 
       edges: []
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FloatWater_0: 1791077664755881492
-      FloatWater_1: -6832077655693182654
-      FloatWater_2: -1370373969508017416
+      Pond_0: -4716231556726295973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
