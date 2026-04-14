@@ -52,5 +52,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("isChopping", false);
     }  
-
+    public void EndScoop()
+    {
+        GetComponent<Animator>().SetBool("isScooping", false);
+    }
 }
