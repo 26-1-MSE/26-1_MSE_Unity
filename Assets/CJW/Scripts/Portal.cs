@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour, IInteractable
         Island
     }
 
-    [Header("�̵��� ��")]
+    [Header("씬 이동")]
     [SerializeField] private TargetScene targetScene;
 
     public void Interact(PlayerInteraction player)
