@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d858374d41c41b64d81a63761ff1aac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 7
+  moveSpeed: 5.5
   jumpPower: 10
   rb: {fileID: 5966346482412797114}
   animator: {fileID: 8108456055721124794}
