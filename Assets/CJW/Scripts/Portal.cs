@@ -17,7 +17,7 @@ public class Portal : MonoBehaviour, IInteractable
     {
         if (GameManager.Instance == null)
         {
-            Debug.LogWarning("GameManager.Instance가 없어서 씬 이동을 할 수 없습니다.");
+            Debug.LogWarning("GameManager.Instance�� �����ϴ�.");
             return;
         }
 
@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour, IInteractable
     }
     public string GetInteractMessage()
     {
-        return "E키를 눌러 이동";
+        return null;
     }
     
 }
