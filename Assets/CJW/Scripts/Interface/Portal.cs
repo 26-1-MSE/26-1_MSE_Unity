@@ -10,14 +10,14 @@ public class Portal : MonoBehaviour, IInteractable
         Island
     }
 
-    [Header("�̵��� ��")]
+    [Header("씬 이동")]
     [SerializeField] private TargetScene targetScene;
 
     public void Interact(PlayerInteraction player)
     {
         if (GameManager.Instance == null)
         {
-            Debug.LogWarning("GameManager.Instance�� �����ϴ�.");
+            Debug.LogWarning("GameManager.Instance가 없어서 씬 이동을 할 수 없습니다.");
             return;
         }
 
@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour, IInteractable
     }
     public string GetInteractMessage()
     {
-        return null;
+        return "E키를 눌러 이동";
     }
     
 }

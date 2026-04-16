@@ -33,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
             currentInteractable = interactable;
             if (interactText != null && interactable.GetInteractMessage() != null)
                 interactText.gameObject.SetActive(true);
-            Debug.Log("��ȣ�ۿ� ������ ������Ʈ ������ ����");
+            Debug.Log($"[PlayerInteraction] 상호작용 범위 진입: {other.name}");
         }
     }
 
@@ -45,7 +45,7 @@ public class PlayerInteraction : MonoBehaviour
             currentInteractable = null;
             if (interactText != null)
                 interactText.gameObject.SetActive(false);
-            Debug.Log("��ȣ�ۿ� ������ ������Ʈ �������� ����");
+            Debug.Log($"[PlayerInteraction] 상호작용 범위 이탈: {other.name}");
         }
     }
     public void EndChop()
