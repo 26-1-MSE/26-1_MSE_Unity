@@ -24,7 +24,7 @@ public class NetworkManager : MonoBehaviour
     [Header("Server Setting")]
     /// ���� �⺻ �ּ�
     /// ���� ����ڰ� ���� IP�� ��Ʈ�� �˷��ָ� �����Ѵ�.
-    /// ��: http://192.168.0.15:8080
+    /// ��: http://192.168.1.122:8080
     [SerializeField]
     private string baseUrl = "http://localhost:8080";
 
@@ -120,7 +120,16 @@ public class NetworkManager : MonoBehaviour
             yield break;
         }
 
-        LoginResponse response = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
+        json = request.downloadHandler.text;
+        Debug.Log("[NetworkManager] 로그인 응답 raw JSON: " + json);
+
+        LoginResponse response = JsonUtility.FromJson<LoginResponse>(json);
+
+        Debug.Log("[NetworkManager] 파싱 결과");
+        Debug.Log("  accessToken: " + response.accessToken);
+        Debug.Log("  nickname: " + response.nickname);
+        Debug.Log("  shopName: " + response.shopName);
+
         PlayerPrefs.SetString("accessToken", response.accessToken);
         DataManager.Data.SetUserSession(-1, loginId, response.nickname, response.shopName);
 
