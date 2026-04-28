@@ -119,7 +119,9 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("[NetworkManager] 로그인 응답 code: " + code + " / raw: " + raw);
 
                 if (code == -1) { onFail?.Invoke("Server connection failed"); return; }
-                if (code != 200) { onFail?.Invoke("User not found"); return; }
+                // 404는 서버/URL 문제, 401·403은 인증 실패로 구분
+                if (code == -1 || code == 404) { onFail?.Invoke("Server connection failed"); return; }
+                if (code != 200)               { onFail?.Invoke("User not found"); return; }
 
                 LoginResponse response = TryParseJson<LoginResponse>(raw);
                 if (response == null) { onFail?.Invoke("Response parse error"); return; }
