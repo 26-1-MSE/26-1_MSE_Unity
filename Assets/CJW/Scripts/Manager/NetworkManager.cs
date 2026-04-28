@@ -131,9 +131,11 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("  accessToken: " + response.accessToken);
                 Debug.Log("  nickname: "    + response.nickname);
                 Debug.Log("  shopName: "    + response.shopName);
+                Debug.Log("  hasUnreadMail: " + response.hasUnreadMail);
                 
                 PlayerPrefs.SetString("accessToken", response.accessToken);
                 DataManager.Data.SetUserSession(-1, loginId, response.nickname, response.shopName);
+                DataManager.Data.SetUnreadMailState(response.hasUnreadMail);
                 onSuccess?.Invoke();
             }));
     }
@@ -216,6 +218,7 @@ public class LoginResponse
     public string accessToken;
     public string nickname;
     public string shopName;
+    public bool hasUnreadMail;
 }
 
 [Serializable]
