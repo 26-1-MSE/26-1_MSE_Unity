@@ -15,6 +15,8 @@ public class SignUpUI : MonoBehaviour
     
     [SerializeField] private Button checkIdButton;
     [SerializeField] private Button signUpButton;
+    
+    [SerializeField] private UnityEvent onSignUpSuccess;
 
     // 중복 체크 버튼에 연결
     public void OnClickCheckIdButton()
@@ -65,6 +67,7 @@ public class SignUpUI : MonoBehaviour
         {
             signUpButton.interactable = true;
             toastMessage.ShowToast(msg);
+            onSignUpSuccess?.Invoke();
         });
     }
 }
