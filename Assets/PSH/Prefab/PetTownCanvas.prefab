@@ -470,7 +470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6648741137991115911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 445.9895, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7277809311044543028
 CanvasRenderer:
@@ -1984,7 +1984,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TownUIManager, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 2
         m_Arguments:
@@ -2191,7 +2191,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TownUIManager, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 2
         m_Arguments:
@@ -3505,7 +3505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Notes
+  m_text: MailBox
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4086,7 +4086,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TownUIManager, Assembly-CSharp
         m_MethodName: OpenPanel
         m_Mode: 2
         m_Arguments:
@@ -4792,8 +4792,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 100.276855}
-  m_SizeDelta: {x: 20, y: -180.5536}
+  m_AnchoredPosition: {x: 0, y: 5}
+  m_SizeDelta: {x: 20, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4437044133904145450
 CanvasRenderer:
@@ -5124,7 +5124,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5135,7 +5135,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300016, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -5753,12 +5753,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
-        m_MethodName: ClosePanel
-        m_Mode: 2
+        m_TargetAssemblyTypeName: InventoryUIManager, Assembly-CSharp
+        m_MethodName: CloseInventory
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4108617855260049395}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6033,7 +6033,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -6044,7 +6044,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300016, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -6383,7 +6383,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TownUIManager, Assembly-CSharp
         m_MethodName: OpenPanel
         m_Mode: 2
         m_Arguments:
@@ -6590,7 +6590,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TownUIManager, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 2
         m_Arguments:
@@ -7612,7 +7612,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IslandUIManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: TownUIManager, Assembly-CSharp
         m_MethodName: OpenPanel
         m_Mode: 2
         m_Arguments:
@@ -7653,7 +7653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.x
@@ -7661,15 +7661,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7701,11 +7701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7730,6 +7730,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7774793317990027504}
+    - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8612136179053850602}
   m_SourcePrefab: {fileID: 100100000, guid: 793c762067533664ea1890956aaed5dd, type: 3}
 --- !u!224 &721034689128572796 stripped
 RectTransform:
@@ -7755,6 +7758,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PetSlotDrag
   petPrefab: {fileID: 4758711231469838559, guid: 594663ac00aee7b4f83c6e415d45bb5b, type: 3}
   mainCamera: {fileID: 0}
+--- !u!222 &8612136179053850602
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256293873373075315}
+  m_CullTransparentMesh: 1
 --- !u!1001 &867785616595724238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7887,7 +7898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.x
@@ -7895,15 +7906,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7935,11 +7946,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -309.3
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7968,6 +7979,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3016010417051711333}
+    - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 768558409250827597}
   m_SourcePrefab: {fileID: 100100000, guid: 793c762067533664ea1890956aaed5dd, type: 3}
 --- !u!1 &384785984328278055 stripped
 GameObject:
@@ -7988,6 +8002,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PetSlotDrag
   petPrefab: {fileID: 4758711231469838559, guid: 594663ac00aee7b4f83c6e415d45bb5b, type: 3}
   mainCamera: {fileID: 0}
+--- !u!222 &768558409250827597
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384785984328278055}
+  m_CullTransparentMesh: 1
 --- !u!224 &2178028585774174248 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
@@ -8635,7 +8657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.x
@@ -8643,15 +8665,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8683,11 +8705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 335
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -309.3
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8716,6 +8738,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7040314369112437631}
+    - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1187107382984928017}
   m_SourcePrefab: {fileID: 100100000, guid: 793c762067533664ea1890956aaed5dd, type: 3}
 --- !u!1 &2334402434999332809 stripped
 GameObject:
@@ -8736,6 +8761,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PetSlotDrag
   petPrefab: {fileID: 4758711231469838559, guid: 594663ac00aee7b4f83c6e415d45bb5b, type: 3}
   mainCamera: {fileID: 0}
+--- !u!222 &1187107382984928017
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2334402434999332809}
+  m_CullTransparentMesh: 1
 --- !u!224 &4254660301907681222 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
@@ -8873,7 +8906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.x
@@ -8881,15 +8914,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8921,11 +8954,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 335
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 1144532619511448239, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8954,6 +8987,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8761307525587090117}
+    - targetCorrespondingSourceObject: {fileID: 1480791472219042464, guid: 793c762067533664ea1890956aaed5dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8142367787673449875}
   m_SourcePrefab: {fileID: 100100000, guid: 793c762067533664ea1890956aaed5dd, type: 3}
 --- !u!224 &5405449908081363383 stripped
 RectTransform:
@@ -8979,6 +9015,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PetSlotDrag
   petPrefab: {fileID: 4758711231469838559, guid: 594663ac00aee7b4f83c6e415d45bb5b, type: 3}
   mainCamera: {fileID: 0}
+--- !u!222 &8142367787673449875
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794696383328123320}
+  m_CullTransparentMesh: 1
 --- !u!1001 &5555135572173800299
 PrefabInstance:
   m_ObjectHideFlags: 0
