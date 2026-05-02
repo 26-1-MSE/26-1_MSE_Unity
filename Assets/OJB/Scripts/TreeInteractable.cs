@@ -5,6 +5,7 @@ public class TreeInteractable : MonoBehaviour, IInteractable
     [SerializeField] private string itemName = "Apple";
     [SerializeField] private int maxItemCount = 3;
     [SerializeField] private Animator treeAnimator;
+    [SerializeField] private GameObject[] foodImages;
 
     private int currentItemCount;
 
@@ -19,6 +20,9 @@ public class TreeInteractable : MonoBehaviour, IInteractable
 
         currentItemCount--;
         Debug.Log($"{itemName} 획득! 남은 개수: {currentItemCount}");
+        
+        if (currentItemCount < foodImages.Length)
+            foodImages[currentItemCount].SetActive(false);
 
         // 나무 애니메이션
         if (treeAnimator != null)
