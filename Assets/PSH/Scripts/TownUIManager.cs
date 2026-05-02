@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class IslandUIManager : MonoBehaviour
+public class TownUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject background;
     [SerializeField] private float closeDelay = 0.3f;

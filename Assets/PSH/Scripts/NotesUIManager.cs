@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class NotesUIManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class NotesUIManager : MonoBehaviour
     [SerializeField] private TMP_Text bodyText;
     [SerializeField] private TMP_Text fromText;
     [SerializeField] private TMP_Text readStateText;
+    [SerializeField] private Image readStateBg;
 
     private List<MailData> mails = new List<MailData>();
 
@@ -50,6 +52,92 @@ public class NotesUIManager : MonoBehaviour
             isRead = true
         });
 
+        mails.Add(new MailData
+        {
+            id = 3,
+            senderName = "Finnick",
+            title = "Toot toot",
+            body = "You kiss me tomorrow, I'll bite your face off! Ciao.",
+            date = "2024.05.19",
+            isRead = false
+        });
+
+        mails.Add(new MailData
+        {
+            id = 4,
+            senderName = "Gary",
+            title = "Permission to hug?",
+            body = "I have to prove it. Please. This is our only chance to set things right. " +
+                   "And when I do, my family will finally be able to come home.",
+            date = "2024.05.18",
+            isRead = true
+        });
+
+        mails.Add(new MailData
+        {
+            id = 5,
+            senderName = "Gazelle ",
+            title = "Good evening, Zootopia!",
+            body = "I'm Gazelle, and you are one hot dancer.",
+            date = "2024.05.17",
+            isRead = true
+        });
+
+        mails.Add(new MailData
+        {
+            id = 6,
+            senderName = "Flash",
+            title = "Priscilla......",
+            body = "What do you call... a three humped camel?",
+            date = "2024.05.16",
+            isRead = false
+        });
+
+        mails.Add(new MailData
+        {
+            id = 7,
+            senderName = "Nibbles",
+            title = "Heya, bub.",
+            body = "Your partner needs you and Nibbles Maplestick is going to get you to her.",
+            date = "2024.05.15",
+            isRead = false
+        });
+
+        mails.Add(new MailData
+        {
+            id = 8,
+            senderName = "Mr. Big",
+            title = "Ice 'em.",
+            body = "I trusted you, Nicky. We broke bread together. " +
+                   "Grandmama made you a cannoli. " +
+                   "And how did you repay my generosity? With a rug. " +
+                   "Made from the butt of a skunk. A skunk butt rug.",
+            date = "2024.05.15",
+            isRead = true
+        });
+
+        mails.Add(new MailData
+        {
+            id = 9,
+            senderName = "Clawhauser",
+            title = "Are you familiar with Gazelle?",
+            body = "Greatest singer of our lifetime. Angel with horns.",
+            date = "2024.05.14",
+            isRead = false
+        });
+
+        mails.Add(new MailData
+        {
+            id = 9,
+            senderName = "Chief Bogo",
+            title = "You're fired.",
+            body = "It's not about how badly you WANT something. It's about what you are CAPABLE of!",
+            date = "2024.05.13",
+            isRead = true
+        });
+
+
+
         CloseAll();
         RefreshNewBubble();
     }
@@ -72,12 +160,27 @@ public class NotesUIManager : MonoBehaviour
 
     public void OpenDetail(MailData mail)
     {
+        bool wasRead = mail.isRead;
+
         mail.isRead = true;
 
         toText.text = "To. Player";
         bodyText.text = mail.body;
         fromText.text = "From. " + mail.senderName;
         readStateText.text = mail.isRead ? "Read" : "NEW";
+
+
+        //detail 패널 read/new 색 변경
+        if (wasRead)
+        {
+            readStateText.text = "Read";
+            readStateBg.color = new Color(1, 0.2f, 0); // 주황
+        }
+        else
+        {
+            readStateText.text = "NEW";
+            readStateBg.color = new Color(1, 1, 1); // 초록
+        }
 
         detailPanel.SetActive(true);
 
@@ -129,9 +232,15 @@ public class NotesUIManager : MonoBehaviour
             itemUI.Setup(mail, this);
         }
 
-        noteCountText.text = mails.Count + "/10";
-    }
+        //new 개수 세서 표시
+        int newCount = 0;
+        foreach (MailData mail in mails)
+            if (!mail.isRead) newCount++;
 
+        noteCountText.text = newCount > 0
+            ? $"{newCount} NEW / {mails.Count}"
+            : $"{mails.Count} / 10";
+    }
     private void RefreshNewBubble()
     {
         bool hasNew = false;
@@ -149,3 +258,4 @@ public class NotesUIManager : MonoBehaviour
             newBubbleIcon.SetActive(hasNew);
     }
 }
+
