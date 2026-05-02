@@ -34,6 +34,7 @@ public class OcarinaGameManager : MonoBehaviour
     private int spawnedNotes = 0;
     private float timeLeft;
     private bool isPlaying = false;
+    public bool IsPlaying => isPlaying;
 
     [SerializeField] private float judgeLineX = -400f;
 
@@ -116,46 +117,52 @@ public class OcarinaGameManager : MonoBehaviour
         else if (Keyboard.current.fKey.wasPressedThisFrame) HandleInput(KeyCode.F);
     }
 
-    private void HandleInput(KeyCode key)
+   private void HandleInput(KeyCode key)
     {
         if (activeNotes.Count == 0) return;
 
         NoteObject firstNote = activeNotes[0];
+        activeNotes.RemoveAt(0);
+        Destroy(firstNote.gameObject);
 
         if (key == firstNote.requiredKey)
         {
-            activeNotes.RemoveAt(0);
-            Destroy(firstNote.gameObject);
             clearedNotes++;
-
-            SpawnNote();
-
-            if (clearedNotes >= totalNotes)
-                Success();
+            Debug.Log($"클리어: {clearedNotes} / {totalNotes}");
         }
         else
         {
-            activeNotes.RemoveAt(0);
-            Destroy(firstNote.gameObject);
-            SpawnNote();
-
             missCount++;
             if (missCount <= hearts.Length)
                 hearts[missCount - 1].SetActive(false);
 
             if (missCount >= 3)
+            {
                 Fail();
+                return;
+            }
         }
+
+        SpawnNote();
+
+        // 변경: 맞든 틀리든 모든 음표 처리되면 성공 체크
+        if (clearedNotes + missCount >= totalNotes)
+            Success();
     }
+
+   
 
     private void Success()
     {
+        Debug.Log("Success 호출됨!");
         isPlaying = false;
         // 추가: 플레이어 이동 + 상호작용 다시 활성화
         playerMovement.enabled = true;
         playerInteraction.enabled = true;
-        resultText.text = "성공!";
+        
+        resultText.text = "Congratulations!\nYou got a pet!";
         resultPopup.SetActive(true);
+        StartCoroutine(ClosePopupAfterDelay());
     }
 
     private void Fail()
@@ -169,12 +176,43 @@ public class OcarinaGameManager : MonoBehaviour
             if (note != null) Destroy(note.gameObject);
         activeNotes.Clear();
 
-        resultText.text = "다음에 다시 도전해요";
+        resultText.text = "Failed.\nTry again next time.";
         resultPopup.SetActive(true);
+        StartCoroutine(ClosePopupAfterDelay());
     }
 
     public void CloseGame()
     {
         ocarinaUI.SetActive(false);
     }
+    private IEnumerator ClosePopupAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        resultPopup.SetActive(false);
+        ocarinaUI.SetActive(false);
+    }
+    public void OnNoteMissed(NoteObject note)
+    {
+        if (!isPlaying) return;
+        if (!activeNotes.Contains(note)) return;
+
+        activeNotes.Remove(note);
+        Destroy(note.gameObject);
+        SpawnNote();
+
+        missCount++;
+        if (missCount <= hearts.Length)
+            hearts[missCount - 1].SetActive(false);
+
+        if (missCount >= 3)
+        {
+            Fail();
+            return;
+        }
+
+        // 추가
+        if (clearedNotes + missCount >= totalNotes)
+            Success();
+    }
+    
 }
