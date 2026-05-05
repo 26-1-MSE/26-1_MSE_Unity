@@ -4,58 +4,73 @@ using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 게임 전체에서 공통으로 유지되어야 하는 플레이어 데이터와 설정값을 관리하는 싱글톤 매니저
-/// 
-/// 이 클래스가 담당하는 것
-/// 1. 로그인/회원가입 이후 유지해야 하는 플레이어 정보
-///    - userId
-///    - loginId
-///    - nickname
-///    - petshopName
-
-/// 2. 옵션 설정 
-///    - BGM 볼륨
-///    - SFX 볼륨
-///
-/// 3. 메일 알림 상태 보관
-///    - 읽지 않은 쪽지가 있는지 여부
-///
-/// 참고:
-/// - 이 클래스는 "DB 전체"를 들고 있는 클래스가 아니다.
-/// - DB에서 자주 참조되는 현재 유저의 핵심 정보만 캐싱한다.
-/// - Pet 목록, Item 목록, Mail 전체 목록은 각각 별도 Manager에서 관리하는 것이 더 적절하다.
 
 public class DataManager : MonoBehaviour
 {
+
+    /// 로그인 후 서버에서 전달받은 보유 펫 정보를 저장하기 위한 슬롯 구조체.
+    [Serializable]
+    public struct OwnedPetSlot
+    {
+        /// 서버 DB에서 특정 펫을 식별하는 고유 ID
+        public int petId;
+
+        /// 펫 종류를 구분하는 ID
+        /// 1 = 토끼, 2 = 여우, 3 = 사슴, 4 = 멧돼지
+        public int petTypeId;
+    }
 
     /// 전역 접근용 싱글톤 인스턴스
     public static DataManager Data { get; private set; }
 
     // ─────────────────────────────────────────────
-    // 1. 플레이어 프로필 데이터
+    // 1-2. 플레이어 프로필 데이터
 
     [Header("Current User Session")]
 
     /// DB의 User.userId 에 해당하는 값.
-    /// 현재 로그인한 유저를 식별하는 기본 키이다.
     /// 로그인되지 않은 상태는 -1로 둔다.
     [SerializeField] private int _userId = -1;
 
     /// DB의 User.id 에 해당하는 값.
-    /// 사용자가 로그인할 때 사용하는 문자열 ID이다.
+    /// 사용자가 로그인할 때 사용하는 문자열 ID
     [SerializeField] private string _loginId = string.Empty;
 
     /// DB의 User.nickname 에 해당하는 값.
-    /// 게임 화면에서 표시되는 유저 닉네임이다.
+    /// 게임 화면에서 표시되는 유저 닉네임
     [SerializeField] private string _nickname = "Player";
 
     ///DB의 User.shopName에 해당하는 값
-    /// 펫샵 이름으로, 간판 UI 등에 표시할 수 있다.
+    /// 펫샵 이름으로, 간판 UI 등에 표시
     [SerializeField] private string _petShopName = "My PetShop";
+
     /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
     public int UserId => _userId;
     public string LoginId => _loginId;
     public string Nickname => _nickname;
     public string PetShopName => _petShopName;
+
+    // ─────────────────────────────────────────────
+    // 1-2. 보유 펫 데이터
+
+    [Header("Owned Pets")]
+
+    /// 로그인 응답으로 전달받은 보유 펫 정보를 슬롯 형태로 저장한다.
+    /// 
+    /// 슬롯은 총 4개이며, 인덱스 0~3은 UI에서 1~4번 슬롯으로 사용한다.
+
+    /// petId:
+    /// 서버 DB에서 특정 펫을 식별하는 고유 ID.
+    /// 나중에 펫룸에서 펫 상세 조회 요청 시 서버로 전달한다.
+    ///
+    /// petTypeId:
+    /// 펫 종류를 구분하는 ID.
+    /// 예: 1 = 토끼, 2 = 여우, 3 = 사슴, 4 = 멧돼지
+    [SerializeField] private OwnedPetSlot[] _ownedPetSlots = new OwnedPetSlot[4];
+
+    /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
+    public OwnedPetSlot[] OwnedPetSlots => _ownedPetSlots;
+
 
     // ─────────────────────────────────────────────
     // 2. 사운드 설정 데이터 
@@ -128,7 +143,6 @@ public class DataManager : MonoBehaviour
 
     /// 새 씬이 로드될 때 호출됨
     /// 
-    /// 이유:
     /// 씬마다 AudioManager 또는 UI가 새로 생성될 수 있으므로
     /// 현재 저장 중인 볼륨값/쪽지 상태를 다시 알려줄 필요가 있음
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -140,9 +154,6 @@ public class DataManager : MonoBehaviour
 
     /// <summary>
     /// 인스펙터에서 값이 바뀔 때 범위를 강제로 맞춰줌
-    /// 
-    /// 참고:
-    /// 에디터에서 테스트할 때 잘못된 값이 들어가는 것을 방지함
     /// </summary>
     private void OnValidate()
     {
@@ -197,10 +208,6 @@ public class DataManager : MonoBehaviour
 
 
     /// 현재 프로필 상태를 구독 중인 UI에게 다시 알림
-    /// 
-    /// 사용 예:
-    /// - PetTown 간판 UI
-    /// - 플레이어 닉네임 UI
     public static event Action OnProfileChanged;
 
     public void BroadcastProfileState()
@@ -216,13 +223,75 @@ public class DataManager : MonoBehaviour
         _nickname = "Player";
         _petShopName = "My PetShop";
         _hasUnreadMail = false;
+        _ownedPetSlots = new OwnedPetSlot[4];
+
 
         BroadcastProfileState();
         BroadcastMailState();
     }
 
     // ─────────────────────────────────────────────
-    // 7. 볼륨 관련 메서드
+    // 7. 보유 펫 관련 메서드
+
+    /// 로그인 응답으로 받은 보유 펫 목록을 4개의 펫 슬롯에 저장한다.
+    ///
+    /// 사용 이유:
+    /// - 로그인 이후 PetTown에서 보유 펫을 스폰하기 위해 사용
+    /// - PetRoom에서 슬롯을 눌렀을 때 해당 슬롯의 petId로 상세 조회 요청을 보내기 위해 사용
+    ///
+    /// 주의:
+    /// - 상세 정보는 펫룸 진입 시 NetworkManager.RequestPetData(petId)를 통해 서버에서 다시 조회한다.
+    public void SetOwnedPets(OwnedPetData[] ownedPets)
+    {
+        // 기존 슬롯 정보를 초기화한다.
+        _ownedPetSlots = new OwnedPetSlot[4];
+
+        // 서버에서 받은 보유 펫 목록이 없으면 빈 슬롯 상태로 유지한다.
+        if (ownedPets == null)
+        {
+            Debug.Log("[DataManager] 보유 펫 없음");
+            return;
+        }
+
+        // 최대 4마리까지만 슬롯에 저장한다.
+        for (int i = 0; i < ownedPets.Length && i < 4; i++)
+        {
+            _ownedPetSlots[i].petId = ownedPets[i].petId;
+            _ownedPetSlots[i].petTypeId = ownedPets[i].petTypeId;
+        }
+
+        Debug.Log("[DataManager] 보유 펫 슬롯 저장 완료");
+    }
+
+    /// 특정 슬롯의 petId를 반환한다.
+    /// 
+    /// slotIndex는 배열 기준으로 0~3 값을 사용한다.
+    /// UI에서 1~4번 슬롯을 사용할 경우, 1번 슬롯은 index 0으로 변환해서 사용한다.
+    public int GetOwnedPetId(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
+        {
+            Debug.LogWarning("[DataManager] 잘못된 펫 슬롯 인덱스: " + slotIndex);
+            return -1;
+        }
+
+        return _ownedPetSlots[slotIndex].petId;
+    }
+
+    /// 특정 슬롯의 petTypeId를 반환한다.
+    public int GetOwnedPetTypeId(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
+        {
+            Debug.LogWarning("[DataManager] 잘못된 펫 슬롯 인덱스: " + slotIndex);
+            return -1;
+        }
+
+        return _ownedPetSlots[slotIndex].petTypeId;
+    }
+
+    // ─────────────────────────────────────────────
+    // 8. 볼륨 관련 메서드
 
     /// BGM 볼륨 설정
     /// 0~100 범위로 자동 보정 후 이벤트 발행
@@ -253,10 +322,6 @@ public class DataManager : MonoBehaviour
     }
 
     /// 현재 저장된 볼륨값을 한 번에 다시 브로드캐스트
-    /// 
-    /// 사용 이유:
-    /// 씬이 바뀌고 새 AudioManager가 생성되었을 때
-    /// 현재 값을 다시 적용하기 위해 사용
     /// </summary>
     public void BroadcastAudioSettings()
     {
@@ -272,7 +337,7 @@ public class DataManager : MonoBehaviour
     public int GetSfxVolumeLevel() => _sfxVolumeLevel;
 
     // ─────────────────────────────────────────────
-    // 8. 쪽지 관련 메서드
+    // 9. 쪽지 관련 메서드
 
     /// 새 쪽지 여부 설정
     /// 
@@ -302,7 +367,7 @@ public class DataManager : MonoBehaviour
     }
 
     // =========================================================
-    // 9. 초기화 관련 메서드
+    // 10. 초기화 관련 메서드
 
     /// <summary>
     /// 테스트용 기본 상태로 초기화한다.
@@ -313,6 +378,7 @@ public class DataManager : MonoBehaviour
         _loginId = string.Empty;
         _nickname = "Player";
         _petShopName = "My PetShop";
+        _ownedPetSlots = new OwnedPetSlot[4];
 
         _bgmVolumeLevel = 80;
         _sfxVolumeLevel = 80;

@@ -22,8 +22,6 @@ public class NetworkManager : MonoBehaviour
 
     [Header("Server Setting")]
     /// 서버 기본 주소
-    /// 실제 사용자가 서버 IP와 포트를 알려주면 수정한다.
-    /// 예: http://192.168.1.122:8080
     [SerializeField] private string baseUrl = "http://localhost:8080";
 
     [SerializeField] private int timeout = 10;
@@ -46,6 +44,13 @@ public class NetworkManager : MonoBehaviour
     private IEnumerator GetRoutine(string url, Action<long, string> onComplete)
     {
         using UnityWebRequest request = UnityWebRequest.Get(baseUrl + url);
+
+        string token = PlayerPrefs.GetString("accessToken");
+        if (!string.IsNullOrEmpty(token))
+        {
+            request.SetRequestHeader("Authorization", "Bearer " + token);
+        }
+
         request.timeout = timeout;
         yield return request.SendWebRequest();
 
@@ -62,10 +67,19 @@ public class NetworkManager : MonoBehaviour
     private IEnumerator PostRoutine(string url, string json, Action<long, string> onComplete)
     {
         using UnityWebRequest request = new UnityWebRequest(baseUrl + url, "POST");
+
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
+
         request.SetRequestHeader("Content-Type", "application/json");
+
+        string token = PlayerPrefs.GetString("accessToken");
+        if (!string.IsNullOrEmpty(token))
+        {
+            request.SetRequestHeader("Authorization", "Bearer " + token);
+        }
+
         request.timeout = timeout;
         yield return request.SendWebRequest();
 
@@ -126,6 +140,21 @@ public class NetworkManager : MonoBehaviour
                 LoginResponse response = TryParseJson<LoginResponse>(raw);
                 if (response == null) { onFail?.Invoke("Response parse error"); return; }
 
+                // 🔥 ownedPets 확인 로그
+                if (response.ownedPets != null)
+                {
+                    Debug.Log("[NetworkManager] 보유 펫 수: " + response.ownedPets.Length);
+
+                    for (int i = 0; i < response.ownedPets.Length; i++)
+                    {
+                        Debug.Log($"ownedPet[{i}] petId: {response.ownedPets[i].petId}, petTypeId: {response.ownedPets[i].petTypeId}");
+                    }
+                }
+                else
+                {
+                    Debug.Log("[NetworkManager] 보유 펫 없음");
+                }
+
                 // ✨ 파싱 결과 확인 로그
                 Debug.Log("[NetworkManager] 파싱 결과");
                 Debug.Log("  accessToken: " + response.accessToken);
@@ -136,6 +165,7 @@ public class NetworkManager : MonoBehaviour
                 PlayerPrefs.SetString("accessToken", response.accessToken);
                 DataManager.Data.SetUserSession(-1, loginId, response.nickname, response.shopName);
                 DataManager.Data.SetUnreadMailState(response.hasUnreadMail);
+                DataManager.Data.SetOwnedPets(response.ownedPets);
                 onSuccess?.Invoke();
             }));
     }
@@ -197,7 +227,51 @@ public class NetworkManager : MonoBehaviour
     // 5. 추가 데이터 요청 — 추후 구현 예정
 
     public void RequestUserData(int userId)      => Debug.Log("[NetworkManager] 유저 데이터 요청 예정 / userId: " + userId);
-    public void RequestPetData(int userId)       => Debug.Log("[NetworkManager] 펫 데이터 요청 예정 / userId: " + userId);
+    // 펫룸에 표시할 특정 펫 데이터 요청
+    public void RequestPetData(int petId, Action<PetRoomResponse> onSuccess = null, Action<string> onFail = null)
+    {
+        StartCoroutine(GetRoutine("/pet/petroom?petId=" + petId, (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 펫 데이터 응답 code: " + code);
+            Debug.Log("[NetworkManager] raw: " + raw);
+
+            if (code == -1)
+            {
+                Debug.LogError("[NetworkManager] 서버 연결 실패");
+                return;
+            }
+
+            if (code != 200)
+            {
+                Debug.LogError("[NetworkManager] 펫 데이터 요청 실패: " + code);
+                return;
+            }
+
+            PetRoomResponse response = TryParseJson<PetRoomResponse>(raw);
+
+            if (response == null)
+            {
+                Debug.LogError("[NetworkManager] 펫 데이터 JSON 파싱 실패");
+                return;
+            }
+
+            if (!response.success)
+            {
+                Debug.LogError("[NetworkManager] 펫 데이터 요청 실패");
+                return;
+            }
+
+            Debug.Log("[NetworkManager] 펫 데이터 요청 성공");
+            Debug.Log("petId: " + response.data.pet.petId);
+            Debug.Log("petTypeId: " + response.data.pet.petTypeId);
+            Debug.Log("level: " + response.data.pet.level);
+            Debug.Log("food: " + response.data.pet.food.current + " / " + response.data.pet.food.max);
+            Debug.Log("water: " + response.data.pet.water.current + " / " + response.data.pet.water.max);
+            Debug.Log("items count: " + response.data.items.Length);
+            onSuccess?.Invoke(response);
+        }));
+    }
+
     public void RequestInventoryData(int userId) => Debug.Log("[NetworkManager] 인벤토리 데이터 요청 예정 / userId: " + userId);
     public void RequestLetterData(int userId)    => Debug.Log("[NetworkManager] 편지 데이터 요청 예정 / userId: " + userId);
 }
@@ -219,6 +293,15 @@ public class LoginResponse
     public string nickname;
     public string shopName;
     public bool hasUnreadMail;
+
+    public OwnedPetData[] ownedPets;
+}
+
+[Serializable]
+public class OwnedPetData
+{
+    public int petId;
+    public int petTypeId;
 }
 
 [Serializable]
