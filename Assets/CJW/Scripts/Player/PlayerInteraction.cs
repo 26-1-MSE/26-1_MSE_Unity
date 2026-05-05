@@ -18,7 +18,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if (currentInteractable != null && !OcarinaGameManager.Instance.IsPlaying)
+            if (currentInteractable != null &&
+                (OcarinaGameManager.Instance == null || !OcarinaGameManager.Instance.IsPlaying))
             {
                 currentInteractable.Interact(this);
             }
