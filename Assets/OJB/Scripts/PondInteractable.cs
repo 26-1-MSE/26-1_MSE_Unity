@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class PondInteractable : MonoBehaviour, IInteractable
 {
-    private bool hasWater = true; // 물 있는지 여부
+    [SerializeField] private SpriteRenderer pondSprite;
+    private bool hasWater = true;
 
     public void Interact(PlayerInteraction player)
     {
-        if (!hasWater) return; // 이미 물 뜬 경우 무시
+        if (!hasWater) return;
 
         hasWater = false;
-        Debug.Log("물 획득!");
+        Debug.Log("[ITEM_COLLECT] 물 획득!");
 
-        // 플레이어 물뜨기 애니메이션
+        if (pondSprite != null)
+            pondSprite.enabled = false;
+
         Animator playerAnimator = player.GetComponent<Animator>();
         if (playerAnimator != null)
         {
@@ -22,7 +25,7 @@ public class PondInteractable : MonoBehaviour, IInteractable
 
     public string GetInteractMessage()
     {
-        if (!hasWater) return null; // 물 없으면 텍스트 숨김
+        if (!hasWater) return null;
         return "상호작용하기";
     }
 }
