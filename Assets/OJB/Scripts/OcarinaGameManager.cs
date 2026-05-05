@@ -23,7 +23,7 @@ public class OcarinaGameManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerInteraction playerInteraction; // 추가: E키 입력 방지용
+    [SerializeField] private PlayerInteraction playerInteraction;
 
     private KeyCode[] possibleKeys = { KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F };
     private List<NoteObject> activeNotes = new List<NoteObject>();
@@ -34,6 +34,9 @@ public class OcarinaGameManager : MonoBehaviour
     private int spawnedNotes = 0;
     private float timeLeft;
     private bool isPlaying = false;
+    private bool isSuccess = false;
+    private GameObject currentPet;
+
     public bool IsPlaying => isPlaying;
 
     [SerializeField] private float judgeLineX = -400f;
@@ -45,13 +48,15 @@ public class OcarinaGameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartGame()
+    public void StartGame(GameObject pet)
     {
-        if (isPlaying) return; // 추가: 이미 플레이 중이면 중복 실행 방지
+        if (isPlaying) return;
+        currentPet = pet;
 
         missCount = 0;
         clearedNotes = 0;
         spawnedNotes = 0;
+        isSuccess = false;
         timeLeft = gameDuration;
         isPlaying = true;
         activeNotes.Clear();
@@ -66,8 +71,6 @@ public class OcarinaGameManager : MonoBehaviour
             noteSequence.Add(possibleKeys[Random.Range(0, possibleKeys.Length)]);
 
         ocarinaUI.SetActive(true);
-
-        // 추가: 플레이어 이동 + 상호작용 둘 다 비활성화
         playerMovement.enabled = false;
         playerInteraction.enabled = false;
 
@@ -117,7 +120,7 @@ public class OcarinaGameManager : MonoBehaviour
         else if (Keyboard.current.fKey.wasPressedThisFrame) HandleInput(KeyCode.F);
     }
 
-   private void HandleInput(KeyCode key)
+    private void HandleInput(KeyCode key)
     {
         if (activeNotes.Count == 0) return;
 
@@ -145,21 +148,21 @@ public class OcarinaGameManager : MonoBehaviour
 
         SpawnNote();
 
-        // 변경: 맞든 틀리든 모든 음표 처리되면 성공 체크
         if (clearedNotes + missCount >= totalNotes)
             Success();
     }
 
-   
-
     private void Success()
     {
-        Debug.Log("Success 호출됨!");
+        isSuccess = true;
         isPlaying = false;
-        // 추가: 플레이어 이동 + 상호작용 다시 활성화
         playerMovement.enabled = true;
         playerInteraction.enabled = true;
-        
+
+        if (currentPet != null)
+            currentPet.SetActive(false);
+
+        Debug.Log("[PET_COLLECT] 펫 획득!");
         resultText.text = "Congratulations!\nYou got a pet!";
         resultPopup.SetActive(true);
         StartCoroutine(ClosePopupAfterDelay());
@@ -167,8 +170,8 @@ public class OcarinaGameManager : MonoBehaviour
 
     private void Fail()
     {
+        isSuccess = false;
         isPlaying = false;
-        // 추가: 플레이어 이동 + 상호작용 다시 활성화
         playerMovement.enabled = true;
         playerInteraction.enabled = true;
 
@@ -185,12 +188,22 @@ public class OcarinaGameManager : MonoBehaviour
     {
         ocarinaUI.SetActive(false);
     }
+
     private IEnumerator ClosePopupAfterDelay()
     {
         yield return new WaitForSeconds(2f);
         resultPopup.SetActive(false);
         ocarinaUI.SetActive(false);
+
+        // 실패했을 때만 재도전 가능하게
+        if (!isSuccess && currentPet != null)
+        {
+            PetInteractable pet = currentPet.GetComponent<PetInteractable>();
+            if (pet != null)
+                pet.ResetInteraction();
+        }
     }
+
     public void OnNoteMissed(NoteObject note)
     {
         if (!isPlaying) return;
@@ -210,9 +223,7 @@ public class OcarinaGameManager : MonoBehaviour
             return;
         }
 
-        // 추가
         if (clearedNotes + missCount >= totalNotes)
             Success();
     }
-    
 }
