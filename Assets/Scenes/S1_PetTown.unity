@@ -353,6 +353,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 193640680}
+    - target: {fileID: 8936787139403379640, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9051466949297590974, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -748,6 +752,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4880578608441071735, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 988808138}
+    - targetCorrespondingSourceObject: {fileID: 4880578608441071735, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 988808139}
   m_SourcePrefab: {fileID: 100100000, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
 --- !u!1 &931409944 stripped
 GameObject:
@@ -801,6 +808,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProfileUI
   nicknameText: {fileID: 0}
   petShopNameText: {fileID: 6547925571814401763}
+--- !u!114 &988808139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931409944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548eeaceb4725a54e94879ef22eb4b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MailAlertUI
+  unreadMailIcon: {fileID: 1779095381}
 --- !u!114 &1015100447 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2322920789286115269, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
