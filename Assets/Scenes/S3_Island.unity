@@ -3201,6 +3201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hare
       objectReference: {fileID: 0}
+    - target: {fileID: 631979416926690330, guid: 848b247e579d34276bb3f816ff41c087, type: 3}
+      propertyPath: petTypeId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4343598600319964953, guid: 848b247e579d34276bb3f816ff41c087, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -3821,6 +3825,10 @@ PrefabInstance:
     - target: {fileID: 80349278544807208, guid: 866c3898242bc491bac0ff33cf56ecfe, type: 3}
       propertyPath: m_Name
       value: Deer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274091354080807699, guid: 866c3898242bc491bac0ff33cf56ecfe, type: 3}
+      propertyPath: petTypeId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8905865667042072345, guid: 866c3898242bc491bac0ff33cf56ecfe, type: 3}
       propertyPath: m_LocalScale.x
@@ -14238,6 +14246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boar
       objectReference: {fileID: 0}
+    - target: {fileID: 6796876106040779088, guid: a7049b39853f841e4b4a3a540e329df2, type: 3}
+      propertyPath: petTypeId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9001451155577699401, guid: a7049b39853f841e4b4a3a540e329df2, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
@@ -23561,6 +23573,10 @@ PrefabInstance:
     - target: {fileID: 6374351052855965043, guid: c2946e91502dc411085bf413d7fdca45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619126618904886384, guid: c2946e91502dc411085bf413d7fdca45, type: 3}
+      propertyPath: petTypeId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

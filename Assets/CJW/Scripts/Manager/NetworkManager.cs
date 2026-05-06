@@ -272,9 +272,62 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
+    // =========================================================
+    // 6. S3 펫 획득 API 함수
+
+    public void RequestAcquirePet(int petTypeId, Action onSuccess = null, Action<string> onFail = null)
+    {
+        string json = JsonUtility.ToJson(new AcquirePetRequest
+        {
+            petTypeId = petTypeId
+        });
+
+        StartCoroutine(PostRoutine("/pet/acquire", json, (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 펫 획득 응답 code: " + code + " / raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("Server connection failed");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("Pet acquire failed: " + code);
+                return;
+            }
+
+            AcquirePetResponse response = TryParseJson<AcquirePetResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("Response parse error");
+                return;
+            }
+
+            if (!response.success)
+            {
+                onFail?.Invoke(response.error);
+                return;
+            }
+
+            Debug.Log("[NetworkManager] 펫 획득 성공");
+            Debug.Log("petId: " + response.data.pet.petId);
+            Debug.Log("petTypeId: " + response.data.pet.petTypeId);
+            Debug.Log("level: " + response.data.pet.level);
+
+            onSuccess?.Invoke();
+        }));
+    }
+
     public void RequestInventoryData(int userId) => Debug.Log("[NetworkManager] 인벤토리 데이터 요청 예정 / userId: " + userId);
     public void RequestLetterData(int userId)    => Debug.Log("[NetworkManager] 편지 데이터 요청 예정 / userId: " + userId);
 }
+
+
+
+    
 
 // =========================================================
 // 요청 / 응답 데이터 모델

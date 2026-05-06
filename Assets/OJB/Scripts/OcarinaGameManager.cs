@@ -29,6 +29,7 @@ public class OcarinaGameManager : MonoBehaviour
     private List<NoteObject> activeNotes = new List<NoteObject>();
     private List<KeyCode> noteSequence = new List<KeyCode>();
 
+    private int currentPetTypeId;
     private int missCount = 0;
     private int clearedNotes = 0;
     private int spawnedNotes = 0;
@@ -48,10 +49,11 @@ public class OcarinaGameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartGame(GameObject pet)
+    public void StartGame(GameObject pet, int petTypeId)
     {
         if (isPlaying) return;
         currentPet = pet;
+        currentPetTypeId = petTypeId;
 
         missCount = 0;
         clearedNotes = 0;
@@ -163,6 +165,7 @@ public class OcarinaGameManager : MonoBehaviour
             currentPet.SetActive(false);
 
         Debug.Log("[PET_COLLECT] 펫 획득!");
+        NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
         resultText.text = "Congratulations!\nYou got a pet!";
         resultPopup.SetActive(true);
         StartCoroutine(ClosePopupAfterDelay());
