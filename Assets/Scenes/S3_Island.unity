@@ -18066,6 +18066,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeInteractable
   itemName: Apple
+  itemTypeId: 1
+  acquireCount: 1
   maxItemCount: 3
   treeAnimator: {fileID: 0}
   foodImages: []

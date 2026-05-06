@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6259702963868224579}
   - component: {fileID: 2948651005121765420}
   - component: {fileID: 5758864501036835882}
-  - component: {fileID: 631979416926690330}
   - component: {fileID: 8716897582394066475}
   m_Layer: 0
   m_Name: S1_Hare
@@ -135,18 +134,6 @@ MonoBehaviour:
   wanderRangeX: 3
   animator: {fileID: 2948651005121765420}
   spriteRenderer: {fileID: 6259702963868224579}
---- !u!114 &631979416926690330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560252929176286189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d18066a9263f4f3fb91df959fd31733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PetInteractable
 --- !u!61 &8716897582394066475
 BoxCollider2D:
   m_ObjectHideFlags: 0

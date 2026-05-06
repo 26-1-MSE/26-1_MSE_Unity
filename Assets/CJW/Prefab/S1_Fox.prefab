@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2116034783600554987}
   - component: {fileID: 4722598545969961332}
   - component: {fileID: 6750359797171066573}
-  - component: {fileID: 7619126618904886384}
   - component: {fileID: 8020015391564357979}
   m_Layer: 0
   m_Name: S1_Fox
@@ -135,18 +134,6 @@ MonoBehaviour:
   wanderRangeX: 3
   animator: {fileID: 4722598545969961332}
   spriteRenderer: {fileID: 2116034783600554987}
---- !u!114 &7619126618904886384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1230038970395585343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d18066a9263f4f3fb91df959fd31733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PetInteractable
 --- !u!61 &8020015391564357979
 BoxCollider2D:
   m_ObjectHideFlags: 0

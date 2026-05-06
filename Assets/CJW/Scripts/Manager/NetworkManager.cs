@@ -166,6 +166,7 @@ public class NetworkManager : MonoBehaviour
                 DataManager.Data.SetUserSession(-1, loginId, response.nickname, response.shopName);
                 DataManager.Data.SetUnreadMailState(response.hasUnreadMail);
                 DataManager.Data.SetOwnedPets(response.ownedPets);
+                RequestInventoryData();
                 onSuccess?.Invoke();
             }));
     }
@@ -333,7 +334,109 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    public void RequestInventoryData(int userId) => Debug.Log("[NetworkManager] 인벤토리 데이터 요청 예정 / userId: " + userId);
+    public void RequestInventoryData(Action<InventoryResponse> onSuccess = null, Action<string> onFail = null)
+    {
+        StartCoroutine(GetRoutine("/inventory", (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 인벤토리 응답 code: " + code);
+            Debug.Log("[NetworkManager] raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("Server connection failed");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("Inventory request failed: " + code);
+                return;
+            }
+
+            InventoryResponse response = TryParseJson<InventoryResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("Inventory parse error");
+                return;
+            }
+
+            if (!response.success)
+            {
+                onFail?.Invoke("Inventory request failed");
+                return;
+            }
+
+            DataManager.Data.SetOwnedItems(response.data.items);
+            Debug.Log("[NetworkManager] 인벤토리 조회 성공");
+            Debug.Log("pets count: " + response.data.pets.Length);
+            Debug.Log("items type count: " + response.data.items.Length);
+
+            for (int i = 0; i < response.data.items.Length; i++)
+            {
+                Debug.Log($"item[{i}] itemId:{response.data.items[i].itemId}, itemTypeId:{response.data.items[i].itemTypeId}, count:{response.data.items[i].count}");
+            }
+
+            onSuccess?.Invoke(response);
+        }));
+    }
+
+    public void RequestAcquireItem(int itemTypeId, int count, Action onSuccess = null, Action<string> onFail = null)
+    {
+        string json = JsonUtility.ToJson(new AcquireItemRequest
+        {
+            itemTypeId = itemTypeId,
+            count = count
+        });
+
+        StartCoroutine(PostRoutine("/item/acquire", json, (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 아이템 획득 응답 code: " + code + " / raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("Server connection failed");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("Item acquire failed: " + code);
+                return;
+            }
+
+            AcquireItemResponse response = TryParseJson<AcquireItemResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("Response parse error");
+                return;
+            }
+
+            if (!response.success)
+            {
+                onFail?.Invoke(response.error);
+                return;
+            }
+
+            Debug.Log("[NetworkManager] 아이템 획득 성공");
+            Debug.Log("itemId: " + response.data.item.itemId);
+            Debug.Log("itemTypeId: " + response.data.item.itemTypeId);
+            Debug.Log("count: " + response.data.item.count);
+
+            if (DataManager.Data != null)
+            {
+                DataManager.Data.AddOwnedItem(
+                    response.data.item.itemId,
+                    response.data.item.itemTypeId,
+                    response.data.item.count
+                );
+            }
+
+            onSuccess?.Invoke();
+        }));
+    }
+
     public void RequestLetterData(int userId)    => Debug.Log("[NetworkManager] 편지 데이터 요청 예정 / userId: " + userId);
 }
 
@@ -367,6 +470,13 @@ public class OwnedPetData
 {
     public int petId;
     public int petTypeId;
+}
+
+public class OwnedItemData
+{
+    public int itemId;
+    public int itemTypeId;
+    public int count;
 }
 
 [Serializable]
