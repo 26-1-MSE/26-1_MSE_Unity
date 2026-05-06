@@ -317,6 +317,18 @@ public class NetworkManager : MonoBehaviour
             Debug.Log("petTypeId: " + response.data.pet.petTypeId);
             Debug.Log("level: " + response.data.pet.level);
 
+            if (DataManager.Data != null)
+            {
+                DataManager.Data.AddOwnedPet(
+                    response.data.pet.petId,
+                    response.data.pet.petTypeId
+                );
+            }
+            else
+            {
+                Debug.LogWarning("[NetworkManager] DataManager.Data가 없어서 보유 펫을 갱신할 수 없습니다.");
+            }
+
             onSuccess?.Invoke();
         }));
     }

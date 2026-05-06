@@ -61,12 +61,29 @@ public class DataManager : MonoBehaviour
 
     /// petId:
     /// 서버 DB에서 특정 펫을 식별하는 고유 ID.
-    /// 나중에 펫룸에서 펫 상세 조회 요청 시 서버로 전달한다.
     ///
     /// petTypeId:
     /// 펫 종류를 구분하는 ID.
     /// 예: 1 = 토끼, 2 = 여우, 3 = 사슴, 4 = 멧돼지
     [SerializeField] private OwnedPetSlot[] _ownedPetSlots = new OwnedPetSlot[4];
+
+    //S3에서 펫 추가했을 시를 위함
+    public void AddOwnedPet(int petId, int petTypeId)
+    {
+        for (int i = 0; i < _ownedPetSlots.Length; i++)
+        {
+            if (_ownedPetSlots[i].petId == 0)
+            {
+                _ownedPetSlots[i].petId = petId;
+                _ownedPetSlots[i].petTypeId = petTypeId;
+
+                Debug.Log($"[DataManager] 보유 펫 추가 저장 완료 / slot: {i}, petId: {petId}, petTypeId: {petTypeId}");
+                return;
+            }
+        }
+
+        Debug.LogWarning("[DataManager] 보유 펫 슬롯이 가득 찼습니다.");
+    }
 
     /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
     public OwnedPetSlot[] OwnedPetSlots => _ownedPetSlots;
