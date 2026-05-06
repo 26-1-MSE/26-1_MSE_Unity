@@ -887,6 +887,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowItemInventory
       objectReference: {fileID: 0}
+    - target: {fileID: 4627347423249526388, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6235483617943938384}
+    - target: {fileID: 4627347423249526388, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickMove
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627347423249526388, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneOut, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: mainCamera
       value: 
@@ -903,11 +915,33 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8592326349773064751, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6234586106345995113, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6235483617943938384}
   m_SourcePrefab: {fileID: 100100000, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+--- !u!1 &6235483617943938383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6234586106345995113, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+  m_PrefabInstance: {fileID: 6235483617943938382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6235483617943938384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6235483617943938383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571b2757ff7e87b4b8d3e76f6c662f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneOut
+  targetScene: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

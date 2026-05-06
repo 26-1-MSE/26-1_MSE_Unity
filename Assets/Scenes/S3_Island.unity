@@ -1100,6 +1100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55940580}
   - component: {fileID: 55940579}
+  - component: {fileID: 55940581}
   m_Layer: 0
   m_Name: portal_0
   m_TagString: Untagged
@@ -1181,6 +1182,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &55940581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55940578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a26c8a287470a40becba046a0d5027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portal
+  targetScene: 1
 --- !u!1 &78815183
 GameObject:
   m_ObjectHideFlags: 0
