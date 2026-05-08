@@ -1,10 +1,14 @@
 using UnityEngine;
 
+/// <summary>
+/// Constrains the camera's position within map bounds, following a target
+/// while keeping the viewport inside the defined rectangle.
+/// </summary>
 public class CameraBounds : MonoBehaviour
 {
     private Camera cam;
 
-    // 플레이어 Transform을 직접 참조
+    // Direct reference to the player Transform the camera follows
     [SerializeField] private Transform target;
 
     [SerializeField] private float MAP_MIN_X = -84.66f;
@@ -22,11 +26,10 @@ public class CameraBounds : MonoBehaviour
         float halfHeight = cam.orthographicSize;
         float halfWidth  = cam.orthographicSize * cam.aspect;
 
-        // 플레이어 위치를 기준으로 클램프
+        // Clamp so the viewport edges never exceed the map boundaries
         float clampedX = Mathf.Clamp(target.position.x, MAP_MIN_X + halfWidth,  MAP_MAX_X - halfWidth);
         float clampedY = Mathf.Clamp(target.position.y, MAP_MIN_Y + halfHeight, MAP_MAX_Y - halfHeight);
 
-        // 월드 좌표로 직접 설정
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);
     }
 }

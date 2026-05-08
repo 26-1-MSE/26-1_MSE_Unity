@@ -3,6 +3,10 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles the login form UI, validates input fields, and delegates
+/// authentication to NetworkManager.
+/// </summary>
 public class LoginUI : MonoBehaviour
 {
     [SerializeField] private TMP_InputField idInputField;
@@ -12,6 +16,7 @@ public class LoginUI : MonoBehaviour
     [SerializeField] private UnityEvent onLoginSuccess;
     [SerializeField] private Button loginButton;
 
+    // Bound to the login button's OnClick event
     public void OnClickLoginButton()
     {
         string id = idInputField.text;
@@ -24,6 +29,7 @@ public class LoginUI : MonoBehaviour
             return;
         }
 
+        // Disable while the request is in flight to prevent duplicate submissions
         loginButton.interactable = false;
 
         NetworkManager.Instance.SendLoginRequest(
