@@ -200,8 +200,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Guest
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
+  m_sharedMaterial: {fileID: -3005160883332571845, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -225,13 +225,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -395,6 +395,43 @@ MonoBehaviour:
     petTypeId: 0
   - petId: 0
     petTypeId: 0
+  _ownedItemSlots:
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
+  - itemId: 0
+    itemTypeId: 0
+    count: 0
   _bgmVolumeLevel: 80
   _sfxVolumeLevel: 80
   _hasUnreadMail: 0
@@ -1549,6 +1586,18 @@ PrefabInstance:
       propertyPath: toastMessage
       value: 
       objectReference: {fileID: 3625052461508890548}
+    - target: {fileID: 3288046799118240784, guid: a2ed3250796386d4abf6f9371a37e223, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600087582849052537, guid: a2ed3250796386d4abf6f9371a37e223, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700895611827936462, guid: a2ed3250796386d4abf6f9371a37e223, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5633970237229900155, guid: a2ed3250796386d4abf6f9371a37e223, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
