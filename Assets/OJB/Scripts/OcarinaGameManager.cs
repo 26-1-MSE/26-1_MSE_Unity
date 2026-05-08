@@ -165,7 +165,7 @@ public class OcarinaGameManager : MonoBehaviour
             currentPet.SetActive(false);
 
         Debug.Log("[PET_COLLECT] 펫 획득!");
-        NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
+        if (NetworkManager.Instance) NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
         resultText.text = "Congratulations!\nYou got a pet!";
         resultPopup.SetActive(true);
         StartCoroutine(ClosePopupAfterDelay());
