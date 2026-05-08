@@ -8,6 +8,7 @@ public class NoteObject : MonoBehaviour
     private float moveSpeed = 3f;
     [SerializeField] private float missLineX = -1000f;
     private bool isMissed = false;
+    private bool isHandled = false; // 추가
 
     public void Init(KeyCode key)
     {
@@ -20,10 +21,16 @@ public class NoteObject : MonoBehaviour
     {
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
 
-        if (!isMissed && transform.localPosition.x < missLineX)
+        if (!isMissed && !isHandled && transform.localPosition.x < missLineX)
         {
             isMissed = true;
+            isHandled = true;
             OcarinaGameManager.Instance.OnNoteMissed(this);
         }
+    }
+
+    public void MarkHandled()
+    {
+        isHandled = true;
     }
 }
