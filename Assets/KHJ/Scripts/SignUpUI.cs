@@ -3,6 +3,10 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles the sign-up form UI, validates all input fields including password
+/// confirmation, and delegates registration to NetworkManager.
+/// </summary>
 public class SignUpUI : MonoBehaviour
 {
     [SerializeField] private TMP_InputField idInputField;
@@ -12,13 +16,13 @@ public class SignUpUI : MonoBehaviour
     [SerializeField] private TMP_InputField shopNameInputField;
 
     [SerializeField] private ToastMessage toastMessage;
-    
+
     [SerializeField] private Button checkIdButton;
     [SerializeField] private Button signUpButton;
-    
+
     [SerializeField] private UnityEvent onSignUpSuccess;
 
-    // 중복 체크 버튼에 연결
+    // Bound to the ID duplicate check button
     public void OnClickCheckIdButton()
     {
         string id = idInputField.text;
@@ -37,8 +41,8 @@ public class SignUpUI : MonoBehaviour
             toastMessage.ShowToast(msg);
         });
     }
-    
-    // 회원가입 버튼에 연결
+
+    // Bound to the sign-up submit button
     public void OnClickSignUpButton()
     {
         string id = idInputField.text;
@@ -61,6 +65,7 @@ public class SignUpUI : MonoBehaviour
             return;
         }
 
+        // Disable while the request is in flight to prevent duplicate submissions
         signUpButton.interactable = false;
 
         NetworkManager.Instance.SendSignUpRequest(id, password, nickname, shopName, (success, msg) =>
