@@ -12,9 +12,9 @@ public class NoteItemUI : MonoBehaviour
     [SerializeField] private TMP_Text readStateText;
 
     private MailData mail;
-    private NotesUIManager manager;
+    private LetterUIManager manager;
 
-    public void Setup(MailData mailData, NotesUIManager uiManager)
+    public void Setup(MailData mailData, LetterUIManager uiManager)
     {
         mail = mailData;
         manager = uiManager;
