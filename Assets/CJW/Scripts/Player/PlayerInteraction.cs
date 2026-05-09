@@ -32,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
         if (interactable != null)
         {
             currentInteractable = interactable;
-            if (interactText != null && interactable.GetInteractMessage() != null)
+            if (interactText != null)
                 interactText.gameObject.SetActive(true);
             Debug.Log($"[PlayerInteraction] 상호작용 범위 진입: {other.name}");
         }
