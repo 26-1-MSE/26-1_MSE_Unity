@@ -25,6 +25,11 @@ public class OcarinaGameManager : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerInteraction playerInteraction;
 
+    [Header("Sound")]
+    [SerializeField] private AudioSource audioSource;     // 추가
+    [SerializeField] private AudioClip successSound;      // 추가
+    [SerializeField] private AudioClip failSound;  
+
     private KeyCode[] possibleKeys = { KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F };
     private List<NoteObject> activeNotes = new List<NoteObject>();
     private List<KeyCode> noteSequence = new List<KeyCode>();
@@ -127,6 +132,7 @@ public class OcarinaGameManager : MonoBehaviour
         if (activeNotes.Count == 0) return;
 
         NoteObject firstNote = activeNotes[0];
+        firstNote.MarkHandled();
         activeNotes.RemoveAt(0);
         Destroy(firstNote.gameObject);
 
@@ -165,9 +171,19 @@ public class OcarinaGameManager : MonoBehaviour
             currentPet.SetActive(false);
 
         Debug.Log("[PET_COLLECT] 펫 획득!");
+
+        if (NetworkManager.Instance != null)
         NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
+        else
+        Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
+
+        if (NetworkManager.Instance) NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
         resultText.text = "Congratulations!\nYou got a pet!";
         resultPopup.SetActive(true);
+
+        if (audioSource != null && successSound != null)
+        audioSource.PlayOneShot(successSound);
+
         StartCoroutine(ClosePopupAfterDelay());
     }
 
@@ -184,6 +200,10 @@ public class OcarinaGameManager : MonoBehaviour
 
         resultText.text = "Failed.\nTry again next time.";
         resultPopup.SetActive(true);
+
+        if (audioSource != null && failSound != null)
+        audioSource.PlayOneShot(failSound);
+        
         StartCoroutine(ClosePopupAfterDelay());
     }
 
