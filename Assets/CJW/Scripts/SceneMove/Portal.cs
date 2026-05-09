@@ -37,9 +37,5 @@ public class Portal : MonoBehaviour, IInteractable
                 break;
         }
     }
-    public string GetInteractMessage()
-    {
-        return "E키를 눌러 이동";
-    }
     
 }
