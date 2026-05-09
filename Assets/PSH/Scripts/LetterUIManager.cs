@@ -130,7 +130,7 @@ public class LetterUIManager : MonoBehaviour
 
         mails.Add(new MailData
         {
-            id = 9,
+            id = 10,
             senderName = "Chief Bogo",
             title = "You're fired.",
             body = "It's not about how badly you WANT something. It's about what you are CAPABLE of!",
