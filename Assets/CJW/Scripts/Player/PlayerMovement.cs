@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 3f;
+    private int jumpCount = 0;
+    [SerializeField] private int maxJumpCount = 2;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -22,13 +24,16 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = 0f;
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && jumpCount < maxJumpCount)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+
+            jumpCount++;
+
             animator.SetBool("isJumping", true);
             Invoke("EndJump", 0.8f);
         }
-            
+
 
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             moveInput = -1f;
@@ -43,12 +48,19 @@ public class PlayerMovement : MonoBehaviour
             if (moveInput < 0) spriteRenderer.flipX = true;
             else if (moveInput > 0) spriteRenderer.flipX = false;
         }
+
+        if (IsGrounded())
+        {
+            jumpCount = 0;
+        }
     }
 
     private void FixedUpdate()
     {
         if (rb == null) return;
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+
 
         /*Debug.DrawRay(rb.position, Vector3.down, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(rb.positon, Vector3.down, 1);
@@ -57,6 +69,17 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
         }*/
+    }
+
+    private bool IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            rb.position,
+            Vector2.down,
+            0.6f
+        );
+
+        return hit.collider != null;
     }
 
     private void EndJump()

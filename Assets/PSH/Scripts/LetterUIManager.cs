@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI; 
 
-public class NotesUIManager : MonoBehaviour
+public class LetterUIManager : MonoBehaviour
 {
     [Header("Panels")]
     [SerializeField] private GameObject background;
@@ -17,9 +17,11 @@ public class NotesUIManager : MonoBehaviour
     [SerializeField] private TMP_Text noteCountText;
 
     [Header("Detail")]
+    [SerializeField] private TMP_Text detailTitleText;
     [SerializeField] private TMP_Text toText;
     [SerializeField] private TMP_Text bodyText;
     [SerializeField] private TMP_Text fromText;
+    [SerializeField] private TMP_Text dateText;
     [SerializeField] private TMP_Text readStateText;
     [SerializeField] private Image readStateBg;
 
@@ -36,7 +38,7 @@ public class NotesUIManager : MonoBehaviour
             body = "Never let 'em see that they get to you. " +
                    "I thought you were the one who'd believe in me. " +
                    "Because you're my pack.",
-            date = "2024.05.21",
+            date = "2024.05.21 12:39",
             isRead = false
         });
 
@@ -48,7 +50,7 @@ public class NotesUIManager : MonoBehaviour
             body = "I am so sorry for the things I said. " +
                    "I know you'll never forgive me, and I don't blame you. " +
                    "But we're a team, right? I don't know when to quit.!",
-            date = "2024.05.20",
+            date = "2024.05.20 14:06",
             isRead = true
         });
 
@@ -58,7 +60,7 @@ public class NotesUIManager : MonoBehaviour
             senderName = "Finnick",
             title = "Toot toot",
             body = "You kiss me tomorrow, I'll bite your face off! Ciao.",
-            date = "2024.05.19",
+            date = "2024.05.19 09:12",
             isRead = false
         });
 
@@ -69,7 +71,7 @@ public class NotesUIManager : MonoBehaviour
             title = "Permission to hug?",
             body = "I have to prove it. Please. This is our only chance to set things right. " +
                    "And when I do, my family will finally be able to come home.",
-            date = "2024.05.18",
+            date = "2024.05.18 16:58",
             isRead = true
         });
 
@@ -79,7 +81,7 @@ public class NotesUIManager : MonoBehaviour
             senderName = "Gazelle ",
             title = "Good evening, Zootopia!",
             body = "I'm Gazelle, and you are one hot dancer.",
-            date = "2024.05.17",
+            date = "2024.05.17 20:45",
             isRead = true
         });
 
@@ -89,7 +91,7 @@ public class NotesUIManager : MonoBehaviour
             senderName = "Flash",
             title = "Priscilla......",
             body = "What do you call... a three humped camel?",
-            date = "2024.05.16",
+            date = "2024.05.16 17:22",
             isRead = false
         });
 
@@ -99,7 +101,7 @@ public class NotesUIManager : MonoBehaviour
             senderName = "Nibbles",
             title = "Heya, bub.",
             body = "Your partner needs you and Nibbles Maplestick is going to get you to her.",
-            date = "2024.05.15",
+            date = "2024.05.15 09:34",
             isRead = false
         });
 
@@ -112,7 +114,7 @@ public class NotesUIManager : MonoBehaviour
                    "Grandmama made you a cannoli. " +
                    "And how did you repay my generosity? With a rug. " +
                    "Made from the butt of a skunk. A skunk butt rug.",
-            date = "2024.05.15",
+            date = "2024.05.15 14:27",
             isRead = true
         });
 
@@ -122,7 +124,7 @@ public class NotesUIManager : MonoBehaviour
             senderName = "Clawhauser",
             title = "Are you familiar with Gazelle?",
             body = "Greatest singer of our lifetime. Angel with horns.",
-            date = "2024.05.14",
+            date = "2024.05.14 10:15",
             isRead = false
         });
 
@@ -132,7 +134,7 @@ public class NotesUIManager : MonoBehaviour
             senderName = "Chief Bogo",
             title = "You're fired.",
             body = "It's not about how badly you WANT something. It's about what you are CAPABLE of!",
-            date = "2024.05.13",
+            date = "2024.05.13 13:41",
             isRead = true
         });
 
@@ -164,10 +166,11 @@ public class NotesUIManager : MonoBehaviour
 
         mail.isRead = true;
 
+        detailTitleText.text = mail.title;
         toText.text = "To. Player";
         bodyText.text = mail.body;
         fromText.text = "From. " + mail.senderName;
-        readStateText.text = mail.isRead ? "Read" : "NEW";
+        dateText.text = mail.date;
 
 
         //detail 패널 read/new 색 변경
@@ -181,6 +184,9 @@ public class NotesUIManager : MonoBehaviour
             readStateText.text = "NEW";
             readStateBg.color = new Color(1, 1, 1); // 초록
         }
+
+        // 열람 후 읽음 처리
+        mail.isRead = true;
 
         detailPanel.SetActive(true);
 

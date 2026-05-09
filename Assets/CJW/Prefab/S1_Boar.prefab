@@ -131,7 +131,10 @@ MonoBehaviour:
   moveSpeed: 1.5
   minWaitTime: 1
   maxWaitTime: 3
+  useAbsoluteRange: 1
   wanderRangeX: 3
+  minX: -6
+  maxX: 3.8
   animator: {fileID: 2692403893991323973}
   spriteRenderer: {fileID: 3108541853272082691}
 --- !u!61 &5351430215588799106
