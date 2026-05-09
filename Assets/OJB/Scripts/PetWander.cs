@@ -6,7 +6,10 @@ public class PetWander : MonoBehaviour
     [SerializeField] private float moveSpeed = 1.5f;
     [SerializeField] private float minWaitTime = 1f;
     [SerializeField] private float maxWaitTime = 3f;
+    [SerializeField] private bool useAbsoluteRange = false;
     [SerializeField] private float wanderRangeX = 3f;
+    [SerializeField] private float minX = -5f;
+    [SerializeField] private float maxX = 5f;
 
     [Header("References")]
     [SerializeField] private Animator animator;
@@ -59,7 +62,13 @@ public class PetWander : MonoBehaviour
 
     private void SetNewTarget()
     {
-        float randomX = startX + Random.Range(-wanderRangeX, wanderRangeX);
+        float randomX;
+
+        if (useAbsoluteRange)
+            randomX = Random.Range(minX, maxX);
+        else
+            randomX = startX + Random.Range(-wanderRangeX, wanderRangeX);
+
         targetX = randomX;
         isMoving = true;
     }
