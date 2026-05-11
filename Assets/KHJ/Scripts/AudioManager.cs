@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     /// Persistent BGM instance that survives scene transitions.
     /// </summary>
     public static AudioManager BGMInstance { get; private set; }
+    public static AudioManager SFXInstance { get; private set; }
 
     [Header("Destroy Settings")]
     [SerializeField] private bool _dontDestroyOnLoad = false;
@@ -55,6 +56,10 @@ public class AudioManager : MonoBehaviour
             BGMInstance = this;
             DontDestroyOnLoad(gameObject);
             Debug.Log("AudioManager set to DontDestroyOnLoad and assigned as BGMInstance");
+        }
+        else if (_isBgmSource == false)
+        {
+            SFXInstance = this;
         }
         else
         {
@@ -92,6 +97,8 @@ public class AudioManager : MonoBehaviour
 
         if (BGMInstance == this)
             BGMInstance = null;
+        if (SFXInstance == this)
+            SFXInstance = null;
     }
 
     /// <summary>
