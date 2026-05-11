@@ -179,8 +179,8 @@ public class OcarinaGameManager : MonoBehaviour
         }
         else Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
 
-        resultText.text = "Congratulations!\nYou got a pet!";
-        resultPopup.SetActive(true);
+        //resultText.text = "Congratulations!\nYou got a pet!";
+        //resultPopup.SetActive(true);
 
         if (audioSource != null && successSound != null) {
             audioSource.PlayOneShot(successSound);
@@ -200,8 +200,8 @@ public class OcarinaGameManager : MonoBehaviour
             if (note != null) Destroy(note.gameObject);
         activeNotes.Clear();
 
-        resultText.text = "Failed.\nTry again next time.";
-        resultPopup.SetActive(true);
+        //resultText.text = "Failed.\nTry again next time.";
+        //resultPopup.SetActive(true);
 
         if (audioSource != null && failSound != null)
         audioSource.PlayOneShot(failSound);
