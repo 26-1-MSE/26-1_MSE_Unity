@@ -72,7 +72,7 @@ public class SignUpUI : MonoBehaviour
         {
             signUpButton.interactable = true;
             toastMessage.ShowToast(msg);
-            onSignUpSuccess?.Invoke();
+            if (success) onSignUpSuccess?.Invoke();
         });
     }
 }
