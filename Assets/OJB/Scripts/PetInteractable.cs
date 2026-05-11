@@ -15,7 +15,7 @@ public class PetInteractable : MonoBehaviour, IInteractable
     public string GetInteractMessage()
     {
         if (hasInteracted) return null;
-        return "상호작용하기";
+        return "E: Tame Pet";
     }
     public void ResetInteraction()
     {

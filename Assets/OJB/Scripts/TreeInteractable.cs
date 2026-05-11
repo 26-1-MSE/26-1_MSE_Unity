@@ -5,7 +5,7 @@ public class TreeInteractable : MonoBehaviour, IInteractable
 {
     [Header("Item Info")]
     [SerializeField] private string itemName = "Apple";
-    /// 1 = 사과, 2 = 바나나, 3 = 치즈, 4 = 딸기, 5= 물
+    /// 1 = 호박, 2 = 바나나, 3 = 치즈, 4 = 딸기, 5= 물
     [SerializeField] private int itemTypeId = 1;
     // 한 번 상호작용 시 획득하는 개수
     [SerializeField] private int acquireCount = 1;
@@ -71,6 +71,6 @@ public class TreeInteractable : MonoBehaviour, IInteractable
     public string GetInteractMessage()
     {
         if (currentItemCount <= 0) return null;
-        return "상호작용하기";
+        return "E: Collect Food";
     }
 }
