@@ -37,5 +37,9 @@ public class Portal : MonoBehaviour, IInteractable
                 break;
         }
     }
+    public string GetInteractMessage()
+    {
+        return "E: Enter";
+    }
     
 }

@@ -26,6 +26,6 @@ public class PondInteractable : MonoBehaviour, IInteractable
     public string GetInteractMessage()
     {
         if (!hasWater) return null;
-        return "상호작용하기";
+        return "E: Collect Water";
     }
 }
