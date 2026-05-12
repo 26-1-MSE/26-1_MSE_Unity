@@ -186,7 +186,7 @@ public class OcarinaGameManager : MonoBehaviour
             audioSource.PlayOneShot(successSound);
         }
         
-        StartCoroutine(ClosePopupAfterDelay());
+        CloseGame();
     }
 
     private void Fail()
@@ -205,18 +205,12 @@ public class OcarinaGameManager : MonoBehaviour
 
         if (audioSource != null && failSound != null)
         audioSource.PlayOneShot(failSound);
-        
-        StartCoroutine(ClosePopupAfterDelay());
+
+        CloseGame();
     }
 
     public void CloseGame()
     {
-        ocarinaUI.SetActive(false);
-    }
-
-    private IEnumerator ClosePopupAfterDelay()
-    {
-        yield return new WaitForSeconds(2f);
         resultPopup.SetActive(false);
         ocarinaUI.SetActive(false);
 

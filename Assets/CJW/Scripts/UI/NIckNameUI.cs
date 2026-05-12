@@ -15,7 +15,7 @@ public class NicknameUI : MonoBehaviour
         if (meshRenderer != null)
         {
             meshRenderer.sortingLayerName = "Default";
-            meshRenderer.sortingOrder = 200;
+            meshRenderer.sortingOrder = 2;
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1122592419420774581}
   - component: {fileID: 2026264519676310866}
   - component: {fileID: 8794460140343177115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NicknameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8295205638387733531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 6320032663981543260}
   - component: {fileID: 564944733679001177}
   - component: {fileID: 415204152016548018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: S3_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 6d7cfdfe48646b244949605e60e7c80a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -403,6 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5.5
   jumpPower: 12
+  maxJumpCount: 2
   rb: {fileID: 4192971970616190493}
   animator: {fileID: 415204152016548018}
   spriteRenderer: {fileID: 2713821249518076204}
@@ -450,13 +451,69 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4118911858892127237}
     m_Modifications:
+    - target: {fileID: 782082951430392482, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
+    - target: {fileID: 782082951430392482, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 782082951430392482, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 782082951430392482, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 782082951430392482, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3005160883332571845, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
+    - target: {fileID: 782082951430392482, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 994227839787398676, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 994227839787398676, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102573894414917812, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2231407536509220584, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
       propertyPath: m_Name
       value: OcarinaUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231407536509220584, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764246566827365749, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201900232256641582, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942777843461969998, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847886256511942739, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273548503620499857, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5483519377644159332, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
       propertyPath: m_Pivot.x
@@ -537,6 +594,34 @@ PrefabInstance:
     - target: {fileID: 5483519377644159332, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512024241970463172, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345021053247807323, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6484203561039702695, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -503.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220367272951982232, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508894713034373136, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583388156667523577, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155886070547846019, guid: 76b1a64caad0944ba81815550715fa75, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
