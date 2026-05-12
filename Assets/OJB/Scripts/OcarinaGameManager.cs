@@ -164,6 +164,7 @@ public class OcarinaGameManager : MonoBehaviour
     {
         isSuccess = true;
         isPlaying = false;
+
         playerMovement.enabled = true;
         playerInteraction.enabled = true;
 
@@ -173,17 +174,18 @@ public class OcarinaGameManager : MonoBehaviour
         Debug.Log("[PET_COLLECT] 펫 획득!");
 
         if (NetworkManager.Instance != null)
-        NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
-        else
-        Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
+        {
+            NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
+        }
+        else Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
 
-        if (NetworkManager.Instance) NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
-        resultText.text = "Congratulations!\nYou got a pet!";
-        resultPopup.SetActive(true);
+        //resultText.text = "Congratulations!\nYou got a pet!";
+        //resultPopup.SetActive(true);
 
-        if (audioSource != null && successSound != null)
-        audioSource.PlayOneShot(successSound);
-
+        if (audioSource != null && successSound != null) {
+            audioSource.PlayOneShot(successSound);
+        }
+        
         StartCoroutine(ClosePopupAfterDelay());
     }
 
@@ -198,8 +200,8 @@ public class OcarinaGameManager : MonoBehaviour
             if (note != null) Destroy(note.gameObject);
         activeNotes.Clear();
 
-        resultText.text = "Failed.\nTry again next time.";
-        resultPopup.SetActive(true);
+        //resultText.text = "Failed.\nTry again next time.";
+        //resultPopup.SetActive(true);
 
         if (audioSource != null && failSound != null)
         audioSource.PlayOneShot(failSound);

@@ -166,7 +166,6 @@ public class NetworkManager : MonoBehaviour
                 DataManager.Data.SetUserSession(-1, loginId, response.nickname, response.shopName);
                 DataManager.Data.SetUnreadMailState(response.hasUnreadMail);
                 DataManager.Data.SetOwnedPets(response.ownedPets);
-                RequestInventoryData();
                 onSuccess?.Invoke();
             }));
     }
