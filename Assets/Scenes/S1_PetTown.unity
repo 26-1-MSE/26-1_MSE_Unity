@@ -213,10 +213,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808137}
-    - target: {fileID: 341584843014740475, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
-      propertyPath: m_text
-      value: Pet Town
-      objectReference: {fileID: 0}
     - target: {fileID: 1464419362420662907, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_Name
       value: PetTownCanvas
@@ -321,10 +317,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808137}
-    - target: {fileID: 3859720923494622896, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4400670698166111328, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -333,18 +325,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808137}
-    - target: {fileID: 5729893316202729390, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5733243215705192118, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6652347834814157917, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6672441350928843684, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
