@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 3f;
     private int jumpCount = 0;
-    [SerializeField] private int maxJumpCount = 2;
+    private int maxJumpCount = 2;
+    private LayerMask groundLayer;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -16,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        // Ground Layer 확인
+        groundLayer = LayerMask.GetMask("Ground");
+
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (animator == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,14 +31,13 @@ public class PlayerMovement : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame && jumpCount < maxJumpCount)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
-
             jumpCount++;
 
             animator.SetBool("isJumping", true);
             Invoke("EndJump", 0.8f);
         }
 
-
+        // 좌우이동
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             moveInput = -1f;
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
@@ -49,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
             else if (moveInput > 0) spriteRenderer.flipX = false;
         }
 
-        if (IsGrounded())
+        // 점프 횟수 초기화
+        if (IsGrounded() && rb.linearVelocity.y <= 0f)
         {
             jumpCount = 0;
         }
@@ -60,23 +64,16 @@ public class PlayerMovement : MonoBehaviour
         if (rb == null) return;
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-
-
-        /*Debug.DrawRay(rb.position, Vector3.down, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rb.positon, Vector3.down, 1);
-
-        if (rayHit.collider != null)
-        {
-            Debug.Log(rayHit.collider.name);
-        }*/
     }
 
+    // Ground layer 감지
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(
             rb.position,
             Vector2.down,
-            0.6f
+            1f,
+            groundLayer
         );
 
         return hit.collider != null;
