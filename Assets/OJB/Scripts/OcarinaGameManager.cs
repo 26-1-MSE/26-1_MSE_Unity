@@ -18,17 +18,36 @@ public class OcarinaGameManager : MonoBehaviour
 
     [Header("Game Settings")]
     [SerializeField] private float gameDuration = 30f;
-    [SerializeField] private int totalNotes = 10;
+    [SerializeField] private int totalNotes = 14;
     [SerializeField] private float noteSpacing = 150f;
 
     [Header("References")]
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerInteraction playerInteraction;
 
-    [Header("Sound")]
-    [SerializeField] private AudioSource audioSource;     // 추가
-    [SerializeField] private AudioClip successSound;      // 추가
-    [SerializeField] private AudioClip failSound;  
+    [Header("Audio Manager Clip IDs")]
+    [SerializeField] private int successSoundId;
+    [SerializeField] private int failSoundId;
+    [SerializeField] private int wrongSFXId;
+    [SerializeField] private int[] twinkleNoteIds;
+
+    [Header("Note Timing")]
+    [SerializeField] private float[] noteTiming = {
+        0f,    // 도
+        0.5f,  // 도
+        1.0f,  // 솔
+        1.5f,  // 솔
+        2.0f,  // 라
+        2.5f,  // 라
+        3.0f,  // 솔
+        4.0f,  // 파
+        4.5f,  // 파
+        5.0f,  // 미
+        5.5f,  // 미
+        6.0f,  // 레
+        6.5f,  // 레
+        7.0f,  // 도
+    };
 
     private KeyCode[] possibleKeys = { KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F };
     private List<NoteObject> activeNotes = new List<NoteObject>();
@@ -38,14 +57,13 @@ public class OcarinaGameManager : MonoBehaviour
     private int missCount = 0;
     private int clearedNotes = 0;
     private int spawnedNotes = 0;
+    private int currentNoteIndex = 0;
     private float timeLeft;
     private bool isPlaying = false;
     private bool isSuccess = false;
     private GameObject currentPet;
 
     public bool IsPlaying => isPlaying;
-
-    [SerializeField] private float judgeLineX = -400f;
 
     public static OcarinaGameManager Instance;
 
@@ -57,12 +75,23 @@ public class OcarinaGameManager : MonoBehaviour
     public void StartGame(GameObject pet, int petTypeId)
     {
         if (isPlaying) return;
+
+        StopAllCoroutines();
+
+        foreach (var note in activeNotes)
+            if (note != null) Destroy(note.gameObject);
+        activeNotes.Clear();
+
+        foreach (var note in FindObjectsByType<NoteObject>(FindObjectsSortMode.None))
+            Destroy(note.gameObject);
+
         currentPet = pet;
         currentPetTypeId = petTypeId;
 
         missCount = 0;
         clearedNotes = 0;
         spawnedNotes = 0;
+        currentNoteIndex = 0;
         isSuccess = false;
         timeLeft = gameDuration;
         isPlaying = true;
@@ -81,16 +110,16 @@ public class OcarinaGameManager : MonoBehaviour
         playerMovement.enabled = false;
         playerInteraction.enabled = false;
 
-        StartCoroutine(SpawnNotes());
+        StartCoroutine(SpawnNotesWithTiming());
     }
 
-    private IEnumerator SpawnNotes()
+    private IEnumerator SpawnNotesWithTiming()
     {
-        int initialSpawn = Mathf.Min(5, totalNotes);
-        for (int i = 0; i < initialSpawn; i++)
+        for (int i = 0; i < totalNotes; i++)
+        {
             SpawnNote();
-
-        yield return null;
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     private void SpawnNote()
@@ -100,7 +129,8 @@ public class OcarinaGameManager : MonoBehaviour
         GameObject noteObj = Instantiate(notePrefab, noteArea);
         NoteObject note = noteObj.GetComponent<NoteObject>();
 
-        float spawnX = judgeLineX + noteSpacing * (activeNotes.Count + 1);
+        // 오른쪽에서 스폰
+        float spawnX = noteSpacing * (activeNotes.Count + 1);
         noteObj.transform.localPosition = new Vector3(spawnX, 0, 0);
 
         note.Init(noteSequence[spawnedNotes]);
@@ -132,6 +162,9 @@ public class OcarinaGameManager : MonoBehaviour
         if (activeNotes.Count == 0) return;
 
         NoteObject firstNote = activeNotes[0];
+
+        if (!firstNote.IsJudgeable) return;
+
         firstNote.MarkHandled();
         activeNotes.RemoveAt(0);
         Destroy(firstNote.gameObject);
@@ -140,9 +173,15 @@ public class OcarinaGameManager : MonoBehaviour
         {
             clearedNotes++;
             Debug.Log($"클리어: {clearedNotes} / {totalNotes}");
+
+            if (AudioManager.SFXInstance != null && twinkleNoteIds != null && currentNoteIndex < twinkleNoteIds.Length)
+                AudioManager.SFXInstance.PlayOneShot(twinkleNoteIds[currentNoteIndex]);
         }
         else
         {
+            if (AudioManager.SFXInstance != null)
+                AudioManager.SFXInstance.PlayOneShot(wrongSFXId);
+
             missCount++;
             if (missCount <= hearts.Length)
                 hearts[missCount - 1].SetActive(false);
@@ -154,6 +193,7 @@ public class OcarinaGameManager : MonoBehaviour
             }
         }
 
+        currentNoteIndex++;
         SpawnNote();
 
         if (clearedNotes + missCount >= totalNotes)
@@ -164,7 +204,6 @@ public class OcarinaGameManager : MonoBehaviour
     {
         isSuccess = true;
         isPlaying = false;
-
         playerMovement.enabled = true;
         playerInteraction.enabled = true;
 
@@ -174,18 +213,13 @@ public class OcarinaGameManager : MonoBehaviour
         Debug.Log("[PET_COLLECT] 펫 획득!");
 
         if (NetworkManager.Instance != null)
-        {
             NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
-        }
-        else Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
+        else
+            Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
 
-        //resultText.text = "Congratulations!\nYou got a pet!";
-        //resultPopup.SetActive(true);
+        if (AudioManager.SFXInstance != null)
+            AudioManager.SFXInstance.PlayOneShot(successSoundId);
 
-        if (audioSource != null && successSound != null) {
-            audioSource.PlayOneShot(successSound);
-        }
-        
         CloseGame();
     }
 
@@ -200,11 +234,8 @@ public class OcarinaGameManager : MonoBehaviour
             if (note != null) Destroy(note.gameObject);
         activeNotes.Clear();
 
-        //resultText.text = "Failed.\nTry again next time.";
-        //resultPopup.SetActive(true);
-
-        if (audioSource != null && failSound != null)
-        audioSource.PlayOneShot(failSound);
+        if (AudioManager.SFXInstance != null)
+            AudioManager.SFXInstance.PlayOneShot(failSoundId);
 
         CloseGame();
     }
@@ -214,7 +245,6 @@ public class OcarinaGameManager : MonoBehaviour
         resultPopup.SetActive(false);
         ocarinaUI.SetActive(false);
 
-        // 실패했을 때만 재도전 가능하게
         if (!isSuccess && currentPet != null)
         {
             PetInteractable pet = currentPet.GetComponent<PetInteractable>();
@@ -230,7 +260,10 @@ public class OcarinaGameManager : MonoBehaviour
 
         activeNotes.Remove(note);
         Destroy(note.gameObject);
-        SpawnNote();
+
+        if (AudioManager.SFXInstance != null)
+            AudioManager.SFXInstance.PlayOneShot(wrongSFXId);
+        currentNoteIndex++;
 
         missCount++;
         if (missCount <= hearts.Length)

@@ -229,7 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   requiredKey: 0
   keyText: {fileID: 6390355482712328146}
-  missLineX: -700
+  missLineX: -450
+  judgeLineX: -400
+  judgeRange: 80
 --- !u!223 &895927581714769890
 Canvas:
   m_ObjectHideFlags: 0
