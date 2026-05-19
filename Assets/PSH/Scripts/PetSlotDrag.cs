@@ -5,6 +5,7 @@ public class PetSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 {
     [SerializeField] private GameObject petPrefab;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private PetRoomInventoryManager inventoryManager;
 
     private GameObject previewPet;
 
@@ -34,6 +35,7 @@ public class PetSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (hit != null && hit.CompareTag("PetDropArea"))
         {
             previewPet.transform.position = worldPos;
+            inventoryManager.OnPetPlaced();
         }
         else
         {
