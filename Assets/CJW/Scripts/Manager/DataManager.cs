@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 /// <summary>
 /// 게임 전체에서 공통으로 유지되어야 하는 플레이어 데이터와 설정값을 관리하는 싱글톤 매니저
@@ -309,22 +310,51 @@ public class DataManager : MonoBehaviour
     {
         _ownedItemSlots = new OwnedItemSlot[12];
 
-        if (items == null)
+        if (items == null || items.Length == 0)
         {
             Debug.Log("[DataManager] 보유 아이템 없음");
             return;
         }
 
-        for (int i = 0; i < items.Length && i < _ownedItemSlots.Length; i++)
+        Dictionary<int, OwnedItemSlot> itemMap = new Dictionary<int, OwnedItemSlot>();
+
+        for (int i = 0; i < items.Length; i++)
         {
-            _ownedItemSlots[i].itemId = items[i].itemId;
-            _ownedItemSlots[i].itemTypeId = items[i].itemTypeId;
-            _ownedItemSlots[i].count = items[i].count;
-            Debug.Log($"item[{i}] type:{items[i].itemTypeId} count:{items[i].count}");
+            int itemTypeId = items[i].itemTypeId;
+            int count = items[i].count;
+
+            if (itemMap.ContainsKey(itemTypeId))
+            {
+                OwnedItemSlot slot = itemMap[itemTypeId];
+                slot.count += count;
+                itemMap[itemTypeId] = slot;
+            }
+            else
+            {
+                itemMap[itemTypeId] = new OwnedItemSlot
+                {
+                    itemId = items[i].itemId,
+                    itemTypeId = itemTypeId,
+                    count = count
+                };
+            }
+        }
+
+        int index = 0;
+
+        foreach (var pair in itemMap)
+        {
+            if (index >= _ownedItemSlots.Length)
+                break;
+
+            _ownedItemSlots[index] = pair.Value;
+
+            Debug.Log($"[DataManager] itemTypeId:{pair.Key}, totalCount:{pair.Value.count}");
+
+            index++;
         }
 
         Debug.Log("[DataManager] 보유 아이템 저장 완료");
-
     }
 
     public void AddOwnedItem(int itemId, int itemTypeId, int count)

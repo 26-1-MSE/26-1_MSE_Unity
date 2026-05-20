@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -367,14 +368,6 @@ public class NetworkManager : MonoBehaviour
             }
 
             DataManager.Data.SetOwnedItems(response.data.items);
-            Debug.Log("[NetworkManager] 인벤토리 조회 성공");
-            Debug.Log("pets count: " + response.data.pets.Length);
-            Debug.Log("items type count: " + response.data.items.Length);
-
-            for (int i = 0; i < response.data.items.Length; i++)
-            {
-                Debug.Log($"item[{i}] itemId:{response.data.items[i].itemId}, itemTypeId:{response.data.items[i].itemTypeId}, count:{response.data.items[i].count}");
-            }
 
             onSuccess?.Invoke(response);
         }));
