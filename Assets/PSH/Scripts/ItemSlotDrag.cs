@@ -9,20 +9,27 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private TMP_Text countText;
     [SerializeField] private GameObject foodImage; // BG 안의 음식 스프라이트 오브젝트
 
-
+    private int itemTypeId;
     private int count = 3; // 임시 초기값
     private GameObject preview;
 
-    private void Start()
+    public void SetItemData(int typeId, int itemCount, Sprite sprite)
     {
-        countText.text = count.ToString();
+        itemTypeId = typeId;
+        count = itemCount;
+        foodSprite = sprite;
 
-        if (count <= 0)
+        bool hasItem = count > 0 && sprite != null;
+
+        foodImage.SetActive(hasItem);
+        countText.gameObject.SetActive(hasItem);
+
+        if (hasItem)
         {
-            foodImage.SetActive(false);
-            countText.gameObject.SetActive(false);
+            countText.text = count.ToString();
         }
     }
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -32,6 +39,8 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         SpriteRenderer sr = preview.AddComponent<SpriteRenderer>();
         sr.sprite = foodSprite;
         sr.sortingOrder = 10;
+        // 크기 조정
+        preview.transform.localScale = new Vector3(3f, 3f, 1f); 
     }
 
     public void OnDrag(PointerEventData eventData)

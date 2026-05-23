@@ -15,6 +15,8 @@ public class PetRoomInventoryManager : MonoBehaviour
     [SerializeField] private Sprite deerSprite;
     [SerializeField] private Sprite boarSprite;
 
+    [SerializeField] private InventoryUIManager inventoryUIManager;
+
 
     private void Start()
     {
@@ -66,11 +68,9 @@ public class PetRoomInventoryManager : MonoBehaviour
         }
     }
 
-
     // 펫 드래그해서 내놓을 때 호출
     public void OnPetPlaced()
     {
-        inventoryPanel_Pet.SetActive(false);
-        inventoryPanel_Food.SetActive(true);
+        inventoryUIManager.ShowItemInventory();
     }
 }

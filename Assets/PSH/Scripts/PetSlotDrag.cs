@@ -45,8 +45,6 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         Vector3 worldPos = GetMouseWorldPosition();
         previewPet.transform.position = worldPos;
-
-        Debug.Log($"[PetSlotDrag] 드래그 중 / worldPos:{worldPos}");
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -69,6 +67,10 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             previewPet.transform.position = worldPos;
             Debug.Log("[PetSlotDrag] 배치 성공");
 
+            if (inventoryManager != null)
+            {
+                inventoryManager.OnPetPlaced();
+            }
         }
         else
         {
