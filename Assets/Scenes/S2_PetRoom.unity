@@ -2574,6 +2574,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PetRoomInventoryManager
   inventoryPanel_Pet: {fileID: 844757297}
   inventoryPanel_Food: {fileID: 1990968745}
+  petSlotImages:
+  - {fileID: 6235483617943938389}
+  - {fileID: 6235483617943938388}
+  - {fileID: 6235483617943938387}
+  - {fileID: 6235483617943938386}
+  rabbitSprite: {fileID: 5626864012189183005, guid: 68086fe12ca7f8a479f293b3cc4bece8, type: 3}
+  foxSprite: {fileID: -8852332470818163321, guid: e3f3da7d3bfb3d24f942cadba9c7b63a, type: 3}
+  deerSprite: {fileID: 2107035191882401436, guid: c464ba3055192554a85bccba8c9f37e7, type: 3}
+  boarSprite: {fileID: 7028773440798467179, guid: 947338baa27fbf9408af835772390429, type: 3}
 --- !u!224 &1423619844 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1477164194189137976, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
@@ -2755,6 +2764,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+--- !u!1 &1501246010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2999360887277432171, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+  m_PrefabInstance: {fileID: 6235483617943938382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1501246011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501246010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4591cc8bcf62e4fad35d136034b486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PetSlotDrag
+  rabbitPrefab: {fileID: 560252929176286189, guid: efcb991a6ec5cc945808e72f45050279, type: 3}
+  foxPrefab: {fileID: 1230038970395585343, guid: c4b9ead1b802b924495aad52d7886215, type: 3}
+  deerPrefab: {fileID: 80349278544807208, guid: 773498333250edf4ca189d72ec52f8fa, type: 3}
+  boarPrefab: {fileID: 2313335256722980059, guid: c8087583cc37eb74fb34da51f7a99052, type: 3}
+  petDropArea: {fileID: 1805615901}
+  mainCamera: {fileID: 1210486343}
+  inventoryManager: {fileID: 1406276279}
 --- !u!224 &1552706564 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1477164194189137976, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
@@ -4087,9 +4120,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: foxPrefab
+      value: 
+      objectReference: {fileID: 1230038970395585343, guid: c4b9ead1b802b924495aad52d7886215, type: 3}
+    - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: boarPrefab
+      value: 
+      objectReference: {fileID: 2313335256722980059, guid: c8087583cc37eb74fb34da51f7a99052, type: 3}
+    - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: deerPrefab
+      value: 
+      objectReference: {fileID: 80349278544807208, guid: 773498333250edf4ca189d72ec52f8fa, type: 3}
+    - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: petDropArea
+      value: 
+      objectReference: {fileID: 1805615901}
+    - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: rabbitPrefab
+      value: 
+      objectReference: {fileID: 560252929176286189, guid: efcb991a6ec5cc945808e72f45050279, type: 3}
     - target: {fileID: 1996551212034669651, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: inventoryManager
       value: 
@@ -4122,14 +4175,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 2124340347781191568, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: foxPrefab
+      value: 
+      objectReference: {fileID: 1230038970395585343, guid: c4b9ead1b802b924495aad52d7886215, type: 3}
+    - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: petPrefab
       value: 
       objectReference: {fileID: 4758711231469838559, guid: 594663ac00aee7b4f83c6e415d45bb5b, type: 3}
     - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: boarPrefab
+      value: 
+      objectReference: {fileID: 2313335256722980059, guid: c8087583cc37eb74fb34da51f7a99052, type: 3}
+    - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: deerPrefab
+      value: 
+      objectReference: {fileID: 80349278544807208, guid: 773498333250edf4ca189d72ec52f8fa, type: 3}
+    - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: petDropArea
+      value: 
+      objectReference: {fileID: 1805615901}
+    - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: rabbitPrefab
+      value: 
+      objectReference: {fileID: 560252929176286189, guid: efcb991a6ec5cc945808e72f45050279, type: 3}
     - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: inventoryManager
       value: 
@@ -4511,9 +4592,29 @@ PrefabInstance:
       value: 25.393066
       objectReference: {fileID: 0}
     - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: foxPrefab
+      value: 
+      objectReference: {fileID: 1230038970395585343, guid: c4b9ead1b802b924495aad52d7886215, type: 3}
+    - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: boarPrefab
+      value: 
+      objectReference: {fileID: 2313335256722980059, guid: c8087583cc37eb74fb34da51f7a99052, type: 3}
+    - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: deerPrefab
+      value: 
+      objectReference: {fileID: 80349278544807208, guid: 773498333250edf4ca189d72ec52f8fa, type: 3}
+    - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: petDropArea
+      value: 
+      objectReference: {fileID: 1805615901}
+    - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: rabbitPrefab
+      value: 
+      objectReference: {fileID: 560252929176286189, guid: efcb991a6ec5cc945808e72f45050279, type: 3}
     - target: {fileID: 6972074544528744760, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: inventoryManager
       value: 
@@ -4550,6 +4651,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9114927313128412844, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9142397232008910469, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4580,6 +4685,7 @@ PrefabInstance:
     - {fileID: 8198416836850354448, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
     - {fileID: 6096718652170903664, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
     - {fileID: 8788684873704926752, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+    - {fileID: 8707025389841144144, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3442336626572240487, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
     - {fileID: 2247717380590877643, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
@@ -4599,6 +4705,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6234586106345995113, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6235483617943938384}
+    - targetCorrespondingSourceObject: {fileID: 2999360887277432171, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1501246011}
   m_SourcePrefab: {fileID: 100100000, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
 --- !u!1 &6235483617943938383 stripped
 GameObject:
@@ -4623,6 +4732,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 110189167387383709, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
   m_PrefabInstance: {fileID: 6235483617943938382}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6235483617943938386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8903242477898717527, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+  m_PrefabInstance: {fileID: 6235483617943938382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &6235483617943938387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6260813578617526023, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+  m_PrefabInstance: {fileID: 6235483617943938382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &6235483617943938388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8340566616087051879, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+  m_PrefabInstance: {fileID: 6235483617943938382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &6235483617943938389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2124340347781191568, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+  m_PrefabInstance: {fileID: 6235483617943938382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

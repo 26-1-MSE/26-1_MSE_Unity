@@ -1,58 +1,110 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class PetSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private GameObject petPrefab;
+    [SerializeField] private GameObject rabbitPrefab;
+    [SerializeField] private GameObject foxPrefab;
+    [SerializeField] private GameObject deerPrefab;
+    [SerializeField] private GameObject boarPrefab;
+
+    [SerializeField] private Collider2D petDropArea;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private PetRoomInventoryManager inventoryManager;
 
+    private int petTypeId;
     private GameObject previewPet;
+    private bool isDragging;
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void SetPetTypeId(int typeId)
     {
-        previewPet = Instantiate(petPrefab);
-        previewPet.SetActive(false);
+        petTypeId = typeId;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (previewPet == null) return;
 
-        Vector3 worldPos = GetWorldPosition(eventData);
-        previewPet.SetActive(true);
+        GameObject prefab = GetPetPrefab(petTypeId);
+
+        if (prefab == null)
+        {
+            return;
+        }
+
+        previewPet = Instantiate(prefab);
+        //생성 이미지 크기 조정
+        previewPet.transform.localScale = new Vector3(10f, 10f, 2f);
+        isDragging = true;
+
+    }
+
+    private void Update()
+    {
+        if (!isDragging || previewPet == null) return;
+
+        Vector3 worldPos = GetMouseWorldPosition();
         previewPet.transform.position = worldPos;
+
+        Debug.Log($"[PetSlotDrag] 드래그 중 / worldPos:{worldPos}");
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        if (previewPet == null) return;
+        Debug.Log($"[PetSlotDrag] PointerUp 감지 / slot:{gameObject.name}");
 
-        Vector3 worldPos = GetWorldPosition(eventData);
+        if (previewPet == null)
+        {
+            isDragging = false;
+            return;
+        }
 
-        Collider2D hit = Physics2D.OverlapPoint(worldPos);
+        Vector3 worldPos = GetMouseWorldPosition();
 
-        if (hit != null && hit.CompareTag("PetDropArea"))
+        bool isInsideDropArea = petDropArea != null && petDropArea.OverlapPoint(worldPos);
+
+
+        if (isInsideDropArea)
         {
             previewPet.transform.position = worldPos;
-            inventoryManager.OnPetPlaced();
+            Debug.Log("[PetSlotDrag] 배치 성공");
+
         }
         else
         {
+            Debug.LogWarning("[PetSlotDrag] DropArea 밖이라 previewPet 삭제");
             Destroy(previewPet);
         }
 
         previewPet = null;
+        isDragging = false;
     }
 
-    private Vector3 GetWorldPosition(PointerEventData eventData)
+    private Vector3 GetMouseWorldPosition()
     {
-        Vector3 screenPos = eventData.position;
+        if (mainCamera == null)
+        {
+            return Vector3.zero;
+        }
+
+        Vector3 screenPos = Mouse.current.position.ReadValue();
         screenPos.z = Mathf.Abs(mainCamera.transform.position.z);
 
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(screenPos);
         worldPos.z = 0f;
 
         return worldPos;
+    }
+
+    private GameObject GetPetPrefab(int typeId)
+    {
+        switch (typeId)
+        {
+            case 1: return rabbitPrefab;
+            case 2: return foxPrefab;
+            case 3: return deerPrefab;
+            case 4: return boarPrefab;
+            default: return null;
+        }
     }
 }
