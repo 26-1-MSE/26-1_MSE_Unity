@@ -54,6 +54,12 @@ MonoBehaviour:
     volumeScale: 1
   - clip: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
     volumeScale: 1
+  - clip: {fileID: 8300000, guid: 81ee9c75144904214ab17d74dea98f0f, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 710e23e96671442c2837177b298475d8, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: f47ac444910e24955bf7803c343b9006, type: 3}
+    volumeScale: 1
   _autoPlayOnStart: 1
   _backgroundMusicClipId: 0
   _loopBackgroundMusic: 1
