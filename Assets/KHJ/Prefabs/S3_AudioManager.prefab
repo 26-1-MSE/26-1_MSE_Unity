@@ -54,10 +54,58 @@ MonoBehaviour:
     volumeScale: 1
   - clip: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
     volumeScale: 1
+  - clip: {fileID: 8300000, guid: f7c898771ec3a4f88bf12d822211bc8b, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: f7c898771ec3a4f88bf12d822211bc8b, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: dca27973ae99c46ea9e0d76c7c8fb23c, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: dca27973ae99c46ea9e0d76c7c8fb23c, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 73442fceb65544172b7fa87ae45f70c6, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 73442fceb65544172b7fa87ae45f70c6, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: dca27973ae99c46ea9e0d76c7c8fb23c, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 1faef43de49014ea98eade3808e410d9, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 1faef43de49014ea98eade3808e410d9, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 3c33518d487814a0980dc8656ffb6442, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 3c33518d487814a0980dc8656ffb6442, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: d92db8a2be484456da69082609b2cbfd, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: d92db8a2be484456da69082609b2cbfd, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: f7c898771ec3a4f88bf12d822211bc8b, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: e4e033e76e7684aee8eb506f2726f6a1, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: f848ccbb0a119434c8b459bf749c9867, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 767633359e9704356b793a127079e31b, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: d6d6d65e394a041b886120f56472451e, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 7abbf962f78e64dd1baecc563a9383cf, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: cf7c4d62facd04b699f2f88839bd8632, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 0e59e2b584e70483ab5f969859f10e3a, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 014bce30bf5fc44b3bd7540f73691756, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 2ce243d0ed66a4d668fcf78f845eb0c4, type: 3}
+    volumeScale: 1
+  - clip: {fileID: 8300000, guid: 86d51ce10cf524499af606ee6ffa8cc1, type: 3}
+    volumeScale: 1
   _autoPlayOnStart: 1
   _backgroundMusicClipId: 0
   _loopBackgroundMusic: 1
-  _isBgmSource: 1
+  _isBgmSource: 0
 --- !u!82 &8139503427075469263
 AudioSource:
   m_ObjectHideFlags: 0
