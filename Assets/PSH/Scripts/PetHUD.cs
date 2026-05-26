@@ -8,6 +8,8 @@ public class PetHUD : MonoBehaviour
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private Slider foodSlider;
     [SerializeField] private Slider waterSlider;
+    [SerializeField] private TMP_Text foodCountText;
+    [SerializeField] private TMP_Text waterCountText;
 
     public void SetHUD(string petName, int level, int foodCurrent, int foodMax, int waterCurrent, int waterMax)
     {
@@ -17,5 +19,7 @@ public class PetHUD : MonoBehaviour
         foodSlider.value = foodCurrent;
         waterSlider.maxValue = waterMax;
         waterSlider.value = waterCurrent;
+        foodCountText.text = foodCurrent + " / " + foodMax;
+        waterCountText.text = waterCurrent + " / " + waterMax;
     }
 }

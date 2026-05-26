@@ -35,7 +35,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
 
         previewPet = Instantiate(prefab);
-        //»ý¼º ÀÌ¹ÌÁö Å©±â Á¶Á¤
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         previewPet.transform.localScale = new Vector3(10f, 10f, 2f);
         isDragging = true;
 
@@ -51,7 +51,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log($"[PetSlotDrag] PointerUp °¨Áö / slot:{gameObject.name}");
+        Debug.Log($"[PetSlotDrag] PointerUp ï¿½ï¿½ï¿½ï¿½ / slot:{gameObject.name}");
 
         if (previewPet == null)
         {
@@ -83,14 +83,14 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     },
                     error =>
                     {
-                        Debug.LogError("[PetSlotDrag] Æê µ¥ÀÌÅÍ ¿äÃ» ½ÇÆÐ: " + error);
+                        Debug.LogError("[PetSlotDrag] ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½: " + error);
                     }
                 );
             }
         }
         else
         {
-            Debug.LogWarning("[PetSlotDrag] DropArea ¹ÛÀÌ¶ó previewPet »èÁ¦");
+            Debug.LogWarning("[PetSlotDrag] DropArea ï¿½ï¿½ï¿½Ì¶ï¿½ previewPet ï¿½ï¿½ï¿½ï¿½");
             Destroy(previewPet);
         }
 
