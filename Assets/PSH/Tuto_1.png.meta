@@ -1,0 +1,2470 @@
+fileFormatVersion: 2
+guid: be03567e5ca58c346ac782826731aab3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3407457224876889944
+    second: Tuto_1_0
+  - first:
+      213: -1807131532827520913
+    second: Tuto_1_1
+  - first:
+      213: 7831080507989165575
+    second: Tuto_1_2
+  - first:
+      213: 8283576106530811130
+    second: Tuto_1_3
+  - first:
+      213: -7952517562881905460
+    second: Tuto_1_4
+  - first:
+      213: 3707882284381786385
+    second: Tuto_1_5
+  - first:
+      213: -9124727908343535153
+    second: Tuto_1_6
+  - first:
+      213: -2659641146982789039
+    second: Tuto_1_7
+  - first:
+      213: -2440402749735934189
+    second: Tuto_1_8
+  - first:
+      213: -3159976181542796508
+    second: Tuto_1_9
+  - first:
+      213: -4416677063422443542
+    second: Tuto_1_10
+  - first:
+      213: 5052118099930285745
+    second: Tuto_1_11
+  - first:
+      213: -4760558286347880989
+    second: Tuto_1_12
+  - first:
+      213: -4436160474855906571
+    second: Tuto_1_13
+  - first:
+      213: 4448527298746739241
+    second: Tuto_1_14
+  - first:
+      213: -2053003547628946314
+    second: Tuto_1_15
+  - first:
+      213: -4731612639810160826
+    second: Tuto_1_16
+  - first:
+      213: 8299480624499063548
+    second: Tuto_1_17
+  - first:
+      213: 3840476748493582178
+    second: Tuto_1_18
+  - first:
+      213: -5087782453310118993
+    second: Tuto_1_19
+  - first:
+      213: -3348328202933998515
+    second: Tuto_1_20
+  - first:
+      213: -840875352477380822
+    second: Tuto_1_21
+  - first:
+      213: 3285063777112154568
+    second: Tuto_1_22
+  - first:
+      213: -8816191759934113854
+    second: Tuto_1_23
+  - first:
+      213: -8193501201276528198
+    second: Tuto_1_24
+  - first:
+      213: 700929789198400311
+    second: Tuto_1_25
+  - first:
+      213: -4661068048534770694
+    second: Tuto_1_26
+  - first:
+      213: 6637769975083546355
+    second: Tuto_1_27
+  - first:
+      213: 6134144220531122919
+    second: Tuto_1_28
+  - first:
+      213: -3898670080916445953
+    second: Tuto_1_29
+  - first:
+      213: 931052149984145476
+    second: Tuto_1_30
+  - first:
+      213: -4148064131216907114
+    second: Tuto_1_31
+  - first:
+      213: -5670460297077902470
+    second: Tuto_1_32
+  - first:
+      213: -833943870627387933
+    second: Tuto_1_33
+  - first:
+      213: -7908840161885048437
+    second: Tuto_1_34
+  - first:
+      213: 3716350610674062758
+    second: Tuto_1_35
+  - first:
+      213: 3254596105306630705
+    second: Tuto_1_36
+  - first:
+      213: -1295130193343699574
+    second: Tuto_1_37
+  - first:
+      213: -4157953237721461166
+    second: Tuto_1_38
+  - first:
+      213: 5023837087275380694
+    second: Tuto_1_39
+  - first:
+      213: 5895430955440518326
+    second: Tuto_1_40
+  - first:
+      213: -8582627227311797439
+    second: Tuto_1_41
+  - first:
+      213: 2520284605242095078
+    second: Tuto_1_42
+  - first:
+      213: -4242952524326956357
+    second: Tuto_1_43
+  - first:
+      213: -4881526391680499800
+    second: Tuto_1_44
+  - first:
+      213: 7204680133012034868
+    second: Tuto_1_45
+  - first:
+      213: 8656154607210253888
+    second: Tuto_1_46
+  - first:
+      213: -4747769048095482733
+    second: Tuto_1_47
+  - first:
+      213: -3421160997180533677
+    second: Tuto_1_48
+  - first:
+      213: 8841955304109767173
+    second: Tuto_1_49
+  - first:
+      213: 2722720231539358380
+    second: Tuto_1_50
+  - first:
+      213: -6617183764286580911
+    second: Tuto_1_51
+  - first:
+      213: -1993204369871700641
+    second: Tuto_1_52
+  - first:
+      213: -4019698106707425580
+    second: Tuto_1_53
+  - first:
+      213: 1304945819147440055
+    second: Tuto_1_54
+  - first:
+      213: -7792171987916399317
+    second: Tuto_1_55
+  - first:
+      213: 4132009190914731808
+    second: Tuto_1_56
+  - first:
+      213: 7436440466156744627
+    second: Tuto_1_57
+  - first:
+      213: 462672333735812906
+    second: Tuto_1_58
+  - first:
+      213: -3392939169830204003
+    second: Tuto_1_59
+  - first:
+      213: -4034327429533328193
+    second: Tuto_1_60
+  - first:
+      213: -1995275825660240743
+    second: Tuto_1_61
+  - first:
+      213: 8766200561170638218
+    second: Tuto_1_62
+  - first:
+      213: -1092228400688650084
+    second: Tuto_1_63
+  - first:
+      213: -1202247612406266915
+    second: Tuto_1_64
+  - first:
+      213: 5553736981012080546
+    second: Tuto_1_65
+  - first:
+      213: -1146868044511776884
+    second: Tuto_1_66
+  - first:
+      213: -713504765457481431
+    second: Tuto_1_67
+  - first:
+      213: -7176032265379835147
+    second: Tuto_1_68
+  - first:
+      213: -1426240572816590429
+    second: Tuto_1_69
+  - first:
+      213: 7257651838526877833
+    second: Tuto_1_70
+  - first:
+      213: 732435372321143481
+    second: Tuto_1_71
+  - first:
+      213: 1581778901525340080
+    second: Tuto_1_72
+  - first:
+      213: -7042822228968480158
+    second: Tuto_1_73
+  - first:
+      213: 7535823004354355739
+    second: Tuto_1_74
+  - first:
+      213: 8182400349450081018
+    second: Tuto_1_75
+  - first:
+      213: -3573276175163210752
+    second: Tuto_1_76
+  - first:
+      213: 3472965914299240641
+    second: Tuto_1_77
+  - first:
+      213: -314121559948608201
+    second: Tuto_1_78
+  - first:
+      213: 5923029606225760827
+    second: Tuto_1_79
+  - first:
+      213: 4623638899151133298
+    second: Tuto_1_80
+  - first:
+      213: -5654454022452603241
+    second: Tuto_1_81
+  - first:
+      213: -4026365055676092292
+    second: Tuto_1_82
+  - first:
+      213: 260878890396161128
+    second: Tuto_1_83
+  - first:
+      213: 4974631319157030907
+    second: Tuto_1_84
+  - first:
+      213: -3262391117014164778
+    second: Tuto_1_85
+  - first:
+      213: -2671391053707273300
+    second: Tuto_1_86
+  - first:
+      213: 1807299115262224443
+    second: Tuto_1_87
+  - first:
+      213: 5491005538069752281
+    second: Tuto_1_88
+  - first:
+      213: -885982343269028358
+    second: Tuto_1_89
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tuto_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 134
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a8efdb15b746b0d0800000000000000
+      internalID: -3407457224876889944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_1
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 254
+        width: 14
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60986b0277cbe6e0800000000000000
+      internalID: -1807131532827520913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_2
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 254
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7060e2e2b369dac60800000000000000
+      internalID: 7831080507989165575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 254
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afcaea3a49c25f270800000000000000
+      internalID: 8283576106530811130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_4
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 254
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc6e5a296bf2a190800000000000000
+      internalID: -7952517562881905460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_5
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 254
+        width: 37
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1115a8dda4b057330800000000000000
+      internalID: 3707882284381786385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_6
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 254
+        width: 68
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc9271fef447e5180800000000000000
+      internalID: -9124727908343535153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_7
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 254
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 150141cd77e071bd0800000000000000
+      internalID: -2659641146982789039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_8
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 254
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3176a1101a2f12ed0800000000000000
+      internalID: -2440402749735934189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_9
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 254
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4234278b7628524d0800000000000000
+      internalID: -3159976181542796508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_10
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 213
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeff6138c9fc4b2c0800000000000000
+      internalID: -4416677063422443542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 209
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b68aa505aabc1640800000000000000
+      internalID: 5052118099930285745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_12
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 209
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e531b906791fedb0800000000000000
+      internalID: -4760558286347880989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_13
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 210
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f2e5994d879f62c0800000000000000
+      internalID: -4436160474855906571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_14
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 210
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92a6d6742085cbd30800000000000000
+      internalID: 4448527298746739241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_15
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 209
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67cb5f496244283e0800000000000000
+      internalID: -2053003547628946314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_16
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 210
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 647fd5d8f5fe55eb0800000000000000
+      internalID: -4731612639810160826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_17
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 210
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfaf08bc7adad2370800000000000000
+      internalID: 8299480624499063548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_18
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 210
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26f6b1a414d1c4530800000000000000
+      internalID: 3840476748493582178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_19
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 210
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa32cff90d09469b0800000000000000
+      internalID: -5087782453310118993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_20
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 210
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4c62b85d395881d0800000000000000
+      internalID: -3348328202933998515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_21
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 210
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f4433725c9454f0800000000000000
+      internalID: -840875352477380822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_22
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 210
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c1e54ba914e69d20800000000000000
+      internalID: 3285063777112154568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_23
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 210
+        width: 7
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7b665fd4896a580800000000000000
+      internalID: -8816191759934113854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_24
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 210
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab91d278116da4e80800000000000000
+      internalID: -8193501201276528198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_25
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 210
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73bf8a9fde33ab900800000000000000
+      internalID: 700929789198400311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_26
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 182
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb69252e4f805fb0800000000000000
+      internalID: -4661068048534770694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_27
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 182
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f6bb99bf981e1c50800000000000000
+      internalID: 6637769975083546355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_28
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 182
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e2e5c12babd02550800000000000000
+      internalID: 6134144220531122919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_29
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 182
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff4288aa73425e9c0800000000000000
+      internalID: -3898670080916445953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_30
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 177
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4403b2b5ff2cbec00800000000000000
+      internalID: 931052149984145476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_31
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 182
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 694e64966ad1f66c0800000000000000
+      internalID: -4148064131216907114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_32
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 182
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7337b7376a7e41b0800000000000000
+      internalID: -5670460297077902470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_33
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 147
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5e3a4d77c3d64f0800000000000000
+      internalID: -833943870627387933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_34
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 144
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b81bf7d86c72e3290800000000000000
+      internalID: -7908840161885048437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_35
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 144
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a5980ab031239330800000000000000
+      internalID: 3716350610674062758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_36
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 143
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13aeb280ae5aa2d20800000000000000
+      internalID: 3254596105306630705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_37
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 143
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a85add773f5c60ee0800000000000000
+      internalID: -1295130193343699574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_38
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 144
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e4de06f8bfb46c0800000000000000
+      internalID: -4157953237721461166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_39
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 139
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6df6b74a63148b540800000000000000
+      internalID: 5023837087275380694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_40
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 144
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4bfd8f737c0d150800000000000000
+      internalID: 5895430955440518326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_41
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 143
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14b0c7c620264e880800000000000000
+      internalID: -8582627227311797439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_42
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 144
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e53754de79d9f220800000000000000
+      internalID: 2520284605242095078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_43
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 143
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb215a4c8210e15c0800000000000000
+      internalID: -4242952524326956357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_44
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 144
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8af70363c95514cb0800000000000000
+      internalID: -4881526391680499800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_45
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 139
+        width: 8
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4351f70b86a2cf360800000000000000
+      internalID: 7204680133012034868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_46
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 143
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ec0a3c0c6d02870800000000000000
+      internalID: 8656154607210253888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_47
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 144
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c9cac94398c1eb0800000000000000
+      internalID: -4747769048095482733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_48
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 139
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35412abf2389580d0800000000000000
+      internalID: -3421160997180533677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_49
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 109
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50af75d908fe4ba70800000000000000
+      internalID: 8841955304109767173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_50
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 105
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caa3cafff9b09c520800000000000000
+      internalID: 2722720231539358380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_51
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 105
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 157573cfc6a0b24a0800000000000000
+      internalID: -6617183764286580911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_52
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 105
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d7a01af27b654e0800000000000000
+      internalID: -1993204369871700641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_53
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 105
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d6c4658ed92738c0800000000000000
+      internalID: -4019698106707425580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_54
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 105
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf0a610f491c1210800000000000000
+      internalID: 1304945819147440055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_55
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 105
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2d5e779cd4acd390800000000000000
+      internalID: -7792171987916399317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_56
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 105
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f2f118778d75930800000000000000
+      internalID: 4132009190914731808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_57
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 105
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bfec9a343b833760800000000000000
+      internalID: 7436440466156744627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_58
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 105
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f59b3490ebb6600800000000000000
+      internalID: 462672333735812906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_59
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 100
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9d03c53dcbd9e0d0800000000000000
+      internalID: -3392939169830204003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_60
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 105
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc1d0fd3903308c0800000000000000
+      internalID: -4034327429533328193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_61
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 105
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99cd89e353b5f44e0800000000000000
+      internalID: -1995275825660240743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_62
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 105
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a85e76e07fcc7a970800000000000000
+      internalID: 8766200561170638218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_63
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 105
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c982c537e00a7d0f0800000000000000
+      internalID: -1092228400688650084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_64
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 105
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd386729a22c05fe0800000000000000
+      internalID: -1202247612406266915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_65
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 105
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a7ec29fb56d21d40800000000000000
+      internalID: 5553736981012080546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_66
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 76
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8fe0a207918510f0800000000000000
+      internalID: -1146868044511776884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_67
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 76
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 921cb55323f1916f0800000000000000
+      internalID: -713504765457481431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_68
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 72
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f21b45ccac996c90800000000000000
+      internalID: -7176032265379835147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_69
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 76
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9740d61c9f43ce0800000000000000
+      internalID: -1426240572816590429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_70
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 76
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 980fadaf4eb58b460800000000000000
+      internalID: 7257651838526877833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_71
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 76
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9baf12c27122a2a00800000000000000
+      internalID: 732435372321143481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_72
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 76
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf10a2c78b93f510800000000000000
+      internalID: 1581778901525340080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_73
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 76
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262eb1a4f7ed24e90800000000000000
+      internalID: -7042822228968480158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_74
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 76
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1222c0981f949860800000000000000
+      internalID: 7535823004354355739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_75
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 76
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2110ff3c9bd8170800000000000000
+      internalID: 8182400349450081018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_76
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 76
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 004c70f204c296ec0800000000000000
+      internalID: -3573276175163210752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_77
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 76
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c098d63914723030800000000000000
+      internalID: 3472965914299240641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_78
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 76
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73db8f20b1404abf0800000000000000
+      internalID: -314121559948608201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_79
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 71
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3255399b04d23250800000000000000
+      internalID: 5923029606225760827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_80
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 76
+        width: 6
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ad499e4177a2040800000000000000
+      internalID: 4623638899151133298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_81
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 76
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7961fe076085781b0800000000000000
+      internalID: -5654454022452603241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_82
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 76
+        width: 25
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c707160805a7f18c0800000000000000
+      internalID: -4026365055676092292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_83
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 76
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8641677f7f3de9300800000000000000
+      internalID: 260878890396161128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_84
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 76
+        width: 6
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff33eaf3d0790540800000000000000
+      internalID: 4974631319157030907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_85
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 53
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da1bff5098a9b2d0800000000000000
+      internalID: -3262391117014164778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_86
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 17
+        width: 27
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab1f938dff4dead0800000000000000
+      internalID: -2671391053707273300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_87
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 17
+        width: 26
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38251848f0d41910800000000000000
+      internalID: 1807299115262224443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_88
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 0
+        width: 53
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d9a95cb178f33c40800000000000000
+      internalID: 5491005538069752281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tuto_1_89
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 112
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afd6e20c0cb54b3f0800000000000000
+      internalID: -885982343269028358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Tuto_1_0: -3407457224876889944
+      Tuto_1_1: -1807131532827520913
+      Tuto_1_10: -4416677063422443542
+      Tuto_1_11: 5052118099930285745
+      Tuto_1_12: -4760558286347880989
+      Tuto_1_13: -4436160474855906571
+      Tuto_1_14: 4448527298746739241
+      Tuto_1_15: -2053003547628946314
+      Tuto_1_16: -4731612639810160826
+      Tuto_1_17: 8299480624499063548
+      Tuto_1_18: 3840476748493582178
+      Tuto_1_19: -5087782453310118993
+      Tuto_1_2: 7831080507989165575
+      Tuto_1_20: -3348328202933998515
+      Tuto_1_21: -840875352477380822
+      Tuto_1_22: 3285063777112154568
+      Tuto_1_23: -8816191759934113854
+      Tuto_1_24: -8193501201276528198
+      Tuto_1_25: 700929789198400311
+      Tuto_1_26: -4661068048534770694
+      Tuto_1_27: 6637769975083546355
+      Tuto_1_28: 6134144220531122919
+      Tuto_1_29: -3898670080916445953
+      Tuto_1_3: 8283576106530811130
+      Tuto_1_30: 931052149984145476
+      Tuto_1_31: -4148064131216907114
+      Tuto_1_32: -5670460297077902470
+      Tuto_1_33: -833943870627387933
+      Tuto_1_34: -7908840161885048437
+      Tuto_1_35: 3716350610674062758
+      Tuto_1_36: 3254596105306630705
+      Tuto_1_37: -1295130193343699574
+      Tuto_1_38: -4157953237721461166
+      Tuto_1_39: 5023837087275380694
+      Tuto_1_4: -7952517562881905460
+      Tuto_1_40: 5895430955440518326
+      Tuto_1_41: -8582627227311797439
+      Tuto_1_42: 2520284605242095078
+      Tuto_1_43: -4242952524326956357
+      Tuto_1_44: -4881526391680499800
+      Tuto_1_45: 7204680133012034868
+      Tuto_1_46: 8656154607210253888
+      Tuto_1_47: -4747769048095482733
+      Tuto_1_48: -3421160997180533677
+      Tuto_1_49: 8841955304109767173
+      Tuto_1_5: 3707882284381786385
+      Tuto_1_50: 2722720231539358380
+      Tuto_1_51: -6617183764286580911
+      Tuto_1_52: -1993204369871700641
+      Tuto_1_53: -4019698106707425580
+      Tuto_1_54: 1304945819147440055
+      Tuto_1_55: -7792171987916399317
+      Tuto_1_56: 4132009190914731808
+      Tuto_1_57: 7436440466156744627
+      Tuto_1_58: 462672333735812906
+      Tuto_1_59: -3392939169830204003
+      Tuto_1_6: -9124727908343535153
+      Tuto_1_60: -4034327429533328193
+      Tuto_1_61: -1995275825660240743
+      Tuto_1_62: 8766200561170638218
+      Tuto_1_63: -1092228400688650084
+      Tuto_1_64: -1202247612406266915
+      Tuto_1_65: 5553736981012080546
+      Tuto_1_66: -1146868044511776884
+      Tuto_1_67: -713504765457481431
+      Tuto_1_68: -7176032265379835147
+      Tuto_1_69: -1426240572816590429
+      Tuto_1_7: -2659641146982789039
+      Tuto_1_70: 7257651838526877833
+      Tuto_1_71: 732435372321143481
+      Tuto_1_72: 1581778901525340080
+      Tuto_1_73: -7042822228968480158
+      Tuto_1_74: 7535823004354355739
+      Tuto_1_75: 8182400349450081018
+      Tuto_1_76: -3573276175163210752
+      Tuto_1_77: 3472965914299240641
+      Tuto_1_78: -314121559948608201
+      Tuto_1_79: 5923029606225760827
+      Tuto_1_8: -2440402749735934189
+      Tuto_1_80: 4623638899151133298
+      Tuto_1_81: -5654454022452603241
+      Tuto_1_82: -4026365055676092292
+      Tuto_1_83: 260878890396161128
+      Tuto_1_84: 4974631319157030907
+      Tuto_1_85: -3262391117014164778
+      Tuto_1_86: -2671391053707273300
+      Tuto_1_87: 1807299115262224443
+      Tuto_1_88: 5491005538069752281
+      Tuto_1_89: -885982343269028358
+      Tuto_1_9: -3159976181542796508
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
