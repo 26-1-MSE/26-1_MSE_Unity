@@ -20,6 +20,7 @@ public class PetData
     public int petId;
     public int petTypeId;
     public int level;
+    public string petName;
     public PetStatData food;
     public PetStatData water;
 }

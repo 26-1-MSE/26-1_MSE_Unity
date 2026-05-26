@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -475,6 +479,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -546,8 +554,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 153.01501, y: 0}
-  m_SizeDelta: {x: 316.33, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &168556355
 MonoBehaviour:
@@ -683,6 +691,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1126,8 +1138,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 153.01501, y: 0}
-  m_SizeDelta: {x: 316.33, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382797977
 MonoBehaviour:
@@ -1339,6 +1351,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1428,7 +1444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557067901533812732, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7557067901533812732, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       propertyPath: background
@@ -1440,7 +1456,7 @@ PrefabInstance:
       objectReference: {fileID: 1990968745}
     - target: {fileID: 8372845200466872628, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8372845200466872628, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       propertyPath: inventoryPanel
@@ -1453,7 +1469,7 @@ PrefabInstance:
     - target: {fileID: 8372845200466872628, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       propertyPath: itemInventoryContent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 933429308}
     - target: {fileID: 9121796375735014189, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1335.1803
@@ -1606,6 +1622,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1729,6 +1749,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1999,6 +2023,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2265,7 +2293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 501721911}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406276278}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0562767cff4128c48aef87e45de2d7ba, type: 3}
   m_Name: 
@@ -2366,6 +2394,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2393,6 +2425,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1167583475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1167583478}
+  - component: {fileID: 1167583476}
+  m_Layer: 0
+  m_Name: PetGrowthManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1167583476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167583475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7afb705f222b4c445a8cd5e9c1e98f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PetGrowthManager
+  levelText: {fileID: 1985403236}
+  petNameText: {fileID: 2100476155}
+  foodSlider: {fileID: 2044493461}
+  waterSlider: {fileID: 343986424}
+  placedPetTransform: {fileID: 0}
+--- !u!4 &1167583478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167583475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210486341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,6 +2848,7 @@ MonoBehaviour:
   deerSprite: {fileID: 2107035191882401436, guid: c464ba3055192554a85bccba8c9f37e7, type: 3}
   boarSprite: {fileID: 7028773440798467179, guid: 947338baa27fbf9408af835772390429, type: 3}
   inventoryUIManager: {fileID: 980221243}
+  petGrowthManager: {fileID: 1167583476}
 --- !u!114 &1406276280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2986,6 +3068,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3143,6 +3229,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3520,8 +3610,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 2.5, y: 0}
-  m_SizeDelta: {x: -5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1985403234
 GameObject:
@@ -3580,7 +3670,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lv. 3
+  m_text: Lv. 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
   m_sharedMaterial: {fileID: -3005160883332571845, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
@@ -3821,7 +3911,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 5
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -3923,6 +4013,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4007,7 +4101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PetName
+  m_text: NULL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
   m_sharedMaterial: {fileID: -3005160883332571845, guid: a8ff7ca28d18ffa46b104b8b8b8f84a9, type: 2}
@@ -4183,6 +4277,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1210486343}
+    - target: {fileID: 4654610707984785819, guid: b051035f8f01c054c97b5c903abc99e0, type: 3}
+      propertyPath: petGrowthManager
+      value: 
+      objectReference: {fileID: 1167583476}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5104,3 +5202,4 @@ SceneRoots:
   - {fileID: 1325126436}
   - {fileID: 634508052}
   - {fileID: 1805615902}
+  - {fileID: 1167583478}

@@ -13,12 +13,14 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private Camera mainCamera;
     [SerializeField] private PetRoomInventoryManager inventoryManager;
 
+    private int petId;
     private int petTypeId;
     private GameObject previewPet;
     private bool isDragging;
 
-    public void SetPetTypeId(int typeId)
+    public void SetPetData(int id, int typeId)
     {
+        petId = id;
         petTypeId = typeId;
     }
 
@@ -65,11 +67,25 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (isInsideDropArea)
         {
             previewPet.transform.position = worldPos;
-            Debug.Log("[PetSlotDrag] 배치 성공");
 
-            if (inventoryManager != null)
+            Transform placedPetTransform = previewPet.transform;
+
+            if (NetworkManager.Instance != null && petId > 0)
             {
-                inventoryManager.OnPetPlaced();
+                NetworkManager.Instance.RequestPetData(
+                    petId,
+                    response =>
+                    {
+                        if (inventoryManager != null)
+                        {
+                            inventoryManager.OnPetPlaced(response, placedPetTransform);
+                        }
+                    },
+                    error =>
+                    {
+                        Debug.LogError("[PetSlotDrag] 펫 데이터 요청 실패: " + error);
+                    }
+                );
             }
         }
         else

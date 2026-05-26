@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//펫 슬롯 UI, 인벤토리 전환
 public class PetRoomInventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel_Pet;
@@ -16,6 +18,7 @@ public class PetRoomInventoryManager : MonoBehaviour
     [SerializeField] private Sprite boarSprite;
 
     [SerializeField] private InventoryUIManager inventoryUIManager;
+    [SerializeField] private PetGrowthManager petGrowthManager;
 
 
     private void Start()
@@ -40,7 +43,7 @@ public class PetRoomInventoryManager : MonoBehaviour
                 // PetSlotDrag에 0 전달
                 PetSlotDrag dragEmpty = petSlotImages[i].GetComponentInParent<PetSlotDrag>();
                 if (dragEmpty != null)
-                    dragEmpty.SetPetTypeId(0);
+                    dragEmpty.SetPetData(0, 0);
 
                 continue;
             }
@@ -51,7 +54,7 @@ public class PetRoomInventoryManager : MonoBehaviour
             // PetSlotDrag에 typeId 전달
             PetSlotDrag drag = petSlotImages[i].GetComponentInParent<PetSlotDrag>();
             if (drag != null)
-                drag.SetPetTypeId(pets[i].petTypeId);
+                drag.SetPetData(pets[i].petId, pets[i].petTypeId);
         }
     }
 
@@ -68,9 +71,14 @@ public class PetRoomInventoryManager : MonoBehaviour
         }
     }
 
-    // 펫 드래그해서 내놓을 때 호출
-    public void OnPetPlaced()
+
+    public void OnPetPlaced(PetRoomResponse response, Transform placedPetTransform)
     {
+        if (petGrowthManager != null)
+        {
+            petGrowthManager.SetCurrentPet(response, placedPetTransform);
+        }
+
         inventoryUIManager.ShowItemInventory();
     }
 }

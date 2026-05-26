@@ -8,6 +8,7 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Camera mainCamera;
     [SerializeField] private TMP_Text countText;
     [SerializeField] private GameObject foodImage; // BG 안의 음식 스프라이트 오브젝트
+    [SerializeField] private PetGrowthManager petGrowthManager;
 
     private int itemTypeId;
     private int count = 3; // 임시 초기값
@@ -52,18 +53,34 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (preview == null) return;
+        if (preview == null) 
+            return;
+
         Vector3 worldPos = GetWorldPosition(eventData);
         Collider2D hit = Physics2D.OverlapPoint(worldPos);
+
         if (hit != null && hit.CompareTag("PetDropArea"))
         {
+            Debug.Log($"[ItemSlotDrag] 아이템 드롭 성공 / itemTypeId:{itemTypeId}");
+
+            if (petGrowthManager != null)
+            {
+                petGrowthManager.FeedCurrentPet(itemTypeId);
+            }
+            else
+            {
+                Debug.LogError("[ItemSlotDrag] petGrowthManager 연결 안 됨");
+            }
+
             count--;
             countText.text = count.ToString();
+
             if (count <= 0)
             {
                 foodImage.SetActive(false);
                 countText.gameObject.SetActive(false);
             }
+
             Destroy(preview);
         }
         else
