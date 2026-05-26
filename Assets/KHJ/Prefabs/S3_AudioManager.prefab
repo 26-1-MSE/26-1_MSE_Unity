@@ -89,13 +89,13 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 767633359e9704356b793a127079e31b, type: 3}
     volumeScale: 1
   - clip: {fileID: 8300000, guid: d6d6d65e394a041b886120f56472451e, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
   - clip: {fileID: 8300000, guid: 7abbf962f78e64dd1baecc563a9383cf, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
   - clip: {fileID: 8300000, guid: cf7c4d62facd04b699f2f88839bd8632, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   - clip: {fileID: 8300000, guid: 0e59e2b584e70483ab5f969859f10e3a, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   - clip: {fileID: 8300000, guid: 014bce30bf5fc44b3bd7540f73691756, type: 3}
     volumeScale: 1
   - clip: {fileID: 8300000, guid: 2ce243d0ed66a4d668fcf78f845eb0c4, type: 3}

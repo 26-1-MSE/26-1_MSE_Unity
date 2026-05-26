@@ -41,6 +41,7 @@ public class TreeInteractable : MonoBehaviour, IInteractable
                 () =>
                 {
                     Debug.Log($"[TreeInteractable] 서버 아이템 획득 저장 성공: {itemName}");
+                    AudioManager.SFXInstance?.PlayOneShot(25);
                 },
                 (error) =>
                 {

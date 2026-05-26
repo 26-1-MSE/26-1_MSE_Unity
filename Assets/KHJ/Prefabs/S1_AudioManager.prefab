@@ -55,13 +55,15 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 245965889d0a183438ef3478b27122c0, type: 3}
     volumeScale: 1
   - clip: {fileID: 8300000, guid: d6d6d65e394a041b886120f56472451e, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
   - clip: {fileID: 8300000, guid: 7abbf962f78e64dd1baecc563a9383cf, type: 3}
+    volumeScale: 0.1
+  - clip: {fileID: 8300000, guid: 014bce30bf5fc44b3bd7540f73691756, type: 3}
     volumeScale: 1
   _autoPlayOnStart: 1
   _backgroundMusicClipId: 0
   _loopBackgroundMusic: 1
-  _isBgmSource: 1
+  _isBgmSource: 0
 --- !u!82 &1490687265971514398
 AudioSource:
   m_ObjectHideFlags: 0

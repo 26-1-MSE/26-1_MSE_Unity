@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 6320032663981543260}
   - component: {fileID: 564944733679001177}
   - component: {fileID: 415204152016548018}
+  - component: {fileID: 5003962611885527197}
   m_Layer: 7
   m_Name: S3_Player
   m_TagString: Player
@@ -403,7 +404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 5.5
   jumpPower: 12
-  maxJumpCount: 2
   rb: {fileID: 4192971970616190493}
   animator: {fileID: 415204152016548018}
   spriteRenderer: {fileID: 2713821249518076204}
@@ -443,6 +443,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5003962611885527197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134211232959166533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6e40f9c9a94ed44ab044975b264311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFootstepHandler
 --- !u!1001 &3992580898991293470
 PrefabInstance:
   m_ObjectHideFlags: 0

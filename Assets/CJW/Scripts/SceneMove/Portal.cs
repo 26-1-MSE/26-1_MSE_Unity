@@ -21,6 +21,18 @@ public class Portal : MonoBehaviour, IInteractable
             return;
         }
 
+        int sceneIndex = GameManager.Instance?.CurrentSceneIndex ?? -1;
+
+        switch (sceneIndex)
+        {
+            case 1:
+                AudioManager.PlayOneShotAndDestroy(5);
+                break;
+            case 3:
+                AudioManager.PlayOneShotAndDestroy(24);
+                break;
+        }
+        
         switch (targetScene)
         {
             case TargetScene.Lobby:
@@ -37,6 +49,7 @@ public class Portal : MonoBehaviour, IInteractable
                 break;
         }
     }
+
     public string GetInteractMessage()
     {
         return "E: Enter";

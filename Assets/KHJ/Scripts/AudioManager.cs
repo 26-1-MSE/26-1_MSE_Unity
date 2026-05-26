@@ -260,4 +260,24 @@ public class AudioManager : MonoBehaviour
 
         _audioSource.volume = master * scale;
     }
+    
+    // One-time playback that does not stop during scene transitions (DontDestroyOnLoad temporary object)
+    public static void PlayOneShotAndDestroy(int clipId)
+    {
+        if (SFXInstance == null) return;
+
+        if (!SFXInstance.IsValidClipId(clipId)) return;
+
+        AudioClip clip = SFXInstance._audioClipsData[clipId].clip;
+        float volume = SFXInstance.GetCurrentVolume() * SFXInstance._audioClipsData[clipId].volumeScale;
+
+        GameObject obj = new GameObject("TempAudio");
+        AudioSource source = obj.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.volume = volume;
+        source.Play();
+
+        DontDestroyOnLoad(obj);
+        Destroy(obj, clip.length);
+    }
 }

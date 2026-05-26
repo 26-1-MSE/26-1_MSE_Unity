@@ -63,7 +63,7 @@ MonoBehaviour:
   _autoPlayOnStart: 1
   _backgroundMusicClipId: 0
   _loopBackgroundMusic: 1
-  _isBgmSource: 1
+  _isBgmSource: 0
 --- !u!82 &7850362682701765689
 AudioSource:
   m_ObjectHideFlags: 0
