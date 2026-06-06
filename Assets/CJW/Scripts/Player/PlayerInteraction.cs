@@ -8,13 +8,15 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI interactText; 
     [SerializeField] private Camera mainCamera;
 
+   
+
     private void Update()
     {
-        if (interactText != null && interactText.gameObject.activeSelf)
+        /*if (interactText != null && interactText.gameObject.activeSelf)
         {
             Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position + Vector3.up * 2f);
             interactText.transform.position = screenPos;
-        }
+        }*/
 
         if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
