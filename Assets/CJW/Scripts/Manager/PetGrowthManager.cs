@@ -11,13 +11,13 @@ public class PetGrowthManager : MonoBehaviour
     [SerializeField] private Slider foodSlider;
     [SerializeField] private Slider waterSlider;
 
+    [SerializeField] private TMP_Text foodCountText;
+    [SerializeField] private TMP_Text waterCountText;
+
     [Header("Placed Pet")]
     [SerializeField] private Transform placedPetTransform;
 
-    private PetRoomResponse currentPetData;
-
     private int currentPetId;
-    private int currentPetTypeId;
     private int currentLevel;
     private string currentPetName;
 
@@ -27,16 +27,13 @@ public class PetGrowthManager : MonoBehaviour
     private int currentWater;
     private int currentWaterMax;
 
-    private bool isPetStatusDirty;
 
     public void SetCurrentPet(PetRoomResponse response, Transform petTransform)
     {
-        currentPetData = response;
-
         currentPetId = response.data.pet.petId;
-        currentPetTypeId = response.data.pet.petTypeId;
         currentLevel = response.data.pet.level;
         currentPetName = response.data.pet.petName;
+        currentLevel = response.data.pet.level;
 
         currentFood = response.data.pet.food.current;
         currentFoodMax = response.data.pet.food.max;
@@ -45,72 +42,69 @@ public class PetGrowthManager : MonoBehaviour
         currentWaterMax = response.data.pet.water.max;
 
         placedPetTransform = petTransform;
-        isPetStatusDirty = false;
 
         RefreshHUD();
     
     }
 
-    public void FeedCurrentPet(int itemTypeId)
+    
+    public int GetCurrentPetId()
+    {
+        return currentPetId;
+    }
+    public void UseItemOnCurrentPet(int itemTypeId, System.Action onSuccess)
     {
         if (currentPetId <= 0)
+        {
+            Debug.LogWarning("[PetGrowthManager] 현재 선택된 펫 없음");
             return;
-
-        // itemTypeId 5 = 물
-        if (itemTypeId == 5)
-        {
-            currentWater = Mathf.Min(currentWater + 1, currentWaterMax);
-        }
-        else
-        {
-            currentFood = Mathf.Min(currentFood + 1, currentFoodMax);
         }
 
-        CheckLevelUp();
+        NetworkManager.Instance.RequestUseItem(
+            currentPetId,
+            itemTypeId,
+            response =>
+            {
+                ApplyUseItemData(response);
+                onSuccess?.Invoke();
+            },
+            error =>
+            {
+                Debug.LogError("[PetGrowthManager] 아이템 사용 실패: " + error);
+            }
+        );
+    }
 
-        isPetStatusDirty = true;
+    public void ApplyUseItemData(UseItemResponse response)
+    {
+        int previousLevel = currentLevel;
+
+        currentLevel = response.data.pet.level;
+
+        currentFood = response.data.pet.food.current;
+        currentFoodMax = response.data.pet.food.max;
+
+        currentWater = response.data.pet.water.current;
+        currentWaterMax = response.data.pet.water.max;
+
+        if (currentLevel > previousLevel)
+        {
+            ApplyPetScale();
+        }
+
         RefreshHUD();
     }
 
-    private void CheckLevelUp()
+    private void ApplyPetScale()
     {
-        if (currentLevel >= 3)
+        if (placedPetTransform == null)
             return;
 
-        if (currentFood >= currentFoodMax && currentWater >= currentWaterMax)
-        {
-            currentLevel++;
-
-            currentFood = 0;
-            currentWater = 0;
-
-            currentFoodMax = GetFoodMaxByLevel(currentLevel);
-            currentWaterMax = GetWaterMaxByLevel(currentLevel);
-        }
+        float scale = GetScaleByLevel(currentLevel);
+        placedPetTransform.localScale = new Vector3(scale, scale, 1f);
     }
 
-    private int GetFoodMaxByLevel(int level)
-    {
-        switch (level)
-        {
-            case 1: return 5;
-            case 2: return 10;
-            case 3: return 15;
-            default: return 5;
-        }
-    }
-
-    private int GetWaterMaxByLevel(int level)
-    {
-        switch (level)
-        {
-            case 1: return 3;
-            case 2: return 6;
-            case 3: return 10;
-            default: return 3;
-        }
-    }
-
+   
     private void RefreshHUD()
     {
         if (levelText != null)
@@ -130,6 +124,17 @@ public class PetGrowthManager : MonoBehaviour
             waterSlider.maxValue = currentWaterMax;
             waterSlider.value = currentWater;
         }
+
+        if (foodCountText != null)
+        {
+            foodCountText.text = $"{currentFood} / {currentFoodMax}";
+        }
+
+        if (waterCountText != null)
+        {
+            waterCountText.text = $"{currentWater} / {currentWaterMax}";
+        }
+    
     }
 
     private float GetScaleByLevel(int level)
@@ -141,10 +146,5 @@ public class PetGrowthManager : MonoBehaviour
             case 3: return 12f;
             default: return 8f;
         }
-    }
-
-    public bool IsPetStatusDirty()
-    {
-        return isPetStatusDirty;
     }
 }

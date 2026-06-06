@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ItemInventoryManager : MonoBehaviour
 {
@@ -34,49 +35,107 @@ public class ItemInventoryManager : MonoBehaviour
 
         DataManager.OwnedItemSlot[] items = DataManager.Data.OwnedItemSlots;
 
+        if (items == null)
+        {
+            Debug.LogWarning("[ItemInventoryManager] OwnedItemSlots 없음");
+            ClearAllSlots();
+            return;
+        }
+
         Debug.Log($"[ItemInventoryManager] OwnedItemSlots 길이: {items.Length}");
 
-        for (int i = 0; i < itemImages.Length; i++)
+        Dictionary<int, List<int>> itemIdMap = new Dictionary<int, List<int>>();
+
+        for (int i = 0; i < items.Length; i++)
         {
-            if (itemImages[i] == null)
+            if (items[i].itemId == 0 || items[i].itemTypeId == 0)
+                continue;
+
+            if (!itemIdMap.ContainsKey(items[i].itemTypeId))
+                itemIdMap[items[i].itemTypeId] = new List<int>();
+
+            for (int countIndex = 0; countIndex < items[i].count; countIndex++)
             {
-                Debug.LogWarning($"[ItemInventoryManager] itemImages[{i}] 비어 있음");
+                itemIdMap[items[i].itemTypeId].Add(items[i].itemId);
+            }
+        }
+
+        Debug.Log($"[ItemInventoryManager] itemIdMap 개수: {itemIdMap.Count}");
+
+        foreach (var pair in itemIdMap)
+        {
+            Debug.Log($"[ItemInventoryManager] 묶음 확인 / typeId:{pair.Key}, itemIds:{string.Join(",", pair.Value)}");
+        }
+
+        int slotIndex = 0;
+
+        foreach (var pair in itemIdMap)
+        {
+            if (slotIndex >= itemImages.Length)
+                break;
+
+            if (itemImages[slotIndex] == null || countTexts[slotIndex] == null)
+            {
+                slotIndex++;
                 continue;
             }
 
-            if (countTexts[i] == null)
+            int itemTypeId = pair.Key;
+            List<int> ids = new List<int>(pair.Value);
+            Sprite itemSprite = GetItemSprite(itemTypeId);
+
+            Debug.Log($"[ItemInventoryManager] UI 세팅 / slot:{slotIndex}, typeId:{itemTypeId}, count:{ids.Count}, sprite:{itemSprite}");
+
+            bool hasItem = ids.Count > 0 && itemSprite != null;
+
+            itemImages[slotIndex].gameObject.SetActive(hasItem);
+            itemImages[slotIndex].sprite = itemSprite;
+            itemImages[slotIndex].enabled = hasItem;
+
+            countTexts[slotIndex].gameObject.SetActive(hasItem);
+            countTexts[slotIndex].text = hasItem ? ids.Count.ToString() : "";
+
+            ItemSlotDrag drag = itemImages[slotIndex].GetComponentInParent<ItemSlotDrag>();
+            if (drag != null)
             {
-                Debug.LogWarning($"[ItemInventoryManager] countTexts[{i}] 비어 있음");
-                continue;
+                drag.SetItemData(ids, itemTypeId, ids.Count, itemSprite);
             }
 
-            if (i >= items.Length || items[i].itemTypeId == 0 || items[i].count <= 0)
+            slotIndex++;
+        }
+
+        for (int i = slotIndex; i < itemImages.Length; i++)
+        {
+            if (itemImages[i] != null)
             {
                 itemImages[i].sprite = null;
                 itemImages[i].enabled = false;
                 itemImages[i].gameObject.SetActive(false);
-
-                countTexts[i].text = "";
-                countTexts[i].gameObject.SetActive(false);
-
-                continue;
             }
 
-            Sprite itemSprite = GetItemSprite(items[i].itemTypeId);
-
-            Debug.Log($"[ItemInventoryManager] UI Slot {i} / typeId:{items[i].itemTypeId}, count:{items[i].count}, sprite:{itemSprite}");
-
-            itemImages[i].gameObject.SetActive(true);
-            itemImages[i].sprite = itemSprite;
-            itemImages[i].enabled = true;
-
-            countTexts[i].gameObject.SetActive(true);
-            countTexts[i].text = items[i].count.ToString();
-
-            ItemSlotDrag drag = itemImages[i].GetComponentInParent<ItemSlotDrag>();
-            if (drag != null)
+            if (countTexts[i] != null)
             {
-                drag.SetItemData(items[i].itemTypeId, items[i].count, itemSprite);
+                countTexts[i].text = "";
+                countTexts[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void ClearAllSlots()
+    {
+        for (int i = 0; i < itemImages.Length; i++)
+        {
+            if (itemImages[i] != null)
+            {
+                itemImages[i].sprite = null;
+                itemImages[i].enabled = false;
+                itemImages[i].gameObject.SetActive(false);
+            }
+
+            if (countTexts[i] != null)
+            {
+                countTexts[i].text = "";
+                countTexts[i].gameObject.SetActive(false);
             }
         }
     }

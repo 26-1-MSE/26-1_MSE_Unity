@@ -228,6 +228,7 @@ public class NetworkManager : MonoBehaviour
     // 5. 추가 데이터 요청 — 추후 구현 예정
 
     public void RequestUserData(int userId)      => Debug.Log("[NetworkManager] 유저 데이터 요청 예정 / userId: " + userId);
+    
     // 펫룸에 표시할 특정 펫 데이터 요청
     public void RequestPetData(int petId, Action<PetRoomResponse> onSuccess = null, Action<string> onFail = null)
     {
@@ -268,7 +269,18 @@ public class NetworkManager : MonoBehaviour
             Debug.Log("level: " + response.data.pet.level);
             Debug.Log("food: " + response.data.pet.food.current + " / " + response.data.pet.food.max);
             Debug.Log("water: " + response.data.pet.water.current + " / " + response.data.pet.water.max);
+            
             Debug.Log("items count: " + response.data.items.Length);
+            if (DataManager.Data != null && response.data.items != null)
+            {
+                Debug.Log("[NetworkManager] 펫룸 items DataManager 저장 호출");
+                DataManager.Data.SetOwnedItems(response.data.items);
+            }
+            else
+            {
+                Debug.LogWarning("[NetworkManager] DataManager 또는 items null");
+            }
+            
             onSuccess?.Invoke(response);
         }));
     }
@@ -334,6 +346,7 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
+    // S2 인벤토리 정보 요청
     public void RequestInventoryData(Action<InventoryResponse> onSuccess = null, Action<string> onFail = null)
     {
         StartCoroutine(GetRoutine("/inventory", (code, raw) =>
@@ -373,6 +386,59 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
+    // 아이템 사용 서버 요청
+    public void RequestUseItem(
+    int petId,
+    int itemTypeId,
+    Action<UseItemResponse> onSuccess = null,
+    Action<string> onFail = null)
+    {
+        UseItemRequest request = new UseItemRequest
+        {
+            petId = petId,
+            itemTypeId = itemTypeId
+        };
+
+        string json = JsonUtility.ToJson(request);
+
+        Debug.Log("[NetworkManager] item/use json: " + json);
+
+        StartCoroutine(PostRoutine("/item/use", json, (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 아이템 사용 응답 code: " + code);
+            Debug.Log("[NetworkManager] raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("서버 연결 실패");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("아이템 사용 실패: " + code);
+                return;
+            }
+
+            UseItemResponse response = TryParseJson<UseItemResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("JSON 파싱 실패");
+                return;
+            }
+
+            if (!response.success)
+            {
+                onFail?.Invoke(response.error);
+                return;
+            }
+
+            onSuccess?.Invoke(response);
+        }));
+    }
+
+    //S3에서 아이템 획득 시
     public void RequestAcquireItem(int itemTypeId, int count, Action onSuccess = null, Action<string> onFail = null)
     {
         string json = JsonUtility.ToJson(new AcquireItemRequest
@@ -469,6 +535,28 @@ public class OwnedItemData
     public int itemId;
     public int itemTypeId;
     public int count;
+}
+
+[Serializable]
+public class UseItemRequest
+{
+    public int petId;
+    public int itemTypeId;
+}
+
+[Serializable]
+public class UseItemResponse
+{
+    public bool success;
+    public string error;
+    public UseItemData data;
+}
+
+[Serializable]
+public class UseItemData
+{
+    public bool success;
+    public PetData pet;
 }
 
 [Serializable]
