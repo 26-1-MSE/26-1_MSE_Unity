@@ -3,6 +3,11 @@ using UnityEngine;
 public class PondInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private SpriteRenderer pondSprite;
+
+    // 물
+    [SerializeField] private int itemTypeId = 5;
+    [SerializeField] private int acquireCount = 1;
+
     private bool hasWater = true;
 
     public void Interact(PlayerInteraction player)
@@ -10,7 +15,25 @@ public class PondInteractable : MonoBehaviour, IInteractable
         if (!hasWater) return;
 
         hasWater = false;
-        Debug.Log("[ITEM_COLLECT] 물 획득!");
+
+        Debug.Log("[PondInteractable] 물 획득!");
+
+        if (NetworkManager.Instance != null)
+        {
+            NetworkManager.Instance.RequestAcquireItem(
+                itemTypeId,
+                acquireCount,
+                () =>
+                {
+                    Debug.Log("[PondInteractable] 서버 물 획득 저장 성공");
+                    AudioManager.SFXInstance?.PlayOneShot(25);
+                },
+                (error) =>
+                {
+                    Debug.LogError("[PondInteractable] 서버 물 획득 저장 실패: " + error);
+                }
+            );
+        }
 
         if (pondSprite != null)
             pondSprite.enabled = false;

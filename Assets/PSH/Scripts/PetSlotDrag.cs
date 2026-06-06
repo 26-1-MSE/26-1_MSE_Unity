@@ -36,7 +36,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         previewPet = Instantiate(prefab);
         // 생성된 펫 크기 조정
-        previewPet.transform.localScale = new Vector3(10f, 10f, 2f);
+        previewPet.transform.localScale = new Vector3(10f, 10f, 1f);
         isDragging = true;
 
     }
