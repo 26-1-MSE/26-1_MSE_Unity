@@ -141,10 +141,10 @@ public class PetGrowthManager : MonoBehaviour
     {
         switch (level)
         {
-            case 1: return 8f;
-            case 2: return 10f;
-            case 3: return 12f;
-            default: return 8f;
+            case 1: return 10f;
+            case 2: return 13f;
+            case 3: return 16f;
+            default: return 10f;
         }
     }
 }
