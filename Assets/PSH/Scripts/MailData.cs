@@ -7,4 +7,5 @@ public class MailData
     public string body;
     public string date;
     public bool isRead;
+    public string nickname;
 }

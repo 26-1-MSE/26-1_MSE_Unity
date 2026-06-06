@@ -495,7 +495,85 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    public void RequestLetterData(int userId)    => Debug.Log("[NetworkManager] 편지 데이터 요청 예정 / userId: " + userId);
+    // 메일 목록 조회
+    public void RequestMailList(
+        Action<MailListResponse> onSuccess = null,
+        Action<string> onFail = null)
+    {
+        StartCoroutine(GetRoutine("/mail/list", (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 메일 목록 응답 code: " + code);
+            Debug.Log("[NetworkManager] raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("서버 연결 실패");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("메일 목록 조회 실패: " + code);
+                return;
+            }
+
+            MailListResponse response = TryParseJson<MailListResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("메일 목록 JSON 파싱 실패");
+                return;
+            }
+
+            if (!response.success)
+            {
+                onFail?.Invoke(response.error);
+                return;
+            }
+
+            onSuccess?.Invoke(response);
+        }));
+    }
+
+    public void RequestMailDetail(
+    int mailId,
+    Action<MailDetailResponse> onSuccess = null,
+    Action<string> onFail = null)
+    {
+        StartCoroutine(GetRoutine("/mail/" + mailId, (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] 메일 상세 응답 code: " + code);
+            Debug.Log("[NetworkManager] raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("서버 연결 실패");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("메일 상세 조회 실패: " + code);
+                return;
+            }
+
+            MailDetailResponse response = TryParseJson<MailDetailResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("메일 상세 JSON 파싱 실패");
+                return;
+            }
+
+            if (!response.success)
+            {
+                onFail?.Invoke(response.error);
+                return;
+            }
+
+            onSuccess?.Invoke(response);
+        }));
+    }
 }
 
 
@@ -566,6 +644,50 @@ public class SignUpRequest
     public string password;
     public string nickname;
     public string shopName;
+}
+
+[Serializable]
+public class MailListResponse
+{
+    public bool success;
+    public string error;
+    public MailListData data;
+}
+
+[Serializable]
+public class MailListData
+{
+    public MailSummaryData[] mails;
+}
+
+[Serializable]
+public class MailSummaryData
+{
+    public int mailId;
+    public string title;
+    public string sender;
+    public bool isRead;
+    public string createdAt;
+}
+
+[Serializable]
+public class MailDetailResponse
+{
+    public bool success;
+    public string error;
+    public MailDetailData data;
+}
+
+[Serializable]
+public class MailDetailData
+{
+    public int mailId;
+    public string title;
+    public string nickname;
+    public string sender;
+    public string content;
+    public bool isRead;
+    public string createdAt;
 }
 
 [Serializable]

@@ -213,9 +213,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808137}
+    - target: {fileID: 1190578682765879751, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1464419362420662907, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_Name
       value: PetTownCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618457540362549382, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618457540362549382, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2833365118913765205, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -229,6 +241,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808137}
+    - target: {fileID: 3101088983389746759, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3609639574124137714, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -325,10 +341,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808137}
+    - target: {fileID: 5699089370634793455, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699089370634793455, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699089370634793455, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
     - target: {fileID: 6672441350928843684, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 988808136}
+    - target: {fileID: 7036890911263998508, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 7040314369112437631, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: mainCamera
       value: 
@@ -747,6 +779,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3101088983389746759, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
   m_PrefabInstance: {fileID: 50995714}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &722269233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722269235}
+  - component: {fileID: 722269234}
+  m_Layer: 0
+  m_Name: MailManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &722269234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722269233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa8d70a541695449828001e6a73ee7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MailManager
+--- !u!4 &722269235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722269233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1300.6792, y: 586.75134, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789981806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,3 +2696,4 @@ SceneRoots:
   - {fileID: 2131281407}
   - {fileID: 6547925571814401762}
   - {fileID: 353977726}
+  - {fileID: 722269235}
