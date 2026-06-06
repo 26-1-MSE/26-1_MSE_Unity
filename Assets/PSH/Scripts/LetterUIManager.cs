@@ -34,10 +34,11 @@ public class LetterUIManager : MonoBehaviour
 
     public void OpenNotes()
     {
+        if (GetComponent<PublicUIManager>().IsAnyPanelOpen()) return;
+        GetComponent<PublicUIManager>().SetCurrentPanel(listPanel);
         background.SetActive(true);
         listPanel.SetActive(true);
         detailPanel.SetActive(false);
-
         LoadMailListFromServer();
     }
 
@@ -73,6 +74,7 @@ public class LetterUIManager : MonoBehaviour
 
     public void CloseAll()
     {
+        GetComponent<PublicUIManager>().ClearCurrentPanel();
         background.SetActive(false);
         listPanel.SetActive(false);
         detailPanel.SetActive(false);
