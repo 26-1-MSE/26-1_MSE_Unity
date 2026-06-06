@@ -305,56 +305,45 @@ public class DataManager : MonoBehaviour
     }
 
     // 11. 보유 아이템 메서드
-
+    // inventory 응답 → InventoryItemData[]
+    // pet/petroom 응답 → PetItemData[]
     public void SetOwnedItems(InventoryItemData[] items)
     {
         _ownedItemSlots = new OwnedItemSlot[12];
 
+        Debug.Log("[DataManager] PetItemData SetOwnedItems 호출됨");
+
         if (items == null || items.Length == 0)
-        {
-            Debug.Log("[DataManager] 보유 아이템 없음");
             return;
-        }
 
-        Dictionary<int, OwnedItemSlot> itemMap = new Dictionary<int, OwnedItemSlot>();
-
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Length && i < _ownedItemSlots.Length; i++)
         {
-            int itemTypeId = items[i].itemTypeId;
-            int count = items[i].count;
-
-            if (itemMap.ContainsKey(itemTypeId))
+            _ownedItemSlots[i] = new OwnedItemSlot
             {
-                OwnedItemSlot slot = itemMap[itemTypeId];
-                slot.count += count;
-                itemMap[itemTypeId] = slot;
-            }
-            else
-            {
-                itemMap[itemTypeId] = new OwnedItemSlot
-                {
-                    itemId = items[i].itemId,
-                    itemTypeId = itemTypeId,
-                    count = count
-                };
-            }
+                itemId = items[i].itemId,
+                itemTypeId = items[i].itemTypeId,
+                count = items[i].count
+            };
+            Debug.Log($"[DataManager] itemId:{items[i].itemId}, typeId:{items[i].itemTypeId}, count:{items[i].count}");
         }
+    }
 
-        int index = 0;
+    public void SetOwnedItems(PetItemData[] items)
+    {
+        _ownedItemSlots = new OwnedItemSlot[12];
 
-        foreach (var pair in itemMap)
+        if (items == null || items.Length == 0)
+            return;
+
+        for (int i = 0; i < items.Length && i < _ownedItemSlots.Length; i++)
         {
-            if (index >= _ownedItemSlots.Length)
-                break;
-
-            _ownedItemSlots[index] = pair.Value;
-
-            Debug.Log($"[DataManager] itemTypeId:{pair.Key}, totalCount:{pair.Value.count}");
-
-            index++;
+            _ownedItemSlots[i] = new OwnedItemSlot
+            {
+                itemId = items[i].itemId,
+                itemTypeId = items[i].itemTypeId,
+                count = items[i].count
+            };
         }
-
-        Debug.Log("[DataManager] 보유 아이템 저장 완료");
     }
 
     public void AddOwnedItem(int itemId, int itemTypeId, int count)
