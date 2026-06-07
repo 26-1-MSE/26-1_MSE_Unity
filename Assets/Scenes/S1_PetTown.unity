@@ -433,11 +433,45 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 189783756}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5275473179022062344, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 7774793317990027504, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 590987295043116483, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 8761307525587090117, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 6705427361681933404, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 3016010417051711333, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 8663809530626444210, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 7040314369112437631, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 57374593307362182, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 8244381542759299444, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 6435020780958947907, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 5517615072224478805, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 1794082173059181754, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 6098624678742383681, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 3898546559403837577, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 1707384477665035243, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 6313795052776842594, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 7436260853830474505, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 977194918133359344, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+    - {fileID: 6696831487658477713, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8936787139403379640, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1779095382}
   m_SourcePrefab: {fileID: 100100000, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+--- !u!114 &50995715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9208762987275647083, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+  m_PrefabInstance: {fileID: 50995714}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686092b17758b76499f0808ddda6f694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToastMessage
 --- !u!114 &189783756 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8555911885960185648, guid: fb23156135b39374589251c930f59f69, type: 3}
@@ -844,6 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa8d70a541695449828001e6a73ee7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MailManager
+  toastMessage: {fileID: 50995715}
 --- !u!4 &722269235
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,6 +1112,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4880578608441071735, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 988808142}
+    - targetCorrespondingSourceObject: {fileID: 4880578608441071735, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 988808143}
   m_SourcePrefab: {fileID: 100100000, guid: 2db48ac50495313479528ec9867dca6b, type: 3}
 --- !u!1 &931409944 stripped
 GameObject:
@@ -1203,6 +1241,30 @@ MonoBehaviour:
   appleSprite: {fileID: -3018511801151901312, guid: 1021e8d9661e48e4cb66e20ef3cc645e, type: 3}
   carrotSprite: {fileID: 2677924621993521803, guid: 1021e8d9661e48e4cb66e20ef3cc645e, type: 3}
   waterSprite: {fileID: -5709392710985664791, guid: 1021e8d9661e48e4cb66e20ef3cc645e, type: 3}
+--- !u!114 &988808143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931409944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef25ea505191cf4890a4ec3b6b51963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  petInventoryContent: {fileID: 1331529525}
+  itemInventoryContent: {fileID: 645203776}
+  petImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rabbitSprite: {fileID: 5626864012189183005, guid: 68086fe12ca7f8a479f293b3cc4bece8, type: 3}
+  foxSprite: {fileID: -8852332470818163321, guid: e3f3da7d3bfb3d24f942cadba9c7b63a, type: 3}
+  deerSprite: {fileID: -6345700973451923875, guid: 9291ad43e6f87b04fb6b19e55c09e064, type: 3}
+  boarSprite: {fileID: 7028773440798467179, guid: 947338baa27fbf9408af835772390429, type: 3}
+  itemInventoryManager: {fileID: 988808142}
 --- !u!114 &1015100447 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2322920789286115269, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
@@ -2076,6 +2138,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8936787139403379640, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
   m_PrefabInstance: {fileID: 50995714}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1779095382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779095381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548eeaceb4725a54e94879ef22eb4b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MailAlertUI
+  unreadMailIcon: {fileID: 1779095381}
 --- !u!1 &1806711187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1308609086180380343, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MailManager : MonoBehaviour
 {
+    [SerializeField] private ToastMessage toastMessage;
+
     private void Start()
     {
         NetworkManager.Instance.RequestMailList(
@@ -23,6 +25,7 @@ public class MailManager : MonoBehaviour
             error =>
             {
                 Debug.LogError("[MailManager] 목록 조회 실패: " + error);
+                toastMessage?.ShowToast(error);
             }
         );
     }
@@ -45,6 +48,7 @@ public class MailManager : MonoBehaviour
             error =>
             {
                 Debug.LogError("[MailManager] 상세 조회 실패: " + error);
+                toastMessage?.ShowToast(error);
             }
         );
     }

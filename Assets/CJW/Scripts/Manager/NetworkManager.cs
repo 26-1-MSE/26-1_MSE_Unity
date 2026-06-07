@@ -112,6 +112,18 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    private string GetUserMessageFromError(string error)
+    {
+        switch (error)
+        {
+            case "PET_LIMIT_EXCEEDED":
+                return "You cannot bring any more pets.";
+
+            default:
+                return string.IsNullOrEmpty(error) ? "Unknown error" : error;
+        }
+    }
+
     // =========================================================
     // 1. 연결 테스트
 
@@ -321,7 +333,7 @@ public class NetworkManager : MonoBehaviour
 
             if (!response.success)
             {
-                onFail?.Invoke(response.error);
+                onFail?.Invoke(GetUserMessageFromError(response.error));
                 return;
             }
 
@@ -370,7 +382,7 @@ public class NetworkManager : MonoBehaviour
 
             if (response == null)
             {
-                onFail?.Invoke("Inventory parse error");
+                onFail?.Invoke("Response parse error");
                 return;
             }
 
@@ -380,7 +392,23 @@ public class NetworkManager : MonoBehaviour
                 return;
             }
 
-            DataManager.Data.SetOwnedItems(response.data.items);
+            if (DataManager.Data != null)
+            {
+                OwnedPetData[] ownedPets = new OwnedPetData[response.data.pets.Length];
+
+                for (int i = 0; i < response.data.pets.Length; i++)
+                {
+                    ownedPets[i] = new OwnedPetData
+                    {
+                        petId = response.data.pets[i].petId,
+                        petTypeId = response.data.pets[i].petTypeId,
+                        level = response.data.pets[i].level
+                    };
+                }
+
+                DataManager.Data.SetOwnedPets(ownedPets);
+                DataManager.Data.SetOwnedItems(response.data.items);
+            }
 
             onSuccess?.Invoke(response);
         }));
@@ -606,6 +634,7 @@ public class OwnedPetData
 {
     public int petId;
     public int petTypeId;
+    public int level;
 }
 
 public class OwnedItemData

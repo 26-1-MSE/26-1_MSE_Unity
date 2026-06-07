@@ -17,7 +17,30 @@ public class PetSpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnPets();
+        LoadInventoryAndSpawn();
+    }
+
+    private void LoadInventoryAndSpawn()
+    {
+        if (NetworkManager.Instance == null)
+        {
+            Debug.LogError("[PetSpawner] NetworkManager 없음");
+            SpawnPets();
+            return;
+        }
+
+        NetworkManager.Instance.RequestInventoryData(
+            response =>
+            {
+                Debug.Log("[PetSpawner] 최신 인벤토리 로드 성공");
+                SpawnPets();
+            },
+            error =>
+            {
+                Debug.LogError("[PetSpawner] 인벤토리 로드 실패: " + error);
+                SpawnPets();
+            }
+        );
     }
 
     private void SpawnPets()
@@ -35,7 +58,11 @@ public class PetSpawner : MonoBehaviour
                 continue;
 
             Vector3 spawnPosition = GetRandomPositionInArea();
-            Instantiate(prefab, spawnPosition, Quaternion.identity);
+
+            GameObject pet = Instantiate(prefab, spawnPosition, Quaternion.identity);
+
+            float scale = GetScaleByLevel(slot.level);
+            pet.transform.localScale = new Vector3(scale, scale, 1f);
         }
     }
 
@@ -58,5 +85,16 @@ public class PetSpawner : MonoBehaviour
         }
 
         return null;
+    }
+
+    private float GetScaleByLevel(int level)
+    {
+        switch (level)
+        {
+            case 1: return 2.5f;
+            case 2: return 3.5f;
+            case 3: return 5.0f;
+            default: return 3.5f;
+        }
     }
 }

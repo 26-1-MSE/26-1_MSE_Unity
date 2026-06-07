@@ -15,6 +15,7 @@ public class OcarinaGameManager : MonoBehaviour
     [SerializeField] private GameObject[] hearts;
     [SerializeField] private GameObject resultPopup;
     [SerializeField] private TextMeshProUGUI resultText;
+    [SerializeField] private ToastMessage toastMessage;
 
     [Header("Game Settings")]
     [SerializeField] private float gameDuration = 30f;
@@ -213,14 +214,41 @@ public class OcarinaGameManager : MonoBehaviour
         Debug.Log("[PET_COLLECT] 펫 획득!");
 
         if (NetworkManager.Instance != null)
-            NetworkManager.Instance.RequestAcquirePet(currentPetTypeId);
+        {
+            NetworkManager.Instance.RequestAcquirePet(
+                currentPetTypeId,
+                () =>
+                {
+                    Debug.Log("[PET_COLLECT] 서버 저장 성공");
+
+                    if (AudioManager.SFXInstance != null)
+                        AudioManager.SFXInstance.PlayOneShot(successSoundId);
+
+                    CloseGame();
+                },
+                error =>
+                {
+                    Debug.LogError("[PET_COLLECT] 서버 저장 실패: " + error);
+
+                    toastMessage?.ShowToast(error);
+
+                    if (currentPet != null)
+                        currentPet.SetActive(true);
+
+                    CloseGame();
+                }
+            );
+        }
         else
+        {
             Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
 
-        if (AudioManager.SFXInstance != null)
-            AudioManager.SFXInstance.PlayOneShot(successSoundId);
+            if (AudioManager.SFXInstance != null)
+                AudioManager.SFXInstance.PlayOneShot(successSoundId);
 
-        CloseGame();
+            CloseGame();
+        }
+ 
     }
 
     private void Fail()

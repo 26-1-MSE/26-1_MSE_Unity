@@ -86,8 +86,6 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
             int useItemId = itemIds[0];
 
-            Debug.Log($"[ItemSlotDrag] 사용 요청 / petId:{petId}, itemId:{useItemId}, itemTypeId:{itemTypeId}, count:{count}");
-
             petGrowthManager.UseItemOnCurrentPet(
                 itemTypeId,
                 () =>

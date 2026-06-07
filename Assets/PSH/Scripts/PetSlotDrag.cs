@@ -12,6 +12,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private Collider2D petDropArea;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private PetRoomInventoryManager inventoryManager;
+    [SerializeField] private GameObject petHUD;
 
     private int petId;
     private int petTypeId;
@@ -105,6 +106,10 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (inventoryManager != null)
                 {
                     inventoryManager.OnPetPlaced(response, placedPetTransform);
+                }
+                if (petHUD != null)
+                {
+                    petHUD.SetActive(true);
                 }
                 else
                 {

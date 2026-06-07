@@ -18,6 +18,8 @@ public class DataManager : MonoBehaviour
 
         /// 1 = 토끼, 2 = 여우, 3 = 사슴, 4 = 멧돼지
         public int petTypeId;
+
+        public int level;
     }
 
     [Serializable]
@@ -254,6 +256,7 @@ public class DataManager : MonoBehaviour
         {
             _ownedPetSlots[i].petId = ownedPets[i].petId;
             _ownedPetSlots[i].petTypeId = ownedPets[i].petTypeId;
+            _ownedPetSlots[i].level = ownedPets[i].level;
         }
 
         Debug.Log("[DataManager] 보유 펫 슬롯 저장 완료");

@@ -15004,6 +15004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa8d70a541695449828001e6a73ee7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MailManager
+  toastMessage: {fileID: 0}
 --- !u!4 &805319448
 Transform:
   m_ObjectHideFlags: 0
@@ -18232,6 +18233,10 @@ PrefabInstance:
       propertyPath: successSound
       value: 
       objectReference: {fileID: 8300000, guid: f848ccbb0a119434c8b459bf749c9867, type: 3}
+    - target: {fileID: 1358025870722370702, guid: 352a1e60301374d2e9d7195825c16565, type: 3}
+      propertyPath: toastMessage
+      value: 
+      objectReference: {fileID: 1398313385}
     - target: {fileID: 1358025870722370702, guid: 352a1e60301374d2e9d7195825c16565, type: 3}
       propertyPath: playerMovement
       value: 
@@ -26002,6 +26007,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8954328112833681244, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8954328112833681244, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9051466949297590974, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
@@ -26047,6 +26060,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+--- !u!114 &1398313385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9208762987275647083, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+  m_PrefabInstance: {fileID: 1398313384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686092b17758b76499f0808ddda6f694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToastMessage
 --- !u!1 &1398313386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1854884267944752440, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}

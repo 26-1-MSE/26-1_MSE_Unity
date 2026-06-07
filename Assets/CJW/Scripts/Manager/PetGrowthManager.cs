@@ -14,6 +14,8 @@ public class PetGrowthManager : MonoBehaviour
     [SerializeField] private TMP_Text foodCountText;
     [SerializeField] private TMP_Text waterCountText;
 
+    [SerializeField] private ToastMessage toastMessage;
+
     [Header("Placed Pet")]
     [SerializeField] private Transform placedPetTransform;
 
@@ -33,7 +35,6 @@ public class PetGrowthManager : MonoBehaviour
         currentPetId = response.data.pet.petId;
         currentLevel = response.data.pet.level;
         currentPetName = response.data.pet.petName;
-        currentLevel = response.data.pet.level;
 
         currentFood = response.data.pet.food.current;
         currentFoodMax = response.data.pet.food.max;
@@ -43,11 +44,11 @@ public class PetGrowthManager : MonoBehaviour
 
         placedPetTransform = petTransform;
 
+        ApplyPetScale();
         RefreshHUD();
-    
     }
 
-    
+
     public int GetCurrentPetId()
     {
         return currentPetId;
@@ -71,6 +72,7 @@ public class PetGrowthManager : MonoBehaviour
             error =>
             {
                 Debug.LogError("[PetGrowthManager] 아이템 사용 실패: " + error);
+                toastMessage?.ShowToast(error);
             }
         );
     }
@@ -90,21 +92,39 @@ public class PetGrowthManager : MonoBehaviour
         if (currentLevel > previousLevel)
         {
             ApplyPetScale();
-        }
 
+            if (currentLevel == 2)
+            {
+                toastMessage?.ShowToast("Level up!");
+                AudioManager.SFXInstance?.PlayOneShot(4);
+            }
+            else if (currentLevel == 3)
+            {
+                toastMessage?.ShowToast("Your pet has finished growing.");
+                AudioManager.SFXInstance?.PlayOneShot(5);
+            }
+        }
+        else
+        {
+            AudioManager.SFXInstance?.PlayOneShot(3);
+        }
         RefreshHUD();
     }
 
     private void ApplyPetScale()
     {
         if (placedPetTransform == null)
+        {
+            Debug.LogWarning("[PetGrowthManager] placedPetTransform 없음");
             return;
+        }
 
         float scale = GetScaleByLevel(currentLevel);
         placedPetTransform.localScale = new Vector3(scale, scale, 1f);
+
+        Debug.Log($"[PetGrowthManager] 펫 크기 변경 / level:{currentLevel}, scale:{scale}");
     }
 
-   
     private void RefreshHUD()
     {
         if (levelText != null)
@@ -141,10 +161,10 @@ public class PetGrowthManager : MonoBehaviour
     {
         switch (level)
         {
-            case 1: return 10f;
-            case 2: return 13f;
-            case 3: return 16f;
-            default: return 10f;
+            case 1: return 8f;
+            case 2: return 10f;
+            case 3: return 13f;
+            default: return 8f;
         }
     }
 }

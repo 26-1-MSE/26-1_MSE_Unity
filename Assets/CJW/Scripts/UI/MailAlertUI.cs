@@ -2,29 +2,36 @@ using UnityEngine;
 
 public class MailAlertUI : MonoBehaviour
 {
-    [Header("Mail Alert")]
     [SerializeField] private GameObject unreadMailIcon;
 
     private void OnEnable()
     {
-        DataManager.OnUnreadMailStateChanged += RefreshMailAlert;
-
-        if (DataManager.Data != null)
-        {
-            RefreshMailAlert(DataManager.Data.HasUnreadMail);
-        }
+        RefreshFromServer();
     }
 
-    private void OnDisable()
+    public void RefreshFromServer()
     {
-        DataManager.OnUnreadMailStateChanged -= RefreshMailAlert;
-    }
+        NetworkManager.Instance.RequestMailList(
+            response =>
+            {
+                bool hasUnread = false;
 
-    private void RefreshMailAlert(bool hasUnreadMail)
-    {
-        if (unreadMailIcon != null)
-        {
-            unreadMailIcon.SetActive(hasUnreadMail);
-        }
+                foreach (var mail in response.data.mails)
+                {
+                    if (!mail.isRead)
+                    {
+                        hasUnread = true;
+                        break;
+                    }
+                }
+
+                if (unreadMailIcon != null)
+                    unreadMailIcon.SetActive(hasUnread);
+            },
+            error =>
+            {
+                Debug.LogError("[MailAlertUI] 메일 알림 조회 실패: " + error);
+            }
+        );
     }
 }
