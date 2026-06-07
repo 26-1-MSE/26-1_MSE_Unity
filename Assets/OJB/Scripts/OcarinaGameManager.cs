@@ -219,7 +219,7 @@ public class OcarinaGameManager : MonoBehaviour
                 currentPetTypeId,
                 () =>
                 {
-                    isSuccess = true; // 진짜 성공했을 때만
+                    isSuccess = true;
                     Debug.Log("[PET_COLLECT] 서버 저장 성공");
 
                     NetworkManager.Instance.RequestInventoryData(
@@ -233,23 +233,30 @@ public class OcarinaGameManager : MonoBehaviour
                                 UIManager.GetComponent<ItemInventoryManager>()?.RefreshItemInventory();
                             }
 
-                            if (AudioManager.SFXInstance != null)
-                                AudioManager.SFXInstance.PlayOneShot(successSoundId);
-
+                            AudioManager.SFXInstance?.PlayOneShot(successSoundId);
                             CloseGame();
                         },
                         error =>
                         {
-                            isSuccess = false;  // 실패 명시
                             Debug.LogError("[PET_COLLECT] 인벤토리 재조회 실패: " + error);
                             toastMessage?.ShowToast(error);
 
-                            if (AudioManager.SFXInstance != null)
-                                AudioManager.SFXInstance.PlayOneShot(successSoundId);
-
+                            AudioManager.SFXInstance?.PlayOneShot(successSoundId);
                             CloseGame();
                         }
                     );
+                },
+                error =>
+                {
+                    isSuccess = false;
+                    Debug.LogError("[PET_COLLECT] 서버 저장 실패: " + error);
+
+                    toastMessage?.ShowToast(error);
+
+                    if (currentPet != null)
+                        currentPet.SetActive(true);
+
+                    CloseGame();
                 }
             );
         }
@@ -285,11 +292,16 @@ public class OcarinaGameManager : MonoBehaviour
 
     public void CloseGame()
     {
-        resultPopup.SetActive(false);
-        ocarinaUI.SetActive(false);
+        if (resultPopup != null)
+            resultPopup.SetActive(false);
+
+        if (ocarinaUI != null)
+            ocarinaUI.SetActive(false);
 
         if (!isSuccess && currentPet != null)
         {
+            currentPet.SetActive(true);
+
             PetInteractable pet = currentPet.GetComponent<PetInteractable>();
             if (pet != null)
                 pet.ResetInteraction();
