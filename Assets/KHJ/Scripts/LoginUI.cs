@@ -13,7 +13,6 @@ public class LoginUI : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInputField;
 
     [SerializeField] private ToastMessage toastMessage;
-    [SerializeField] private UnityEvent onLoginSuccess;
     [SerializeField] private Button loginButton;
 
     // Bound to the login button's OnClick event
@@ -37,7 +36,7 @@ public class LoginUI : MonoBehaviour
             onSuccess: () =>
             {
                 loginButton.interactable = true;
-                onLoginSuccess?.Invoke();
+                GameManager.Instance?.GoToPetTown();
             },
             onFail: (msg) =>
             {
