@@ -46,6 +46,8 @@ public class LetterUIManager : MonoBehaviour
         publicUI.ClosePanel();
     }
 
+
+
     public void OpenDetail(MailData mail)
     {
         NetworkManager.Instance.RequestMailDetail(
@@ -53,7 +55,8 @@ public class LetterUIManager : MonoBehaviour
             response =>
             {
                 MailDetailData detail = response.data;
-                mail.isRead = detail.isRead;
+
+                mail.isRead = true;
                 mail.body = detail.content;
                 mail.title = detail.title;
                 mail.senderName = detail.sender;
@@ -66,10 +69,8 @@ public class LetterUIManager : MonoBehaviour
                 fromText.text = "From. " + detail.sender;
                 dateText.text = detail.createdAt;
 
-                readStateText.text = detail.isRead ? "Read" : "NEW";
-                readStateBg.color = detail.isRead
-                    ? new Color(1, 0.2f, 0)
-                    : new Color(1, 1, 1);
+                readStateText.text = "Read";
+                readStateBg.color = new Color(1, 0.2f, 0);
 
                 detailPanel.SetActive(true);
                 RefreshList();
@@ -164,7 +165,7 @@ public class LetterUIManager : MonoBehaviour
 
         noteCountText.text = newCount > 0
             ? $"{newCount} NEW / {mails.Count}"
-            : $"{mails.Count} / 10";
+            : $"{mails.Count} / {mails.Count}";
     }
     private void RefreshNewBubble()
     {

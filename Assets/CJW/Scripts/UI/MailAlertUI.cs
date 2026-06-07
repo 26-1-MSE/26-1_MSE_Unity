@@ -6,32 +6,22 @@ public class MailAlertUI : MonoBehaviour
 
     private void OnEnable()
     {
-        RefreshFromServer();
+        RefreshFromDataManager();
     }
 
-    public void RefreshFromServer()
+    public void RefreshFromDataManager()
     {
-        NetworkManager.Instance.RequestMailList(
-            response =>
-            {
-                bool hasUnread = false;
+        if (DataManager.Data == null)
+        {
+            if (unreadMailIcon != null)
+                unreadMailIcon.SetActive(false);
 
-                foreach (var mail in response.data.mails)
-                {
-                    if (!mail.isRead)
-                    {
-                        hasUnread = true;
-                        break;
-                    }
-                }
+            return;
+        }
 
-                if (unreadMailIcon != null)
-                    unreadMailIcon.SetActive(hasUnread);
-            },
-            error =>
-            {
-                Debug.LogError("[MailAlertUI] 메일 알림 조회 실패: " + error);
-            }
-        );
+        bool hasUnread = DataManager.Data.HasUnreadMail;
+
+        if (unreadMailIcon != null)
+            unreadMailIcon.SetActive(hasUnread);
     }
 }

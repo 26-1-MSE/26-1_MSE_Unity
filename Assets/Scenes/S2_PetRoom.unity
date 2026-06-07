@@ -5243,6 +5243,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2124340347781191568, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2234394279333241063, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: petHUD
       value: 
@@ -5615,6 +5619,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -106.170044
       objectReference: {fileID: 0}
+    - target: {fileID: 6260813578617526023, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6315280688886767861, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: m_SizeDelta.x
       value: 130.5287
@@ -5727,6 +5735,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowPetInventory
       objectReference: {fileID: 0}
+    - target: {fileID: 8340566616087051879, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8394215479771068530, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: m_Spacing.x
       value: 120
@@ -5749,6 +5761,10 @@ PrefabInstance:
       objectReference: {fileID: 1406276279}
     - target: {fileID: 8758089475941574904, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903242477898717527, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}
+      propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9114927313128412844, guid: 295c707a0d54ec84b821816c1d48f296, type: 3}

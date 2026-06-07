@@ -237,7 +237,51 @@ public class NetworkManager : MonoBehaviour
     }
 
     // =========================================================
-    // 5. 추가 데이터 요청 — 추후 구현 예정
+    // 5. S1 auth/Status
+
+    public void RequestAuthStatus(
+    Action<LoginResponse> onSuccess = null,
+    Action<string> onFail = null)
+    {
+        Debug.Log("[NetworkManager] auth/status 요청 시작");
+
+        StartCoroutine(GetRoutine("/auth/status", (code, raw) =>
+        {
+            Debug.Log("[NetworkManager] auth/status 응답 code: " + code);
+            Debug.Log("[NetworkManager] auth/status raw: " + raw);
+
+            if (code == -1)
+            {
+                onFail?.Invoke("Server connection failed");
+                return;
+            }
+
+            if (code != 200)
+            {
+                onFail?.Invoke("auth/status failed: " + code);
+                return;
+            }
+
+            LoginResponse response = TryParseJson<LoginResponse>(raw);
+
+            if (response == null)
+            {
+                onFail?.Invoke("Response parse error");
+                return;
+            }
+
+            if (DataManager.Data != null)
+            {
+                DataManager.Data.SetUserSession(-1, "", response.nickname, response.shopName);
+                DataManager.Data.SetUnreadMailState(response.hasUnreadMail);
+                DataManager.Data.SetOwnedPets(response.ownedPets);
+            }
+
+            Debug.Log("[NetworkManager] auth/status DataManager 저장 완료");
+
+            onSuccess?.Invoke(response);
+        }));
+    }
 
     public void RequestUserData(int userId)      => Debug.Log("[NetworkManager] 유저 데이터 요청 예정 / userId: " + userId);
     

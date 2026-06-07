@@ -17,33 +17,10 @@ public class PetSpawner : MonoBehaviour
 
     private void Start()
     {
-        LoadInventoryAndSpawn();
+
     }
 
-    private void LoadInventoryAndSpawn()
-    {
-        if (NetworkManager.Instance == null)
-        {
-            Debug.LogError("[PetSpawner] NetworkManager 없음");
-            SpawnPets();
-            return;
-        }
-
-        NetworkManager.Instance.RequestInventoryData(
-            response =>
-            {
-                Debug.Log("[PetSpawner] 최신 인벤토리 로드 성공");
-                SpawnPets();
-            },
-            error =>
-            {
-                Debug.LogError("[PetSpawner] 인벤토리 로드 실패: " + error);
-                SpawnPets();
-            }
-        );
-    }
-
-    private void SpawnPets()
+    public void SpawnPets()
     {
         if (DataManager.Data == null)
             return;

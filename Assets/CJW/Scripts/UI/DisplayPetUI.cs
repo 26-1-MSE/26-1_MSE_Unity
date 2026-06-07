@@ -12,11 +12,6 @@ public class DisplayPetUI : MonoBehaviour
     [SerializeField] private Sprite deerSprite;
     [SerializeField] private Sprite boarSprite;
 
-    private void Start()
-    {
-        RefreshPetInventory();
-    }
-
     public void RefreshPetInventory()
     {
         Debug.Log("[DisplayPetInventoryUI] RefreshPetInventory »£√‚µ ");

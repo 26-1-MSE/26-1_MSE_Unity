@@ -18,11 +18,6 @@ public class ItemInventoryManager : MonoBehaviour
     [SerializeField] private Sprite carrotSprite;
     [SerializeField] private Sprite waterSprite;
 
-    private void Start()
-    {
-        RefreshItemInventory();
-    }
-
     public void RefreshItemInventory()
     {
         Debug.Log("[ItemInventoryManager] RefreshItemInventory »£√‚µ ");

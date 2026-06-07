@@ -140,27 +140,25 @@ public class GameManager : MonoBehaviour
 
         if (scene.name == "S1_PetTown")
         {
-            if (_previousSceneName == "S0_Lobby")
+            Debug.Log("[GameManager] PetTown 진입 : auth/status 요청");
+
+            if (NetworkManager.Instance != null)
             {
-                Debug.Log("[GameManager] Lobby -> PetTown : �α��� ���� ������ �ʱ�ȭ");
+                NetworkManager.Instance.RequestAuthStatus(
+                    response =>
+                    {
+                        Debug.Log("[GameManager] auth/status 성공");
 
-
-                if (NetworkManager.Instance != null)
-                {
-                    NetworkManager.Instance.RequestInventoryData();
-                }
-            }
-            else // �ٸ� ������ �� ���
-            {
-                Debug.Log("[GameManager] Other Scene -> PetTown : �κ��丮 ������ ����");
-
-                if (NetworkManager.Instance != null)
-                {
-                    NetworkManager.Instance.RequestInventoryData();
-                }
+                        PetSpawner petSpawner = FindFirstObjectByType<PetSpawner>();
+                        if (petSpawner != null)
+                        {
+                            petSpawner.SpawnPets();
+                        }
+                    }
+                );
             }
         }
-   }
+    }
 
     private void OnDestroy()
     {
