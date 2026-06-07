@@ -18,6 +18,8 @@ public class TreeInteractable : MonoBehaviour, IInteractable
     // currentItemCount 감소에 따라 순서대로 비활성화됨
     [SerializeField] private GameObject[] foodImages;
 
+    [SerializeField] private GameObject UIManager;
+
 
     private int currentItemCount;
 
@@ -41,11 +43,25 @@ public class TreeInteractable : MonoBehaviour, IInteractable
                 () =>
                 {
                     Debug.Log($"[TreeInteractable] 서버 아이템 획득 저장 성공: {itemName}");
-                    AudioManager.SFXInstance?.PlayOneShot(25);
-                },
-                (error) =>
-                {
-                    Debug.LogError($"[TreeInteractable] 서버 아이템 획득 저장 실패: {error}");
+
+                    NetworkManager.Instance.RequestInventoryData(
+                        response =>
+                        {
+                            Debug.Log("[TreeInteractable] 최신 인벤토리 재조회 성공");
+
+                            if (UIManager != null)
+                            {
+                                UIManager.GetComponent<ItemInventoryManager>()?.RefreshItemInventory();
+                                UIManager.GetComponent<DisplayPetUI>()?.RefreshPetInventory();
+                            }
+
+                            AudioManager.SFXInstance?.PlayOneShot(25);
+                        },
+                        error =>
+                        {
+                            Debug.LogError("[TreeInteractable] 인벤토리 재조회 실패: " + error);
+                        }
+                    );
                 }
             );
         }

@@ -15,12 +15,6 @@ public class MailManager : MonoBehaviour
                 {
                     Debug.Log($"¸ÞÀÏ / id:{mail.mailId}, title:{mail.title}, sender:{mail.sender}, read:{mail.isRead}");
                 }
-
-                if (response.data.mails.Length > 0)
-                {
-                    int firstMailId = response.data.mails[0].mailId;
-                    RequestDetailTest(firstMailId);
-                }
             },
             error =>
             {

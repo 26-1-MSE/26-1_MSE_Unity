@@ -25,6 +25,7 @@ public class OcarinaGameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerInteraction playerInteraction;
+    [SerializeField] private GameObject UIManager;
 
     [Header("Audio Manager Clip IDs")]
     [SerializeField] private int successSoundId;
@@ -221,21 +222,33 @@ public class OcarinaGameManager : MonoBehaviour
                 {
                     Debug.Log("[PET_COLLECT] 서버 저장 성공");
 
-                    if (AudioManager.SFXInstance != null)
-                        AudioManager.SFXInstance.PlayOneShot(successSoundId);
+                    NetworkManager.Instance.RequestInventoryData(
+                        response =>
+                        {
+                            Debug.Log("[PET_COLLECT] 최신 인벤토리 재조회 성공");
 
-                    CloseGame();
-                },
-                error =>
-                {
-                    Debug.LogError("[PET_COLLECT] 서버 저장 실패: " + error);
+                            if (UIManager != null)
+                            {
+                                UIManager.GetComponent<DisplayPetUI>()?.RefreshPetInventory();
+                                UIManager.GetComponent<ItemInventoryManager>()?.RefreshItemInventory();
+                            }
 
-                    toastMessage?.ShowToast(error);
+                            if (AudioManager.SFXInstance != null)
+                                AudioManager.SFXInstance.PlayOneShot(successSoundId);
 
-                    if (currentPet != null)
-                        currentPet.SetActive(true);
+                            CloseGame();
+                        },
+                        error =>
+                        {
+                            Debug.LogError("[PET_COLLECT] 인벤토리 재조회 실패: " + error);
+                            toastMessage?.ShowToast(error);
 
-                    CloseGame();
+                            if (AudioManager.SFXInstance != null)
+                                AudioManager.SFXInstance.PlayOneShot(successSoundId);
+
+                            CloseGame();
+                        }
+                    );
                 }
             );
         }
