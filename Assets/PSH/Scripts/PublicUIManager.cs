@@ -41,4 +41,16 @@ public class PublicUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("S0_Lobby");
     }
+
+
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        
+        #else
+            Application.Quit();
+        
+        #endif
+    }
 }
