@@ -2,12 +2,26 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    [SerializeField] private GameObject tutorialPanel;
     [SerializeField] private GameObject[] pages;
     private int currentPage = 0;
 
+    private PublicUIManager publicUI;
+
     private void Start()
     {
+        publicUI = GetComponent<PublicUIManager>();
+    }
+
+    public void OpenTutorial()
+    {
+        publicUI.OpenPanel(tutorialPanel);
         ShowPage(0);
+    }
+
+    public void CloseTutorial()
+    {
+        publicUI.ClosePanel();
     }
 
     public void NextPage()
