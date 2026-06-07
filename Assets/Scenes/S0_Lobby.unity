@@ -389,12 +389,16 @@ MonoBehaviour:
   _ownedPetSlots:
   - petId: 0
     petTypeId: 0
+    level: 0
   - petId: 0
     petTypeId: 0
+    level: 0
   - petId: 0
     petTypeId: 0
+    level: 0
   - petId: 0
     petTypeId: 0
+    level: 0
   _ownedItemSlots:
   - itemId: 0
     itemTypeId: 0
