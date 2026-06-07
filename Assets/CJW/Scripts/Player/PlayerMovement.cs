@@ -17,13 +17,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        // Ground Layer È®ÀÎ
+        // Ground Layer È®ï¿½ï¿½
         groundLayer = LayerMask.GetMask("Ground");
 
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (animator == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
     }
+    private void OnDisable()
+    {
+        moveInput = 0f;
+
+        if (rb != null)
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+        if (animator != null)
+            animator.SetBool("isWalking", false);
+    }
+
     private void Update()
     {
         moveInput = 0f;
@@ -37,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke("EndJump", 0.8f);
         }
 
-        // ÁÂ¿ìÀÌµ¿
+        // ï¿½Â¿ï¿½ï¿½Ìµï¿½
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             moveInput = -1f;
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
@@ -52,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             else if (moveInput > 0) spriteRenderer.flipX = false;
         }
 
-        // Á¡ÇÁ È½¼ö ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         if (IsGrounded() && rb.linearVelocity.y <= 0f)
         {
             jumpCount = 0;
@@ -66,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    // Ground layer °¨Áö
+    // Ground layer ï¿½ï¿½ï¿½ï¿½
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(
