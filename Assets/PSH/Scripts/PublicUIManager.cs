@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,59 +9,36 @@ public class PublicUIManager : MonoBehaviour
 
     private GameObject currentPanel;
 
-    private void Start()
-    {
-        currentPanel = null;
-    }
+    public bool IsAnyPanelOpen() => currentPanel != null;
 
     public void OpenPanel(GameObject panel)
     {
-        if (currentPanel != null) return; // 이미 열려있으면 무시하고 다른 패널 안열리게 하는것
+        if (currentPanel != null) return;
         currentPanel = panel;
         background.SetActive(true);
         panel.SetActive(true);
     }
 
-    public void ClosePanel(GameObject panel)
+    public void ClosePanel()
     {
+        if (currentPanel == null) return;
+        StartCoroutine(CloseAfterDelay(currentPanel));
         currentPanel = null;
-        StartCoroutine(CloseAfterDelay(panel));
     }
 
     private IEnumerator CloseAfterDelay(GameObject panel)
     {
-        Animator animator = panel.GetComponent<Animator>();
-
-        animator.SetTrigger("close");
-
+        Animator anim = panel.GetComponent<Animator>();
+        if (anim != null) anim.SetTrigger("close");
         yield return new WaitForSeconds(closeDelay);
-
         panel.SetActive(false);
         background.SetActive(false);
-
-        animator.ResetTrigger("close");
     }
 
 
+    // lobby 씬으로 돌아감
     public void ExitGame()
     {
-
         SceneManager.LoadScene("S0_Lobby");
-    }
-
-    public bool IsAnyPanelOpen()
-    {
-        Debug.Log("currentPanel: " + currentPanel);
-        return currentPanel != null;
-    }
-
-    public void SetCurrentPanel(GameObject panel)
-    {
-        currentPanel = panel;
-    }
-
-    public void ClearCurrentPanel()
-    {
-        currentPanel = null;
     }
 }

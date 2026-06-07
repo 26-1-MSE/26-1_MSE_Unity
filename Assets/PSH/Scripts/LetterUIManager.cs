@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class LetterUIManager : MonoBehaviour
 {
     [Header("Panels")]
-    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject letterPanel;
     [SerializeField] private GameObject listPanel;
     [SerializeField] private GameObject detailPanel;
     [SerializeField] private GameObject newBubbleIcon;
@@ -26,20 +26,65 @@ public class LetterUIManager : MonoBehaviour
     [SerializeField] private Image readStateBg;
 
     private List<MailData> mails = new List<MailData>();
+    private PublicUIManager publicUI;
 
     private void Start()
     {
-        CloseAll();
+        publicUI = GetComponent<PublicUIManager>();
     }
 
     public void OpenNotes()
     {
-        if (GetComponent<PublicUIManager>().IsAnyPanelOpen()) return;
-        GetComponent<PublicUIManager>().SetCurrentPanel(listPanel);
-        background.SetActive(true);
+        publicUI.OpenPanel(letterPanel);
         listPanel.SetActive(true);
         detailPanel.SetActive(false);
         LoadMailListFromServer();
+    }
+
+    public void CloseNotes()
+    {
+        publicUI.ClosePanel();
+    }
+
+    public void OpenDetail(MailData mail)
+    {
+        NetworkManager.Instance.RequestMailDetail(
+            mail.id,
+            response =>
+            {
+                MailDetailData detail = response.data;
+                mail.isRead = detail.isRead;
+                mail.body = detail.content;
+                mail.title = detail.title;
+                mail.senderName = detail.sender;
+                mail.date = detail.createdAt;
+                mail.nickname = detail.nickname;
+
+                detailTitleText.text = detail.title;
+                toText.text = "To. " + detail.nickname;
+                bodyText.text = detail.content;
+                fromText.text = "From. " + detail.sender;
+                dateText.text = detail.createdAt;
+
+                readStateText.text = detail.isRead ? "Read" : "NEW";
+                readStateBg.color = detail.isRead
+                    ? new Color(1, 0.2f, 0)
+                    : new Color(1, 1, 1);
+
+                detailPanel.SetActive(true);
+                RefreshList();
+                RefreshNewBubble();
+            },
+            error =>
+            {
+                Debug.LogError("[LetterUIManager] 메일 상세 조회 실패: " + error);
+            }
+        );
+    }
+
+    public void CloseDetail()
+    {
+        detailPanel.SetActive(false);
     }
 
     private void LoadMailListFromServer()
@@ -67,61 +112,11 @@ public class LetterUIManager : MonoBehaviour
             },
             error =>
             {
-                Debug.LogError("[LetterUIManager] 메일 목록 조회 실패: " + error);
+                Debug.LogError("메일 목록 조회 실패: " + error);
             }
         );
     }
 
-    public void CloseAll()
-    {
-        GetComponent<PublicUIManager>().ClearCurrentPanel();
-        background.SetActive(false);
-        listPanel.SetActive(false);
-        detailPanel.SetActive(false);
-    }
-
-    public void OpenDetail(MailData mail)
-    {
-        NetworkManager.Instance.RequestMailDetail(
-            mail.id,
-            response =>
-            {
-                MailDetailData detail = response.data;
-
-                mail.isRead = detail.isRead;
-                mail.body = detail.content;
-                mail.title = detail.title;
-                mail.senderName = detail.sender;
-                mail.date = detail.createdAt;
-                mail.nickname = detail.nickname;
-
-                detailTitleText.text = detail.title;
-                toText.text = "To. " + detail.nickname;
-                bodyText.text = detail.content;
-                fromText.text = "From. " + detail.sender;
-                dateText.text = detail.createdAt;
-
-                readStateText.text = detail.isRead ? "Read" : "NEW";
-                readStateBg.color = detail.isRead
-                    ? new Color(1, 0.2f, 0)
-                    : new Color(1, 1, 1);
-
-                detailPanel.SetActive(true);
-
-                RefreshList();
-                RefreshNewBubble();
-            },
-            error =>
-            {
-                Debug.LogError("[LetterUIManager] 메일 상세 조회 실패: " + error);
-            }
-        );
-    }
-
-    public void CloseDetail()
-    {
-        detailPanel.SetActive(false);
-    }
 
     private void RefreshList()
     {
