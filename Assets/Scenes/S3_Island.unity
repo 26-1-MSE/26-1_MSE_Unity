@@ -7201,6 +7201,7 @@ MonoBehaviour:
   - {fileID: 2045087311}
   - {fileID: 1544617745}
   - {fileID: 954795951}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &373962157
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8492,6 +8493,7 @@ MonoBehaviour:
   - {fileID: 616912880}
   - {fileID: 660688804}
   - {fileID: 853092971}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &441281301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13403,6 +13405,7 @@ MonoBehaviour:
   - {fileID: 281549943}
   - {fileID: 1166697855}
   - {fileID: 515504590}
+  UIManager: {fileID: 2021222685}
 --- !u!1 &714623723
 GameObject:
   m_ObjectHideFlags: 0
@@ -13632,6 +13635,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &730576328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8320192930583210572, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+  m_PrefabInstance: {fileID: 1398313384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &732911539
 GameObject:
   m_ObjectHideFlags: 0
@@ -16953,6 +16967,7 @@ MonoBehaviour:
   treeAnimator: {fileID: 0}
   foodImages:
   - {fileID: 1599400938}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &904317827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18442,6 +18457,10 @@ PrefabInstance:
       propertyPath: noteArea
       value: 
       objectReference: {fileID: 751607929}
+    - target: {fileID: 1358025870722370702, guid: 352a1e60301374d2e9d7195825c16565, type: 3}
+      propertyPath: UIManager
+      value: 
+      objectReference: {fileID: 2021222685}
     - target: {fileID: 1358025870722370702, guid: 352a1e60301374d2e9d7195825c16565, type: 3}
       propertyPath: failSound
       value: 
@@ -21717,6 +21736,7 @@ MonoBehaviour:
   - {fileID: 1541382142}
   - {fileID: 1602648963}
   - {fileID: 679781550}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &1206385917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25642,6 +25662,7 @@ MonoBehaviour:
   treeAnimator: {fileID: 0}
   foodImages:
   - {fileID: 2089889952}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &1390647738
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31711,6 +31732,7 @@ MonoBehaviour:
   - {fileID: 2089050300}
   - {fileID: 570755563}
   - {fileID: 1706302988}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &1667735861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38587,7 +38609,7 @@ MonoBehaviour:
   countTexts:
   - {fileID: 274342372}
   - {fileID: 274342371}
-  - {fileID: 274342370}
+  - {fileID: 730576328}
   - {fileID: 274342370}
   - {fileID: 274342369}
   - {fileID: 274342368}
@@ -39616,6 +39638,7 @@ MonoBehaviour:
   foodImages:
   - {fileID: 2021809124}
   - {fileID: 722865659}
+  UIManager: {fileID: 2021222685}
 --- !u!61 &2072431200
 BoxCollider2D:
   m_ObjectHideFlags: 0

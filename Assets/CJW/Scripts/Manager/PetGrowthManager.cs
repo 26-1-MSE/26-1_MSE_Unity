@@ -29,6 +29,8 @@ public class PetGrowthManager : MonoBehaviour
     private int currentWater;
     private int currentWaterMax;
 
+    private bool isUsingItem = false;
+
 
     public void SetCurrentPet(PetRoomResponse response, Transform petTransform)
     {
@@ -61,6 +63,14 @@ public class PetGrowthManager : MonoBehaviour
             return;
         }
 
+        if (isUsingItem)
+        {
+            Debug.LogWarning("[PetGrowthManager] 아이템 사용 요청 처리 중");
+            return;
+        }
+
+        isUsingItem = true;
+
         NetworkManager.Instance.RequestUseItem(
             currentPetId,
             itemTypeId,
@@ -68,13 +78,20 @@ public class PetGrowthManager : MonoBehaviour
             {
                 ApplyUseItemData(response);
                 onSuccess?.Invoke();
+
+                isUsingItem = false;
             },
             error =>
             {
                 Debug.LogError("[PetGrowthManager] 아이템 사용 실패: " + error);
-                toastMessage?.ShowToast(error);
+                isUsingItem = false;
             }
         );
+    }
+
+    public bool IsUsingItem()
+    {
+        return isUsingItem;
     }
 
     public void ApplyUseItemData(UseItemResponse response)

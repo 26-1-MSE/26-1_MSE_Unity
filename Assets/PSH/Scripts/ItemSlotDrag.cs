@@ -31,6 +31,12 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (count <= 0) return;
+
+        if (petGrowthManager != null && petGrowthManager.IsUsingItem())
+        {
+            Debug.LogWarning("[ItemSlotDrag] 아이템 사용 처리 중이라 드래그 막음");
+            return;
+        }
         // 미리보기 오브젝트 생성
         preview = new GameObject("FoodPreview");
         SpriteRenderer sr = preview.AddComponent<SpriteRenderer>();
