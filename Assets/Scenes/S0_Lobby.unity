@@ -707,17 +707,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446475517}
   m_CullTransparentMesh: 1
---- !u!114 &450137967 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7615692383700298580, guid: 111dbabd34cbad847a30161ac5519fbb, type: 3}
-  m_PrefabInstance: {fileID: 4789687017137192563}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 613a790addcbb1d4eb46f45bf99ff6e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
 --- !u!1 &509018140
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +789,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 450137967}
+      - m_Target: {fileID: 107547531}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayOneShot
         m_Mode: 3
@@ -1334,7 +1323,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 450137967}
+      - m_Target: {fileID: 107547531}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayOneShot
         m_Mode: 3
@@ -1630,7 +1619,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 450137967}
+      - m_Target: {fileID: 107547531}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayOneShot
         m_Mode: 3
