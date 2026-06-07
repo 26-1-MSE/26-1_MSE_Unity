@@ -5,18 +5,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 /// <summary>
-/// Unity 클라이언트 서버 통신을 관리하는 매니저.
-/// 싱글턴으로 씬 간 유지되므로 API 요청의 기본 틀은 여기에 작성한다.
-///
-/// 추가 예정:
-/// 1. 서버 주소 설정
-/// 2. 로그인 / 회원가입 / 중복 체크 요청 함수 추가
-/// 3. 서버 응답 파싱 후 DataManager에 저장
-///
-/// 주의:
+/// Unity 클라이언트 서버 통신을 관리하는 매니저 (싱글톤)
+
+/// 로그인 / 회원가입 / 중복 체크 요청 
+/// 서버 응답 파싱 후 DataManager에 저장
 /// - 모든 서버 통신 결과는 DataManager에 저장한다.
-/// - NetworkManager는 통신 요청과 응답 처리만 담당한다.
-/// </summary>
+/// 
 public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager Instance { get; private set; }
@@ -147,13 +141,13 @@ public class NetworkManager : MonoBehaviour
 
                 if (code == -1) { onFail?.Invoke("Server connection failed"); return; }
                 // 404는 서버/URL 문제, 401·403은 인증 실패로 구분
-                if (code == -1 || code == 404) { onFail?.Invoke("Server connection failed"); return; }
+                if (code == 404) { onFail?.Invoke("Server connection failed"); return; }
                 if (code != 200)               { onFail?.Invoke("User not found"); return; }
 
                 LoginResponse response = TryParseJson<LoginResponse>(raw);
                 if (response == null) { onFail?.Invoke("Response parse error"); return; }
 
-                // 🔥 ownedPets 확인 로그
+                // ownedPets 확인 로그
                 if (response.ownedPets != null)
                 {
                     Debug.Log("[NetworkManager] 보유 펫 수: " + response.ownedPets.Length);
@@ -168,7 +162,7 @@ public class NetworkManager : MonoBehaviour
                     Debug.Log("[NetworkManager] 보유 펫 없음");
                 }
 
-                // ✨ 파싱 결과 확인 로그
+                // 파싱 결과 확인 로그
                 Debug.Log("[NetworkManager] 파싱 결과");
                 Debug.Log("  accessToken: " + response.accessToken);
                 Debug.Log("  nickname: "    + response.nickname);
@@ -238,6 +232,8 @@ public class NetworkManager : MonoBehaviour
 
     // =========================================================
     // 5. S1 auth/Status
+    // S1 PetTown 진입 시 사용자 상태 요청
+    // 닉네임, 펫샵 이름, 읽지 않은 메일 여부, 보유 펫 목록을 갱신한다.
 
     public void RequestAuthStatus(
     Action<LoginResponse> onSuccess = null,
@@ -282,8 +278,6 @@ public class NetworkManager : MonoBehaviour
             onSuccess?.Invoke(response);
         }));
     }
-
-    public void RequestUserData(int userId)      => Debug.Log("[NetworkManager] 유저 데이터 요청 예정 / userId: " + userId);
     
     // 펫룸에 표시할 특정 펫 데이터 요청
     public void RequestPetData(int petId, Action<PetRoomResponse> onSuccess = null, Action<string> onFail = null)
@@ -402,7 +396,7 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // S2 인벤토리 정보 요청
+    // 인벤토리 정보 요청
     public void RequestInventoryData(Action<InventoryResponse> onSuccess = null, Action<string> onFail = null)
     {
         StartCoroutine(GetRoutine("/inventory", (code, raw) =>
@@ -510,7 +504,7 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    //S3에서 아이템 획득 시
+    // S3 Island에서 나무 상호작용 등으로 아이템을 획득했을 때 호출
     public void RequestAcquireItem(int itemTypeId, int count, Action onSuccess = null, Action<string> onFail = null)
     {
         string json = JsonUtility.ToJson(new AcquireItemRequest
@@ -662,6 +656,7 @@ public class LoginRequest
     public string password;
 }
 
+// /auth/login 및 /auth/status 응답을 받기 위한 DTO
 [Serializable]
 public class LoginResponse
 {
@@ -681,6 +676,7 @@ public class OwnedPetData
     public int level;
 }
 
+[Serializable]
 public class OwnedItemData
 {
     public int itemId;

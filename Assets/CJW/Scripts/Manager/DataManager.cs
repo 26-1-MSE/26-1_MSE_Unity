@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-/// <summary>
 /// 게임 전체에서 공통으로 유지되어야 하는 플레이어 데이터와 설정값을 관리하는 싱글톤 매니저
 
 public class DataManager : MonoBehaviour
@@ -13,7 +12,7 @@ public class DataManager : MonoBehaviour
     [Serializable]
     public struct OwnedPetSlot
     {
-        /// 서버 DB에서 특정 펫을 식별하는 고유 ID
+        ///펫을 식별하는 고유 ID
         public int petId;
 
         /// 1 = 토끼, 2 = 여우, 3 = 사슴, 4 = 멧돼지
@@ -26,29 +25,31 @@ public class DataManager : MonoBehaviour
     public struct OwnedItemSlot
     {
         public int itemId;
-        /// 1 = 사과, 2 = 바나나, 3 = 치즈, 4 = 딸기, 5= 물
+
+        // 1 = 호박, 2 = 바나나, 3 = 사과, 4 = 당근, 5 = 물
         public int itemTypeId;
+
         public int count;
     }
 
+    // -------------------------------------------------------------
     // 1. 싱글톤
     public static DataManager Data { get; private set; }
 
-
+    // -------------------------------------------------------------
     // 2. 플레이어 프로필 데이터
 
     [Header("Current User Session")]
 
-    /// 로그인되지 않은 상태는 -1로 둔다.
+    /// 로그인되지 않은 상태 -1
     [SerializeField] private int _userId = -1;
 
-    /// 사용자가 로그인할 때 사용하는 문자열 ID
     [SerializeField] private string _loginId = string.Empty;
 
-    /// 게임 화면에서 표시되는 유저 닉네임
+    /// 유저 닉네임
     [SerializeField] private string _nickname = "Player";
 
-    /// 펫샵 이름으로, 간판 UI 등에 표시
+    /// 펫샵 이름
     [SerializeField] private string _petShopName = "My PetShop";
 
     /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
@@ -57,11 +58,12 @@ public class DataManager : MonoBehaviour
     public string Nickname => _nickname;
     public string PetShopName => _petShopName;
 
+    // -------------------------------------------------------------
     // 3. 보유 펫 데이터
 
     [Header("Owned Pets")]
 
-    /// 슬롯은 총 4개이며, 인덱스 0~3은 UI에서 1~4번 슬롯으로 사용한다.
+    /// 인덱스 0~3 -> UI에서 1~4번 슬롯으로 사용한다.
 
     [SerializeField] private OwnedPetSlot[] _ownedPetSlots = new OwnedPetSlot[4];
 
@@ -70,6 +72,7 @@ public class DataManager : MonoBehaviour
     /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
     public OwnedPetSlot[] OwnedPetSlots => _ownedPetSlots;
 
+    // -------------------------------------------------------------
     // 4. 보유 아이템 데이터
 
     [Header("Owned Items")]
@@ -77,15 +80,15 @@ public class DataManager : MonoBehaviour
 
     public OwnedItemSlot[] OwnedItemSlots => _ownedItemSlots;
 
+    // -------------------------------------------------------------
     // 5. 사운드 설정
 
     [Header("Audio Settings")]
 
-
-    /// BGM 볼륨(0~100)
+    /// BGM 볼륨
     [SerializeField][Range(0, 100)] private int _bgmVolumeLevel = 80;
 
-    /// 효과음 볼륨(0~100)
+    /// 효과음 볼륨
     [SerializeField][Range(0, 100)] private int _sfxVolumeLevel = 80;
 
     /// 실제 AudioSource.volume에 넣기 위한 0.0~1.0 값
@@ -94,37 +97,34 @@ public class DataManager : MonoBehaviour
     /// 실제 AudioSource.volume에 넣기 위한 0.0~1.0 값
     private float _sfxVolume => _sfxVolumeLevel / 100f;
 
+    // -------------------------------------------------------------
     // 6. 메일 상태
 
     [Header("Mail State")]
 
     /// <summary>
     /// 읽지 않은 메일이 하나라도 있는지 여부.
-    /// DB의 Mail.isRead 값을 서버가 계산한 뒤,
-    /// 클라이언트에서는 요약 상태만 들고 있는 형태로 사용 가능하다.
     [SerializeField] private bool _hasUnreadMail = false;
 
-    /// <summary>
     /// 외부 읽기 전용 프로퍼티.
     public bool HasUnreadMail => _hasUnreadMail;
 
+    // -------------------------------------------------------------
     // 7. 이벤트
 
-    /// BGM 볼륨이 바뀌었을 때 AudioManager들이 구독해서 사용
     public static event Action<float> OnBgmVolumeChanged;
 
-    /// SFX 볼륨이 바뀌었을 때 AudioManager들이 구독해서 사용
     public static event Action<float> OnSfxVolumeChanged;
 
-    /// 일지 않은 메일 여부가 바뀌었을 때 호출되는 이벤트
-    /// 메일 아이콘 알림 UI 등에 사용할 수 있다.
+    /// 읽지 않은 메일 여부가 바뀌었을 때 호출되는 이벤트
     public static event Action<bool> OnUnreadMailStateChanged;
 
+    // -------------------------------------------------------------
     // 8. Unity 생명주기
 
     private void Awake()
     {
-        // 이미 다른 DataManager가 존재하면 현재 오브젝트는 제거
+   
         if (Data != null && Data != this)
         {
             Destroy(gameObject);
@@ -134,7 +134,6 @@ public class DataManager : MonoBehaviour
         // 싱글톤 인스턴스 등록
         Data = this;
 
-        // 씬이 바뀌어도 살아남도록 설정
         DontDestroyOnLoad(gameObject);
 
         // 새 씬이 로드될 때마다 현재 설정값을 다시 브로드캐스트하기 위해 구독
@@ -143,9 +142,7 @@ public class DataManager : MonoBehaviour
     }
 
     /// 새 씬이 로드될 때 호출됨
-    /// 
-    /// 씬마다 AudioManager 또는 UI가 새로 생성될 수 있으므로
-    /// 현재 저장 중인 볼륨값/쪽지 상태를 다시 알려줄 필요가 있음
+    /// 현재 저장 중인 볼륨값/쪽지 상태를 다시 알려줌
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         BroadcastAudioSettings();
@@ -153,15 +150,12 @@ public class DataManager : MonoBehaviour
         BroadcastProfileState();
     }
 
-    /// <summary>
     /// 인스펙터에서 값이 바뀔 때 범위를 강제로 맞춰줌
-    /// </summary>
     private void OnValidate()
     {
         _bgmVolumeLevel = Mathf.Clamp(_bgmVolumeLevel, 0, 100);
         _sfxVolumeLevel = Mathf.Clamp(_sfxVolumeLevel, 0, 100);
 
-        // 플레이 중일 때만 즉시 반영
         if (Application.isPlaying)
         {
             BroadcastAudioSettings();
@@ -172,7 +166,6 @@ public class DataManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 현재 인스턴스가 파괴될 때만 이벤트/구독 정리
         if (Data == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -184,11 +177,9 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    // -------------------------------------------------------------
     // 9. 프로필 메서드
 
-    /// <summary>
-    /// 회원가입/로그인 이후 플레이어 정보를 한 번에 설정
-    /// 
     /// userId      : DB 기본 키
     /// loginId     : 로그인용 문자열 ID
     /// nickname    : 인게임 닉네임
@@ -201,7 +192,7 @@ public class DataManager : MonoBehaviour
         _nickname = string.IsNullOrWhiteSpace(nickname) ? "Player" : nickname.Trim();
         _petShopName = string.IsNullOrWhiteSpace(petShopName) ? "My PetShop" : petShopName.Trim();
 
-        // 프로필 관련 UI들이 갱신될 수 있도록 이벤트 호출.
+        // 프로필 관련 UI 갱신
         BroadcastProfileState();
     }
 
@@ -229,22 +220,15 @@ public class DataManager : MonoBehaviour
         BroadcastMailState();
     }
 
+    // -------------------------------------------------------------
     // 10. 보유 펫 메서드
 
-    /// 로그인 응답으로 받은 보유 펫 목록을 4개의 펫 슬롯에 저장한다.
-    ///
-    /// 사용 이유:
-    /// - 로그인 이후 PetTown에서 보유 펫을 스폰하기 위해 사용
-    /// - PetRoom에서 슬롯을 눌렀을 때 해당 슬롯의 petId로 상세 조회 요청을 보내기 위해 사용
-    ///
-    /// 주의:
-    /// - 상세 정보는 펫룸 진입 시 NetworkManager.RequestPetData(petId)를 통해 서버에서 다시 조회한다.
+    /// 로그인 응답으로 받은 보유 펫 목록을 4개의 펫 슬롯에 저장한다
+    /// - 상세 정보는 펫룸 진입 시 NetworkManager.RequestPetData(petId)를 통해 서버에서 다시 조회한다
     public void SetOwnedPets(OwnedPetData[] ownedPets)
     {
-        // 기존 슬롯 정보를 초기화한다.
         _ownedPetSlots = new OwnedPetSlot[4];
 
-        // 서버에서 받은 보유 펫 목록이 없으면 빈 슬롯 상태로 유지한다.
         if (ownedPets == null)
         {
             Debug.Log("[DataManager] 보유 펫 없음");
@@ -262,8 +246,6 @@ public class DataManager : MonoBehaviour
         Debug.Log("[DataManager] 보유 펫 슬롯 저장 완료");
     }
 
-    /// 특정 슬롯의 petId를 반환한다.
-    /// 
     /// slotIndex는 배열 기준으로 0~3 값을 사용한다.
     /// UI에서 1~4번 슬롯을 사용할 경우, 1번 슬롯은 index 0으로 변환해서 사용한다.
     public int GetOwnedPetId(int slotIndex)
@@ -277,7 +259,7 @@ public class DataManager : MonoBehaviour
         return _ownedPetSlots[slotIndex].petId;
     }
 
-    /// 특정 슬롯의 petTypeId를 반환한다.
+    /// 특정 슬롯의 petTypeId를 반환한다
     public int GetOwnedPetTypeId(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
@@ -289,7 +271,7 @@ public class DataManager : MonoBehaviour
         return _ownedPetSlots[slotIndex].petTypeId;
     }
 
-    //S3에서 펫 추가했을 시를 위함
+    // S3에서 펫 추가했을 시를 위함
     public void AddOwnedPet(int petId, int petTypeId)
     {
         for (int i = 0; i < _ownedPetSlots.Length; i++)
@@ -307,14 +289,14 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("[DataManager] 보유 펫 슬롯이 가득 찼습니다.");
     }
 
+    // -------------------------------------------------------------
     // 11. 보유 아이템 메서드
-    // inventory 응답 → InventoryItemData[]
-    // pet/petroom 응답 → PetItemData[]
+
     public void SetOwnedItems(InventoryItemData[] items)
     {
         _ownedItemSlots = new OwnedItemSlot[12];
 
-        Debug.Log("[DataManager] PetItemData SetOwnedItems 호출됨");
+        Debug.Log("[DataManager] InventoryItemData SetOwnedItems 호출됨");
 
         if (items == null || items.Length == 0)
             return;
@@ -377,16 +359,13 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("[DataManager] 아이템 슬롯이 가득 찼습니다.");
     }
 
-
+    // -------------------------------------------------------------
     // 12. 볼륨 메서드
 
-    /// BGM 볼륨 설정
-    /// 0~100 범위로 자동 보정 후 이벤트 발행
     public void SetBgmVolume(int volumeLevel)
     {
         int newLevel = Mathf.Clamp(volumeLevel, 0, 100);
 
-        // 값이 같으면 불필요한 이벤트 호출 방지
         if (_bgmVolumeLevel == newLevel)
             return;
 
@@ -395,8 +374,6 @@ public class DataManager : MonoBehaviour
     }
 
 
-    /// SFX 볼륨 설정
-    /// 0~100 범위로 자동 보정 후 이벤트 발행
     public void SetSfxVolume(int volumeLevel)
     {
         int newLevel = Mathf.Clamp(volumeLevel, 0, 100);
@@ -409,26 +386,21 @@ public class DataManager : MonoBehaviour
     }
 
     /// 현재 저장된 볼륨값을 한 번에 다시 브로드캐스트
-    /// </summary>
     public void BroadcastAudioSettings()
     {
         OnBgmVolumeChanged?.Invoke(_bgmVolume);
         OnSfxVolumeChanged?.Invoke(_sfxVolume);
     }
 
-
-    /// UI 슬라이더 초기값 설정 등에 사용할 getter
     public float GetBgmVolume() => _bgmVolume;
     public float GetSfxVolume() => _sfxVolume;
     public int GetBgmVolumeLevel() => _bgmVolumeLevel;
     public int GetSfxVolumeLevel() => _sfxVolumeLevel;
 
+    // -------------------------------------------------------------
     // 13. 쪽지 메서드
 
     /// 새 쪽지 여부 설정
-    /// 
-    /// true  -> 메뉴 쪽지 아이콘에 알림 표시 가능
-    /// false -> 알림 제거
     public void SetUnreadMailState(bool hasUnreadMail)
     {
         if (_hasUnreadMail == hasUnreadMail)
@@ -438,25 +410,19 @@ public class DataManager : MonoBehaviour
         OnUnreadMailStateChanged?.Invoke(_hasUnreadMail);
     }
 
-    /// 현재 새 쪽지 여부를 구독 중인 UI에게 다시 알림
-    /// 씬 진입 직후 메뉴 UI 갱신용
     public void BroadcastMailState()
     {
         OnUnreadMailStateChanged?.Invoke(_hasUnreadMail);
     }
 
-    /// 쪽지함을 열었을 때 호출 가능
-    /// 읽지 않은 쪽지 알림을 꺼줌
     public void MarkAllMailAsRead()
     {
         SetUnreadMailState(false);
     }
 
+    // -------------------------------------------------------------
     // 14. 초기화 메서드
 
-    /// <summary>
-    /// 테스트용 기본 상태로 초기화한다.
-    /// 로그인 전 상태를 가정한 기본값들로 되돌린다.
     public void InitializeDefaultData()
     {
         _userId = -1;
