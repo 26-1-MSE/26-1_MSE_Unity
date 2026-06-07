@@ -204,7 +204,6 @@ public class OcarinaGameManager : MonoBehaviour
 
     private void Success()
     {
-        isSuccess = true;
         isPlaying = false;
         playerMovement.enabled = true;
         playerInteraction.enabled = true;
@@ -220,6 +219,7 @@ public class OcarinaGameManager : MonoBehaviour
                 currentPetTypeId,
                 () =>
                 {
+                    isSuccess = true; // 진짜 성공했을 때만
                     Debug.Log("[PET_COLLECT] 서버 저장 성공");
 
                     NetworkManager.Instance.RequestInventoryData(
@@ -240,6 +240,7 @@ public class OcarinaGameManager : MonoBehaviour
                         },
                         error =>
                         {
+                            isSuccess = false;  // 실패 명시
                             Debug.LogError("[PET_COLLECT] 인벤토리 재조회 실패: " + error);
                             toastMessage?.ShowToast(error);
 
@@ -254,6 +255,7 @@ public class OcarinaGameManager : MonoBehaviour
         }
         else
         {
+            isSuccess = true;
             Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
 
             if (AudioManager.SFXInstance != null)
