@@ -150,28 +150,33 @@ public class PetGrowthManager : MonoBehaviour
         if (petNameText != null)
             petNameText.text = currentPetName;
 
+        bool isMaxLevel = currentLevel >= 3;
+
         if (foodSlider != null)
         {
             foodSlider.maxValue = currentFoodMax;
-            foodSlider.value = currentFood;
+            foodSlider.value = isMaxLevel ? currentFoodMax : currentFood;
         }
 
         if (waterSlider != null)
         {
             waterSlider.maxValue = currentWaterMax;
-            waterSlider.value = currentWater;
+            waterSlider.value = isMaxLevel ? currentWaterMax : currentWater;
         }
 
         if (foodCountText != null)
         {
-            foodCountText.text = $"{currentFood} / {currentFoodMax}";
+            foodCountText.text = isMaxLevel
+                ? "MAX / MAX"
+                : $"{currentFood} / {currentFoodMax}";
         }
 
         if (waterCountText != null)
         {
-            waterCountText.text = $"{currentWater} / {currentWaterMax}";
+            waterCountText.text = isMaxLevel
+                ? "MAX / MAX"
+                : $"{currentWater} / {currentWaterMax}";
         }
-    
     }
 
     private float GetScaleByLevel(int level)

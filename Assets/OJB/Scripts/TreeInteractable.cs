@@ -45,23 +45,34 @@ public class TreeInteractable : MonoBehaviour, IInteractable
                     Debug.Log($"[TreeInteractable] 서버 아이템 획득 저장 성공: {itemName}");
 
                     NetworkManager.Instance.RequestInventoryData(
-                        response =>
-                        {
-                            Debug.Log("[TreeInteractable] 최신 인벤토리 재조회 성공");
+                    response =>
+                    {
+                        Debug.Log("[TreeInteractable] 최신 인벤토리 재조회 성공");
 
-                            if (UIManager != null)
-                            {
-                                UIManager.GetComponent<ItemInventoryManager>()?.RefreshItemInventory();
-                                UIManager.GetComponent<DisplayPetUI>()?.RefreshPetInventory();
-                            }
-
-                            AudioManager.SFXInstance?.PlayOneShot(25);
-                        },
-                        error =>
+                        if (UIManager == null)
                         {
-                            Debug.LogError("[TreeInteractable] 인벤토리 재조회 실패: " + error);
+                            Debug.LogError("[TreeInteractable] uiManager 연결 안 됨");
+                            return;
                         }
-                    );
+
+                        ItemInventoryManager itemUI = UIManager.GetComponent<ItemInventoryManager>();
+
+                        if (itemUI == null)
+                        {
+                            Debug.LogError("[TreeInteractable] UIManager에 ItemInventoryManager 없음");
+                            return;
+                        }
+
+                        itemUI.RefreshItemInventory();
+                        Debug.Log("[TreeInteractable] 아이템 인벤토리 UI 갱신 완료");
+
+                        AudioManager.SFXInstance?.PlayOneShot(25);
+                    },
+                    error =>
+                    {
+                        Debug.LogError("[TreeInteractable] 인벤토리 재조회 실패: " + error);
+                    }
+                );
                 }
             );
         }
