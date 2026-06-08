@@ -16,13 +16,11 @@ public class InventoryUIManager : MonoBehaviour
 
     public void OpenInventory()
     {
-        Debug.Log("[InventoryUIManager] 인벤토리 버튼 클릭");
+        ShowPetInventory(); 
         publicUI.OpenPanel(inventoryPanel);
-        Debug.Log("[InventoryUIManager] /inventory 요청 시작");
         NetworkManager.Instance.RequestInventoryData(
             response =>
             {
-                Debug.Log("[InventoryUIManager] /inventory 응답 성공");
                 Debug.Log($"[InventoryUIManager] pets:{response.data.pets.Length}, items:{response.data.items.Length}");
                 ShowPetInventory();
             },
