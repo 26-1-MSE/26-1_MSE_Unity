@@ -41,7 +41,7 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         preview = new GameObject("FoodPreview");
         SpriteRenderer sr = preview.AddComponent<SpriteRenderer>();
         sr.sprite = foodSprite;
-        sr.sortingOrder = 10;
+        sr.sortingOrder = 20;
         // 크기 조정
         preview.transform.localScale = new Vector3(3f, 3f, 1f); 
     }
