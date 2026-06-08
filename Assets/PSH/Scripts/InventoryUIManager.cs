@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class InventoryUIManager : MonoBehaviour
@@ -6,7 +7,6 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private GameObject petInventoryContent;
     [SerializeField] private GameObject itemInventoryContent;
     [SerializeField] private GameObject foodPanel;
-
     private PublicUIManager publicUI;
 
     private void Start()
@@ -16,30 +16,19 @@ public class InventoryUIManager : MonoBehaviour
 
     public void OpenInventory()
     {
-        Debug.Log("[InventoryUIManager] ¿Œ∫•≈‰∏Æ πˆ∆∞ ≈¨∏Ø");
-
+        Debug.Log("[InventoryUIManager] Ïù∏Î≤§ÌÜ†Î¶¨ Î≤ÑÌäº ÌÅ¥Î¶≠");
         publicUI.OpenPanel(inventoryPanel);
-
-        Debug.Log("[InventoryUIManager] /inventory ø‰√ª Ω√¿€");
-
+        Debug.Log("[InventoryUIManager] /inventory ÏöîÏ≤≠ ÏãúÏûë");
         NetworkManager.Instance.RequestInventoryData(
             response =>
             {
-                Debug.Log("[InventoryUIManager] /inventory ¿¿¥‰ ºˆΩ≈ º∫∞¯");
-
-                // µ•¿Ã≈Õ »Æ¿Œ
-                Debug.Log(
-                    $"[InventoryUIManager] pets:{response.data.pets.Length}, items:{response.data.items.Length}"
-                );
-
+                Debug.Log("[InventoryUIManager] /inventory ÏùëÎãµ ÏÑ±Í≥µ");
+                Debug.Log($"[InventoryUIManager] pets:{response.data.pets.Length}, items:{response.data.items.Length}");
                 ShowPetInventory();
             },
             error =>
             {
-                Debug.LogError(
-                    "[InventoryUIManager] /inventory ¿¿¥‰ Ω«∆– : " + error
-                );
-
+                Debug.LogError("[InventoryUIManager] /inventory ÏùëÎãµ Ïã§Ìå® : " + error);
                 ShowPetInventory();
             }
         );
@@ -48,25 +37,28 @@ public class InventoryUIManager : MonoBehaviour
     public void CloseInventory()
     {
         publicUI.ClosePanel();
+        StartCoroutine(ResetAfterClose());
+    }
+
+    private IEnumerator ResetAfterClose()
+    {
+        yield return new WaitForSeconds(publicUI.CloseDelay);
+        ShowPetInventory();
     }
 
     public void ShowPetInventory()
     {
         petInventoryContent.SetActive(true);
         itemInventoryContent.SetActive(false);
-
         GetComponent<DisplayPetUI>()?.RefreshPetInventory();
     }
 
     public void ShowItemInventory()
     {
         petInventoryContent.SetActive(false);
-
         if (foodPanel != null)
             foodPanel.SetActive(true);
-
         itemInventoryContent.SetActive(true);
-
         GetComponent<ItemInventoryManager>()?.RefreshItemInventory();
     }
 }

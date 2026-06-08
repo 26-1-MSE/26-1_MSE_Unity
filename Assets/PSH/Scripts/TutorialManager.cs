@@ -4,6 +4,9 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private GameObject tutorialPanel;
     [SerializeField] private GameObject[] pages;
+    [SerializeField] private GameObject prevButton;
+    [SerializeField] private GameObject nextButton;
+
     private int currentPage = 0;
 
     private PublicUIManager publicUI;
@@ -41,5 +44,8 @@ public class TutorialManager : MonoBehaviour
         for (int i = 0; i < pages.Length; i++)
             pages[i].SetActive(i == index);
         currentPage = index;
+
+        prevButton.SetActive(currentPage > 0);
+        nextButton.SetActive(currentPage < pages.Length - 1);
     }
 }

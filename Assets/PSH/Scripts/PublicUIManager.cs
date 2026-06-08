@@ -7,6 +7,8 @@ public class PublicUIManager : MonoBehaviour
     [SerializeField] private GameObject background;
     [SerializeField] private float closeDelay = 0.3f;
 
+    public float CloseDelay => closeDelay;
+
     private GameObject currentPanel;
 
     public bool IsAnyPanelOpen() => currentPanel != null;
