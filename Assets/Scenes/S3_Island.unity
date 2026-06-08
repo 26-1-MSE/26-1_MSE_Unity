@@ -25401,6 +25401,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1215667446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3092589174343444577, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+  m_PrefabInstance: {fileID: 1398313384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1215667447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7777642313371095132, guid: 3740cceaf1aa6e04fb1eb7e8646a41cb, type: 3}
+  m_PrefabInstance: {fileID: 1398313384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1219950109
 GameObject:
   m_ObjectHideFlags: 0
@@ -44491,6 +44501,8 @@ MonoBehaviour:
   - {fileID: 1398313388}
   - {fileID: 1398313387}
   - {fileID: 1398313386}
+  prevButton: {fileID: 1215667447}
+  nextButton: {fileID: 1215667446}
 --- !u!114 &2021222693
 MonoBehaviour:
   m_ObjectHideFlags: 0
