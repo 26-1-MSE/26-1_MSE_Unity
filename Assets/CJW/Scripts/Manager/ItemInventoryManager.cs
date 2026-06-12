@@ -3,8 +3,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Displays owned item data from DataManager in the item inventory UI.
+/// Also connects each item slot to ItemSlotDrag for drag-and-drop item usage.
+/// </summary>
+
 public class ItemInventoryManager : MonoBehaviour
 {
+ 
     [Header("Item Slot Images")]
     [SerializeField] private Image[] itemImages = new Image[12];
 
@@ -18,6 +24,10 @@ public class ItemInventoryManager : MonoBehaviour
     [SerializeField] private Sprite carrotSprite;
     [SerializeField] private Sprite waterSprite;
 
+    /// <summary>
+    /// Refreshes the item inventory UI using the latest item data from DataManager.
+    /// Items with the same itemTypeId are grouped and displayed as one slot with a count.
+    /// </summary>
     public void RefreshItemInventory()
     {
         Debug.Log("[ItemInventoryManager] RefreshItemInventory »£√‚µ ");

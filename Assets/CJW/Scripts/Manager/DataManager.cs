@@ -3,124 +3,121 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-/// 게임 전체에서 공통으로 유지되어야 하는 플레이어 데이터와 설정값을 관리하는 싱글톤 매니저
-
+/// <summary>
+/// Singleton manager that stores shared player data and global settings.
+/// It persists across scenes and provides data to UI, gameplay, and audio systems.
+/// </summary>
+/// 
 public class DataManager : MonoBehaviour
 {
 
-    // 0. 데이터 구조체
+    /// <summary>
+    /// Data structure for one owned pet slot.
+    /// Stores the pet ID, type, and current level.
+    /// </summary>
     [Serializable]
     public struct OwnedPetSlot
     {
-        ///펫을 식별하는 고유 ID
         public int petId;
-
-        /// 1 = 토끼, 2 = 여우, 3 = 사슴, 4 = 멧돼지
+        /// 1 = Hare, 2 = Fox, 3 = Derr, 4 = Boar
         public int petTypeId;
-
         public int level;
     }
 
+    /// <summary>
+    /// Data structure for one owned item slot.
+    /// Stores the item ID, type, and quantity.
+    /// </summary>
     [Serializable]
     public struct OwnedItemSlot
     {
         public int itemId;
-
-        // 1 = 호박, 2 = 바나나, 3 = 사과, 4 = 당근, 5 = 물
+        // 1 = pumkin, 2 = banana, 3 = apple, 4 = carrot, 5 = water
         public int itemTypeId;
-
         public int count;
     }
 
-    // -------------------------------------------------------------
-    // 1. 싱글톤
+    // Global singleton instance of DataManager.
     public static DataManager Data { get; private set; }
 
-    // -------------------------------------------------------------
-    // 2. 플레이어 프로필 데이터
 
     [Header("Current User Session")]
 
-    /// 로그인되지 않은 상태 -1
+    /// <summary>
+    /// Current logged-in user information.
+    /// Default userId is -1 when no user is logged in.
+    /// </summary>
     [SerializeField] private int _userId = -1;
 
     [SerializeField] private string _loginId = string.Empty;
 
-    /// 유저 닉네임
     [SerializeField] private string _nickname = "Player";
 
-    /// 펫샵 이름
     [SerializeField] private string _petShopName = "My PetShop";
 
-    /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
     public int UserId => _userId;
     public string LoginId => _loginId;
     public string Nickname => _nickname;
     public string PetShopName => _petShopName;
 
-    // -------------------------------------------------------------
-    // 3. 보유 펫 데이터
-
+    
     [Header("Owned Pets")]
 
-    /// 인덱스 0~3 -> UI에서 1~4번 슬롯으로 사용한다.
+    /// <summary>
+    /// Owned pet slots used by pet inventory and pet spawning systems.
+    /// Maximum of 4 pets can be stored.
+    /// </summary>
 
     [SerializeField] private OwnedPetSlot[] _ownedPetSlots = new OwnedPetSlot[4];
 
- 
-
-    /// 외부에서는 읽기 전용으로 접근하도록 프로퍼티 제공
     public OwnedPetSlot[] OwnedPetSlots => _ownedPetSlots;
 
-    // -------------------------------------------------------------
-    // 4. 보유 아이템 데이터
+    /// <summary>
+    /// Owned item slots used by inventory UI and pet growth systems.
+    /// Maximum of 12 item slots can be stored.
+    /// </summary>
 
     [Header("Owned Items")]
     [SerializeField] private OwnedItemSlot[] _ownedItemSlots = new OwnedItemSlot[12];
 
     public OwnedItemSlot[] OwnedItemSlots => _ownedItemSlots;
 
-    // -------------------------------------------------------------
-    // 5. 사운드 설정
-
     [Header("Audio Settings")]
 
-    /// BGM 볼륨
+    /// BGM volume
     [SerializeField][Range(0, 100)] private int _bgmVolumeLevel = 80;
 
-    /// 효과음 볼륨
+    /// SFX volume
     [SerializeField][Range(0, 100)] private int _sfxVolumeLevel = 80;
 
-    /// 실제 AudioSource.volume에 넣기 위한 0.0~1.0 값
+
     private float _bgmVolume => _bgmVolumeLevel / 100f;
 
-    /// 실제 AudioSource.volume에 넣기 위한 0.0~1.0 값
     private float _sfxVolume => _sfxVolumeLevel / 100f;
 
-    // -------------------------------------------------------------
-    // 6. 메일 상태
+
 
     [Header("Mail State")]
 
     /// <summary>
-    /// 읽지 않은 메일이 하나라도 있는지 여부.
+    /// Indicates whether the player has any unread mail.
+    /// Used for mail notification UI.
+    /// </summary>
     [SerializeField] private bool _hasUnreadMail = false;
 
-    /// 외부 읽기 전용 프로퍼티.
     public bool HasUnreadMail => _hasUnreadMail;
 
-    // -------------------------------------------------------------
-    // 7. 이벤트
 
     public static event Action<float> OnBgmVolumeChanged;
 
     public static event Action<float> OnSfxVolumeChanged;
-
-    /// 읽지 않은 메일 여부가 바뀌었을 때 호출되는 이벤트
+    /// <summary>
+    /// Invoked when the unread mail state changes.
+    /// Mail alert UI listens to this event.
+    /// </summary>
     public static event Action<bool> OnUnreadMailStateChanged;
 
-    // -------------------------------------------------------------
-    // 8. Unity 생명주기
+  
 
     private void Awake()
     {
@@ -131,18 +128,18 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        // 싱글톤 인스턴스 등록
         Data = this;
-
         DontDestroyOnLoad(gameObject);
-
-        // 새 씬이 로드될 때마다 현재 설정값을 다시 브로드캐스트하기 위해 구독
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
-    /// 새 씬이 로드될 때 호출됨
-    /// 현재 저장 중인 볼륨값/쪽지 상태를 다시 알려줌
+    /// <summary>
+    /// Called whenever a new scene is loaded.
+    /// Rebroadcasts saved profile, audio, and mail states to scene objects.
+    /// </summary>
+    
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         BroadcastAudioSettings();
@@ -150,7 +147,6 @@ public class DataManager : MonoBehaviour
         BroadcastProfileState();
     }
 
-    /// 인스펙터에서 값이 바뀔 때 범위를 강제로 맞춰줌
     private void OnValidate()
     {
         _bgmVolumeLevel = Mathf.Clamp(_bgmVolumeLevel, 0, 100);
@@ -177,14 +173,11 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // -------------------------------------------------------------
-    // 9. 프로필 메서드
-
-    /// userId      : DB 기본 키
-    /// loginId     : 로그인용 문자열 ID
-    /// nickname    : 인게임 닉네임
-    /// petShopName : 펫샵 이름
-
+    /// <summary>
+    /// Updates the current user session data after login or auth/status response.
+    /// Also notifies profile UI listeners.
+    /// </summary>
+    
     public void SetUserSession(int userId, string loginId, string nickname, string petShopName)
     {
         _userId = userId;
@@ -220,11 +213,11 @@ public class DataManager : MonoBehaviour
         BroadcastMailState();
     }
 
-    // -------------------------------------------------------------
-    // 10. 보유 펫 메서드
-
-    /// 로그인 응답으로 받은 보유 펫 목록을 4개의 펫 슬롯에 저장한다
-    /// - 상세 정보는 펫룸 진입 시 NetworkManager.RequestPetData(petId)를 통해 서버에서 다시 조회한다
+    /// <summary>
+    /// Stores owned pet data received from the server.
+    /// The data is converted into 4 fixed pet slots for client-side use.
+    /// </summary>
+    
     public void SetOwnedPets(OwnedPetData[] ownedPets)
     {
         _ownedPetSlots = new OwnedPetSlot[4];
@@ -246,8 +239,11 @@ public class DataManager : MonoBehaviour
         Debug.Log("[DataManager] 보유 펫 슬롯 저장 완료");
     }
 
-    /// slotIndex는 배열 기준으로 0~3 값을 사용한다.
-    /// UI에서 1~4번 슬롯을 사용할 경우, 1번 슬롯은 index 0으로 변환해서 사용한다.
+    /// <summary>
+    /// Returns the pet ID stored in the specified pet slot.
+    /// Used when selecting or placing a pet.
+    /// </summary>
+    
     public int GetOwnedPetId(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
@@ -259,7 +255,6 @@ public class DataManager : MonoBehaviour
         return _ownedPetSlots[slotIndex].petId;
     }
 
-    /// 특정 슬롯의 petTypeId를 반환한다
     public int GetOwnedPetTypeId(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
@@ -271,7 +266,11 @@ public class DataManager : MonoBehaviour
         return _ownedPetSlots[slotIndex].petTypeId;
     }
 
-    // S3에서 펫 추가했을 시를 위함
+    /// <summary>
+    /// Adds a newly acquired pet to the first empty pet slot.
+    /// Used after pet acquisition succeeds on the server.
+    /// </summary>
+    
     public void AddOwnedPet(int petId, int petTypeId)
     {
         for (int i = 0; i < _ownedPetSlots.Length; i++)
@@ -289,8 +288,10 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("[DataManager] 보유 펫 슬롯이 가득 찼습니다.");
     }
 
-    // -------------------------------------------------------------
-    // 11. 보유 아이템 메서드
+    /// <summary>
+    /// Stores inventory item data received from the inventory API.
+    /// Used by the item inventory UI.
+    /// </summary>
 
     public void SetOwnedItems(InventoryItemData[] items)
     {
@@ -313,6 +314,11 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stores item data received from the pet room API.
+    /// Used when entering the pet room and feeding pets.
+    /// </summary>
+
     public void SetOwnedItems(PetItemData[] items)
     {
         _ownedItemSlots = new OwnedItemSlot[12];
@@ -330,6 +336,11 @@ public class DataManager : MonoBehaviour
             };
         }
     }
+
+    /// <summary>
+    /// Adds or updates an owned item after item acquisition.
+    /// If the item type already exists, its count is updated.
+    /// </summary>
 
     public void AddOwnedItem(int itemId, int itemTypeId, int count)
     {
@@ -359,8 +370,6 @@ public class DataManager : MonoBehaviour
         Debug.LogWarning("[DataManager] 아이템 슬롯이 가득 찼습니다.");
     }
 
-    // -------------------------------------------------------------
-    // 12. 볼륨 메서드
 
     public void SetBgmVolume(int volumeLevel)
     {
@@ -385,7 +394,6 @@ public class DataManager : MonoBehaviour
         OnSfxVolumeChanged?.Invoke(_sfxVolume);
     }
 
-    /// 현재 저장된 볼륨값을 한 번에 다시 브로드캐스트
     public void BroadcastAudioSettings()
     {
         OnBgmVolumeChanged?.Invoke(_bgmVolume);
@@ -397,10 +405,10 @@ public class DataManager : MonoBehaviour
     public int GetBgmVolumeLevel() => _bgmVolumeLevel;
     public int GetSfxVolumeLevel() => _sfxVolumeLevel;
 
-    // -------------------------------------------------------------
-    // 13. 쪽지 메서드
-
-    /// 새 쪽지 여부 설정
+    /// <summary>
+    /// Updates unread mail state and notifies mail UI listeners.
+    /// </summary>
+    
     public void SetUnreadMailState(bool hasUnreadMail)
     {
         if (_hasUnreadMail == hasUnreadMail)
@@ -419,9 +427,6 @@ public class DataManager : MonoBehaviour
     {
         SetUnreadMailState(false);
     }
-
-    // -------------------------------------------------------------
-    // 14. 초기화 메서드
 
     public void InitializeDefaultData()
     {

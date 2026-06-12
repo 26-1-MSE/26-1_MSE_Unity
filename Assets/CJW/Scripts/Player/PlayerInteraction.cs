@@ -2,21 +2,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
+
+/// <summary>
+/// Handles player interactions with trees, pets, and other objects
+/// that implement the IInteractable interface.
+/// Displays interaction prompts and executes interactions using the E key.
+/// </summary>
+
 public class PlayerInteraction : MonoBehaviour
 {
+    // Currently detected interactable object within interaction range.
     private IInteractable currentInteractable;
+
     [SerializeField] private TextMeshProUGUI interactText; 
     [SerializeField] private Camera mainCamera;
 
-   
+
+    /// <summary>
+    /// Checks for interaction input.
+    /// Executes the current interactable object when the player presses E.
+    /// Interaction is disabled while the ocarina mini-game is active.
+    /// </summary>
 
     private void Update()
     {
-        /*if (interactText != null && interactText.gameObject.activeSelf)
-        {
-            Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position + Vector3.up * 2f);
-            interactText.transform.position = screenPos;
-        }*/
 
         if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
@@ -27,6 +36,11 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Called when the player enters the interaction range of an object.
+    /// Registers the interactable object and displays its interaction message.
+    /// </summary>
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -55,10 +69,14 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log($"[PlayerInteraction] 상호작용 범위 이탈: {other.name}");
         }
     }
+
+    // Ends the chopping animation triggered by resource collection.
     public void EndChop()
     {
         GetComponent<Animator>().SetBool("isChopping", false);
-    }  
+    }
+
+    // Ends the scooping animation triggered by water collection.
     public void EndScoop()
     {
         GetComponent<Animator>().SetBool("isScooping", false);

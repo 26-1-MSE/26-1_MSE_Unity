@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// UI button handler for scene transitions.
 public class SceneOut : MonoBehaviour
 {
     public enum TargetScene
@@ -13,6 +14,7 @@ public class SceneOut : MonoBehaviour
     [Header("TargetScene")]
     [SerializeField] private TargetScene targetScene;
 
+    // Moves the player to the selected scene when the button is clicked.
     public void OnClickMove()
     {
         if (GameManager.Instance == null)

@@ -2,20 +2,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// 펫룸에서 현재 선택된 펫의 성장 상태를 관리하는 클래스
-// 주요 기능:
-// 1. 서버에서 받은 펫 상세 데이터를 저장
-// 2. HUD UI 갱신
-// 3. 아이템 사용 요청
-// 4. 아이템 사용 결과에 따른 먹이/물 수치 갱신
-// 5. 레벨업 시 펫 크기 변경 및 토스트 메시지 출력
+/// <summary>
+/// Manages pet growth progression in the Pet Room.
+/// Handles pet status updates, item usage, HUD refresh,
+/// level-up processing, and pet scaling.
+/// </summary>
 
 public class PetGrowthManager : MonoBehaviour
 {
     // HUD 연결
     [Header("HUD")]
+    // Displays the current status of the selected pet.
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text petNameText;
+
+    // Displays the current food/water progress of the pet.
     [SerializeField] private Slider foodSlider;
     [SerializeField] private Slider waterSlider;
 
@@ -24,11 +25,10 @@ public class PetGrowthManager : MonoBehaviour
 
     [SerializeField] private ToastMessage toastMessage;
 
-    // 펫룸에 배치된 실제 펫 오브젝트의 Transform
     [Header("Placed Pet")]
     [SerializeField] private Transform placedPetTransform;
 
-    //선택된 펫의 데이터
+    //data of the selected pet
     private int currentPetId;
     private int currentLevel;
     private string currentPetName;
@@ -39,12 +39,16 @@ public class PetGrowthManager : MonoBehaviour
     private int currentWater;
     private int currentWaterMax;
 
-    // 아이템 사용 요청 중복 방지 플래그
+    // Prevents duplicate item usage requests while waiting for a server response
     private bool isUsingItem = false;
 
     private float useItemRequestStartTime;
-
-    // 펫룸에 펫을 배치한 직후 호출되는 초기화 메서드
+    /// <summary>
+    /// Initializes the currently selected pet using
+    /// data received from the Pet Room API.
+    /// Also updates pet scale and HUD information.
+    /// </summary>
+    
     public void SetCurrentPet(PetRoomResponse response, Transform petTransform)
     {
         Debug.Log($"[PetGrowthManager] SetCurrentPet 시작 / time:{Time.time:F3}");
@@ -69,25 +73,29 @@ public class PetGrowthManager : MonoBehaviour
         Debug.Log($"[PetGrowthManager] SetCurrentPet 완료 / time:{Time.time:F3}");
     }
 
-    // 현재 선택된 펫의 ID를 반환한다.
+    // Returns the ID of the currently selected pet.
     public int GetCurrentPetId()
     {
         return currentPetId;
     }
 
-    // 현재 선택된 펫에게 아이템을 사용하는 메서드
+    /// <summary>
+    /// Sends an item usage request for the selected pet.
+    /// Prevents duplicate requests and updates pet status
+    /// when the server response is received.
+    /// </summary>
+    
     public void UseItemOnCurrentPet(int itemTypeId, System.Action onSuccess)
     {
         Debug.Log($"[PetGrowthManager] UseItemOnCurrentPet 호출 / time:{Time.time:F3}, petId:{currentPetId}, itemTypeId:{itemTypeId}");
 
-        // 선택된 펫이 없을 경우
+        
         if (currentPetId <= 0)
         {
             Debug.LogWarning("[PetGrowthManager] 현재 선택된 펫 없음");
             return;
         }
 
-        // 이미 아이템 사용 요청 중이면 중복 요청 방지
         if (isUsingItem)
         {
             Debug.LogWarning($"[PetGrowthManager] 아이템 사용 요청 처리 중이라 차단 / time:{Time.time:F3}");
@@ -99,7 +107,6 @@ public class PetGrowthManager : MonoBehaviour
 
         Debug.Log($"[PetGrowthManager] 서버 RequestUseItem 시작 / time:{useItemRequestStartTime:F3}");
 
-        // 서버에 아이템 사용 요청
         NetworkManager.Instance.RequestUseItem(
             currentPetId,
             itemTypeId,
@@ -129,13 +136,16 @@ public class PetGrowthManager : MonoBehaviour
         );
     }
 
-    // 현재 아이템 사용 요청이 진행 중인지 반환한다.
+    // Returns whether an item usage request is currently being processed
     public bool IsUsingItem()
     {
         return isUsingItem;
     }
 
-    // 아이템 사용 서버 응답을 현재 펫 상태에 반영하는 메서드
+    /// <summary>
+    /// Applies the latest pet status returned from the server after an item is used.
+    /// Handles level-up effects, scaling, sound effects, and HUD updates.
+    /// </summary>
     public void ApplyUseItemData(UseItemResponse response)
     {
         Debug.Log($"[PetGrowthManager] ApplyUseItemData 시작 / time:{Time.time:F3}");
@@ -152,7 +162,6 @@ public class PetGrowthManager : MonoBehaviour
 
         Debug.Log($"[PetGrowthManager] 서버 응답 데이터 반영 / prevLevel:{previousLevel}, newLevel:{currentLevel}, food:{currentFood}/{currentFoodMax}, water:{currentWater}/{currentWaterMax}");
 
-        // 이전 레벨보다 현재 레벨이 높으면 레벨업 처리
         if (currentLevel > previousLevel)
         {
             Debug.Log($"[PetGrowthManager] 레벨업 감지 / {previousLevel} -> {currentLevel}, time:{Time.time:F3}");
@@ -178,12 +187,11 @@ public class PetGrowthManager : MonoBehaviour
             AudioManager.SFXInstance?.PlayOneShot(3);
         }
 
-        // 변경된 수치를 HUD에 반영
         RefreshHUD();
         Debug.Log($"[PetGrowthManager] ApplyUseItemData 완료 / time:{Time.time:F3}");
     }
 
-    // 현재 레벨에 맞춰 펫 오브젝트 크기를 변경하는 메서드
+    /// Adjusts the pet's visual scale according to its level.
     private void ApplyPetScale()
     {
         Debug.Log($"[PetGrowthManager] ApplyPetScale 호출 / time:{Time.time:F3}");
@@ -194,14 +202,14 @@ public class PetGrowthManager : MonoBehaviour
             return;
         }
 
-        // 레벨별 스케일 값 가져와서 펫 오브젝트 크기 변경
+       
         float scale = GetScaleByLevel(currentLevel);
         placedPetTransform.localScale = new Vector3(scale, scale, 1f);
 
         Debug.Log($"[PetGrowthManager] 펫 크기 변경 완료 / level:{currentLevel}, scale:{scale}, actualScale:{placedPetTransform.localScale}, time:{Time.time:F3}");
     }
 
-    // HUD에 표시되는 레벨, 이름, 먹이/물 슬라이더와 텍스트를 갱신한다.
+    /// Refreshes all pet-related HUD elements
     private void RefreshHUD()
     {
         Debug.Log($"[PetGrowthManager] RefreshHUD 호출 / time:{Time.time:F3}");
@@ -226,7 +234,7 @@ public class PetGrowthManager : MonoBehaviour
             waterSlider.value = isMaxLevel ? currentWaterMax : currentWater;
         }
 
-        // 최대 레벨이면 MAX / MAX로 표시
+        // Leve3 -> MAX / MAX
         if (foodCountText != null)
         {
             foodCountText.text = isMaxLevel
@@ -246,8 +254,8 @@ public class PetGrowthManager : MonoBehaviour
 
 }
 
-// 펫 레벨에 따른 크기 값을 반환
-private float GetScaleByLevel(int level)
+    // Returns the visual scale value associated with a pet level.
+    private float GetScaleByLevel(int level)
     {
         switch (level)
         {

@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Handles player movement, jumping, and character animations.
+/// Supports horizontal movement, double jump,
+/// sprite flipping, and ground detection.
+/// </summary>
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 3f;
+
+    // Current number of jumps performed since leaving the ground.
     private int jumpCount = 0;
     private int maxJumpCount = 2;
+
     private LayerMask groundLayer;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -17,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        // Ground Layer Ȯ��
         groundLayer = LayerMask.GetMask("Ground");
 
         if (rb == null) rb = GetComponent<Rigidbody2D>();
@@ -48,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
             Invoke("EndJump", 0.8f);
         }
 
-        // �¿��̵�
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             moveInput = -1f;
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
@@ -63,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
             else if (moveInput > 0) spriteRenderer.flipX = false;
         }
 
-        // ���� Ƚ�� �ʱ�ȭ
         if (IsGrounded() && rb.linearVelocity.y <= 0f)
         {
             jumpCount = 0;
@@ -77,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    // Ground layer ����
+    // Checks whether the player is standing on the Ground layer.
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(

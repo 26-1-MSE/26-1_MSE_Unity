@@ -1,7 +1,9 @@
 using UnityEngine;
 
+/// Interactable portal that moves the player to another scene.
 public class Portal : MonoBehaviour, IInteractable
 {
+    // Available destination scenes.
     public enum TargetScene
     {
         Lobby,
@@ -13,6 +15,7 @@ public class Portal : MonoBehaviour, IInteractable
     [Header("씬 이동")]
     [SerializeField] private TargetScene targetScene;
 
+    // Plays a portal sound effect and moves the player
     public void Interact(PlayerInteraction player)
     {
         if (GameManager.Instance == null)
@@ -50,6 +53,7 @@ public class Portal : MonoBehaviour, IInteractable
         }
     }
 
+    // Returns the interaction prompt displayed to the player.
     public string GetInteractMessage()
     {
         return "E: Enter";

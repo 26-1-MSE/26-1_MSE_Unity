@@ -5,20 +5,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 /// <summary>
-/// Unity 클라이언트 서버 통신을 관리하는 매니저 (싱글톤)
+/// Singleton manager responsible for all client-server communication.
+/// Handles HTTP requests, authentication, response parsing,
+/// and synchronization with DataManager.
+/// </summary>
 
-/// 로그인 / 회원가입 / 중복 체크 요청 
-/// 서버 응답 파싱 후 DataManager에 저장
-/// - 모든 서버 통신 결과는 DataManager에 저장한다.
-/// 
 public class NetworkManager : MonoBehaviour
 {
+    // Global singleton instance used throughout the client.
     public static NetworkManager Instance { get; private set; }
 
     [Header("Server Setting")]
-    /// 서버 기본 주소
+    /// Base URL of the backend server.
     [SerializeField] private string baseUrl = "http://localhost:8080";
-
     [SerializeField] private int timeout = 10;
 
     private void Awake()
@@ -32,10 +31,10 @@ public class NetworkManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // =========================================================
-    // 공통 HTTP 헬퍼
-
-    /// GET 요청 공통 처리
+    /// <summary>
+    /// Sends a GET request to the specified endpoint.
+    /// Automatically attaches the access token if available.
+    /// </summary>
     private IEnumerator GetRoutine(string url, Action<long, string> onComplete)
     {
         using UnityWebRequest request = UnityWebRequest.Get(baseUrl + url);
@@ -58,7 +57,10 @@ public class NetworkManager : MonoBehaviour
         onComplete?.Invoke(request.responseCode, request.downloadHandler.text.Trim());
     }
 
-    /// POST 요청 공통 처리
+    /// <summary>
+    /// Sends a POST request with a JSON body.
+    /// Automatically attaches authentication headers when needed.
+    /// </summary>
     private IEnumerator PostRoutine(string url, string json, Action<long, string> onComplete)
     {
         using UnityWebRequest request = new UnityWebRequest(baseUrl + url, "POST");
@@ -87,14 +89,20 @@ public class NetworkManager : MonoBehaviour
         onComplete?.Invoke(request.responseCode, request.downloadHandler.text.Trim());
     }
 
-    /// 네트워크/처리 오류 여부 확인
+    /// <summary>
+    /// Checks whether the request failed due to a connection
+    /// or data processing error.
+    /// </summary>
     private bool IsNetworkError(UnityWebRequest request)
     {
         return request.result == UnityWebRequest.Result.ConnectionError ||
                request.result == UnityWebRequest.Result.DataProcessingError;
     }
 
-    /// JSON 파싱 시도 — 실패 시 null 반환
+    /// <summary>
+    /// Attempts to deserialize a JSON response into the specified type.
+    /// Returns null if parsing fails.
+    /// </summary>
     private T TryParseJson<T>(string raw) where T : class
     {
         if (string.IsNullOrEmpty(raw) || !raw.StartsWith("{")) return null;
@@ -118,18 +126,16 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    // =========================================================
-    // 1. 연결 테스트
-
     public void TestConnection() => StartCoroutine(GetRoutine("", (code, raw) =>
     {
         if (code == -1) Debug.LogError("[NetworkManager] 연결 실패");
         else Debug.Log("[NetworkManager] 연결 성공: " + raw);
     }));
 
-    // =========================================================
-    // 2. 로그인
-
+    /// <summary>
+    /// Sends a login request and stores the returned user session,
+    /// pet information, and authentication token.
+    /// </summary>
     public void SendLoginRequest(string loginId, string password,
         Action onSuccess = null, Action<string> onFail = null)
     {
@@ -140,14 +146,13 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("[NetworkManager] 로그인 응답 code: " + code + " / raw: " + raw);
 
                 if (code == -1) { onFail?.Invoke("Server connection failed"); return; }
-                // 404는 서버/URL 문제, 401·403은 인증 실패로 구분
+
                 if (code == 404) { onFail?.Invoke("Server connection failed"); return; }
                 if (code != 200)               { onFail?.Invoke("User not found"); return; }
 
                 LoginResponse response = TryParseJson<LoginResponse>(raw);
                 if (response == null) { onFail?.Invoke("Response parse error"); return; }
 
-                // ownedPets 확인 로그
                 if (response.ownedPets != null)
                 {
                     Debug.Log("[NetworkManager] 보유 펫 수: " + response.ownedPets.Length);
@@ -162,7 +167,6 @@ public class NetworkManager : MonoBehaviour
                     Debug.Log("[NetworkManager] 보유 펫 없음");
                 }
 
-                // 파싱 결과 확인 로그
                 Debug.Log("[NetworkManager] 파싱 결과");
                 Debug.Log("  accessToken: " + response.accessToken);
                 Debug.Log("  nickname: "    + response.nickname);
@@ -177,9 +181,10 @@ public class NetworkManager : MonoBehaviour
             }));
     }
 
-    // =========================================================
-    // 3. 아이디 중복 체크
-
+    /// <summary>
+    /// Checks whether the specified user ID already exists.
+    /// </summary>
+    
     public void CheckUserIdDuplicate(string userId, Action<bool, string> onResult)
     {
         StartCoroutine(GetRoutine("/auth/check/" + userId, (code, raw) =>
@@ -191,9 +196,7 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // =========================================================
-    // 4. 회원가입
-
+  
     public void SendSignUpRequest(string loginId, string password, string nickname, string petShopName,
         Action<bool, string> onResult = null)
     {
@@ -209,7 +212,7 @@ public class NetworkManager : MonoBehaviour
 
                 if (code == -1) { onResult?.Invoke(false, "Server connection failed"); return; }
 
-                // 응답 body 없이 200/201로만 성공 처리하는 서버 대응
+                
                 if (string.IsNullOrEmpty(raw) || !raw.StartsWith("{"))
                 {
                     onResult?.Invoke(code == 200 || code == 201, code == 200 || code == 201
@@ -230,10 +233,10 @@ public class NetworkManager : MonoBehaviour
             }));
     }
 
-    // =========================================================
-    // 5. S1 auth/Status
-    // S1 PetTown 진입 시 사용자 상태 요청
-    // 닉네임, 펫샵 이름, 읽지 않은 메일 여부, 보유 펫 목록을 갱신한다.
+    /// <summary>
+    /// Retrieves the latest authenticated user information.
+    /// Updates nickname, shop name, mail state, and owned pets.
+    /// </summary>
 
     public void RequestAuthStatus(
     Action<LoginResponse> onSuccess = null,
@@ -278,8 +281,12 @@ public class NetworkManager : MonoBehaviour
             onSuccess?.Invoke(response);
         }));
     }
+
+    /// <summary>
+    /// Requests detailed information about a specific pet
+    /// displayed in the Pet Room scene.
+    /// </summary>
     
-    // 펫룸에 표시할 특정 펫 데이터 요청
     public void RequestPetData(int petId, Action<PetRoomResponse> onSuccess = null, Action<string> onFail = null)
     {
         StartCoroutine(GetRoutine("/pet/petroom?petId=" + petId, (code, raw) =>
@@ -335,9 +342,11 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // =========================================================
-    // 6. S3 펫 획득 API 함수
-
+    /// <summary>
+    /// Sends a pet acquisition request after a successful mini-game.
+    /// Updates owned pet data on success.
+    /// </summary>
+    
     public void RequestAcquirePet(int petTypeId, Action onSuccess = null, Action<string> onFail = null)
     {
         string json = JsonUtility.ToJson(new AcquirePetRequest
@@ -396,7 +405,11 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // 인벤토리 정보 요청
+    /// <summary>
+    /// Retrieves the latest inventory data including
+    /// owned pets and items.
+    /// </summary>
+    
     public void RequestInventoryData(Action<InventoryResponse> onSuccess = null, Action<string> onFail = null)
     {
         StartCoroutine(GetRoutine("/inventory", (code, raw) =>
@@ -452,7 +465,11 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // 아이템 사용 서버 요청
+    /// <summary>
+    /// Sends an item usage request for a specific pet.
+    /// The updated pet status is returned from the server.
+    /// </summary>
+    
     public void RequestUseItem(
     int petId,
     int itemTypeId,
@@ -504,7 +521,11 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // S3 Island에서 나무 상호작용 등으로 아이템을 획득했을 때 호출
+    /// <summary>
+    /// Sends an item acquisition request when the player
+    /// collects resources from the Island scene.
+    /// </summary>
+    
     public void RequestAcquireItem(int itemTypeId, int count, Action onSuccess = null, Action<string> onFail = null)
     {
         string json = JsonUtility.ToJson(new AcquireItemRequest
@@ -561,7 +582,10 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
-    // 메일 목록 조회
+    /// <summary>
+    /// Requests the player's mailbox list.
+    /// </summary>
+    
     public void RequestMailList(
         Action<MailListResponse> onSuccess = null,
         Action<string> onFail = null)
@@ -601,6 +625,9 @@ public class NetworkManager : MonoBehaviour
         }));
     }
 
+    /// <summary>
+    /// Requests detailed information for a specific mail.
+    /// </summary>
     public void RequestMailDetail(
     int mailId,
     Action<MailDetailResponse> onSuccess = null,
@@ -642,12 +669,8 @@ public class NetworkManager : MonoBehaviour
     }
 }
 
-
-
-    
-
 // =========================================================
-// 요청 / 응답 데이터 모델
+// Request / Response DTOs
 
 [Serializable]
 public class LoginRequest
@@ -656,7 +679,6 @@ public class LoginRequest
     public string password;
 }
 
-// /auth/login 및 /auth/status 응답을 받기 위한 DTO
 [Serializable]
 public class LoginResponse
 {
