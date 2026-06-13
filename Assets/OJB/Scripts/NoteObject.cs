@@ -5,7 +5,7 @@ public class NoteObject : MonoBehaviour
 {
     public KeyCode requiredKey;
     [SerializeField] private TextMeshProUGUI keyText;
-    private float moveSpeed = 4f;
+    [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float missLineX = -450f;
     [SerializeField] private float judgeLineX = -400f;
     [SerializeField] private float judgeRange = 80f;
