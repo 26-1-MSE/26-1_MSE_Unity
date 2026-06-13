@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
+
+// Manages the rhythm mini-game flow including note spawning, input judgment, and success/failure handling.
 public class OcarinaGameManager : MonoBehaviour
 {
     [Header("UI")]
@@ -12,7 +14,7 @@ public class OcarinaGameManager : MonoBehaviour
     [SerializeField] private Transform noteArea;
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private GameObject[] hearts;
+    [SerializeField] private GameObject[] hearts; // Heart icons representing remaining miss chances
     [SerializeField] private GameObject resultPopup;
     [SerializeField] private TextMeshProUGUI resultText;
     [SerializeField] private ToastMessage toastMessage;
@@ -20,7 +22,7 @@ public class OcarinaGameManager : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField] private float gameDuration = 30f;
     [SerializeField] private int totalNotes = 14;
-    [SerializeField] private float noteSpacing = 150f;
+    [SerializeField] private float noteSpacing = 150f; // Horizontal spacing between spawned notes
 
     [Header("References")]
     [SerializeField] private PlayerMovement playerMovement;
@@ -31,7 +33,7 @@ public class OcarinaGameManager : MonoBehaviour
     [SerializeField] private int successSoundId;
     [SerializeField] private int failSoundId;
     [SerializeField] private int wrongSFXId;
-    [SerializeField] private int[] twinkleNoteIds;
+    [SerializeField] private int[] twinkleNoteIds; // Clip IDs for each note of the melody (14 total)
 
     [Header("Note Timing")]
     [SerializeField] private float[] noteTiming = {
@@ -59,11 +61,11 @@ public class OcarinaGameManager : MonoBehaviour
     private int missCount = 0;
     private int clearedNotes = 0;
     private int spawnedNotes = 0;
-    private int currentNoteIndex = 0;
+    private int currentNoteIndex = 0; // Index into twinkleNoteIds for sequential melody playback
     private float timeLeft;
     private bool isPlaying = false;
     private bool isSuccess = false;
-    private GameObject currentPet;
+    private GameObject currentPet; // The wild pet object being tamed
 
     public bool IsPlaying => isPlaying;
 
@@ -74,12 +76,15 @@ public class OcarinaGameManager : MonoBehaviour
         Instance = this;
     }
 
+   
+    // Initializes and starts the rhythm mini-game for the given pet.
     public void StartGame(GameObject pet, int petTypeId)
     {
         if (isPlaying) return;
 
         StopAllCoroutines();
 
+        // Clear any leftover notes from a previous session
         foreach (var note in activeNotes)
             if (note != null) Destroy(note.gameObject);
         activeNotes.Clear();
@@ -105,6 +110,7 @@ public class OcarinaGameManager : MonoBehaviour
 
         resultPopup.SetActive(false);
 
+        // Generate a random key sequence for the notes
         for (int i = 0; i < totalNotes; i++)
             noteSequence.Add(possibleKeys[Random.Range(0, possibleKeys.Length)]);
 
@@ -115,6 +121,7 @@ public class OcarinaGameManager : MonoBehaviour
         StartCoroutine(SpawnNotesWithTiming());
     }
 
+    // Spawns notes one by one with a fixed interval
     private IEnumerator SpawnNotesWithTiming()
     {
         for (int i = 0; i < totalNotes; i++)
@@ -124,6 +131,7 @@ public class OcarinaGameManager : MonoBehaviour
         }
     }
 
+    // Instantiates a single note and positions it to the right of existing notes
     private void SpawnNote()
     {
         if (spawnedNotes >= totalNotes) return;
@@ -131,7 +139,6 @@ public class OcarinaGameManager : MonoBehaviour
         GameObject noteObj = Instantiate(notePrefab, noteArea);
         NoteObject note = noteObj.GetComponent<NoteObject>();
 
-        // 오른쪽에서 스폰
         float spawnX = noteSpacing * (activeNotes.Count + 1);
         noteObj.transform.localPosition = new Vector3(spawnX, 0, 0);
 
@@ -159,12 +166,14 @@ public class OcarinaGameManager : MonoBehaviour
         else if (Keyboard.current.fKey.wasPressedThisFrame) HandleInput(KeyCode.F);
     }
 
+    // Processes a key input against the frontmost active note
     private void HandleInput(KeyCode key)
     {
         if (activeNotes.Count == 0) return;
 
         NoteObject firstNote = activeNotes[0];
 
+        // Ignore input if the note is not within the judge range
         if (!firstNote.IsJudgeable) return;
 
         firstNote.MarkHandled();
@@ -174,13 +183,15 @@ public class OcarinaGameManager : MonoBehaviour
         if (key == firstNote.requiredKey)
         {
             clearedNotes++;
-            Debug.Log($"클리어: {clearedNotes} / {totalNotes}");
+            // Debug.Log($"클리어: {clearedNotes} / {totalNotes}");
 
+            // Play the corresponding melody note on a correct hit
             if (AudioManager.SFXInstance != null && twinkleNoteIds != null && currentNoteIndex < twinkleNoteIds.Length)
                 AudioManager.SFXInstance.PlayOneShot(twinkleNoteIds[currentNoteIndex]);
         }
         else
         {
+            // Play wrong SFX and deduct a heart on a miss
             if (AudioManager.SFXInstance != null)
                 AudioManager.SFXInstance.PlayOneShot(wrongSFXId);
 
@@ -202,6 +213,7 @@ public class OcarinaGameManager : MonoBehaviour
             Success();
     }
 
+    // Handles success: hides the pet, requests server pet acquisition, and closes the game
     private void Success()
     {
         isPlaying = false;
@@ -211,7 +223,7 @@ public class OcarinaGameManager : MonoBehaviour
         if (currentPet != null)
             currentPet.SetActive(false);
 
-        Debug.Log("[PET_COLLECT] 펫 획득!");
+        // Debug.Log("[PET_COLLECT] 펫 획득!");
 
         if (NetworkManager.Instance != null)
         {
@@ -220,12 +232,12 @@ public class OcarinaGameManager : MonoBehaviour
                 () =>
                 {
                     isSuccess = true;
-                    Debug.Log("[PET_COLLECT] 서버 저장 성공");
+                    // Debug.Log("[PET_COLLECT] 서버 저장 성공");
 
                     NetworkManager.Instance.RequestInventoryData(
                         response =>
                         {
-                            Debug.Log("[PET_COLLECT] 최신 인벤토리 재조회 성공");
+                            // Debug.Log("[PET_COLLECT] 최신 인벤토리 재조회 성공");
 
                             if (UIManager != null)
                             {
@@ -253,6 +265,7 @@ public class OcarinaGameManager : MonoBehaviour
 
                     toastMessage?.ShowToast(error);
 
+                    // Restore the pet if server request fails
                     if (currentPet != null)
                         currentPet.SetActive(true);
 
@@ -262,17 +275,18 @@ public class OcarinaGameManager : MonoBehaviour
         }
         else
         {
+            // Local test fallback when NetworkManager is not present
             isSuccess = true;
-            Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
+            // Debug.Log("[PET_COLLECT] NetworkManager 없음 - 로컬 테스트 중");
 
             if (AudioManager.SFXInstance != null)
                 AudioManager.SFXInstance.PlayOneShot(successSoundId);
 
             CloseGame();
         }
- 
     }
 
+    // Handles failure: clears remaining notes and closes the game
     private void Fail()
     {
         isSuccess = false;
@@ -290,6 +304,8 @@ public class OcarinaGameManager : MonoBehaviour
         CloseGame();
     }
 
+
+    // Closes the game UI and resets the pet interactable on failure for retry.
     public void CloseGame()
     {
         if (resultPopup != null)
@@ -308,6 +324,8 @@ public class OcarinaGameManager : MonoBehaviour
         }
     }
 
+
+    //Called by NoteObject when a note passes the miss line without being hit.
     public void OnNoteMissed(NoteObject note)
     {
         if (!isPlaying) return;

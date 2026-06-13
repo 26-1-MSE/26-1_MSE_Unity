@@ -16,9 +16,13 @@ public class NetworkManager : MonoBehaviour
     public static NetworkManager Instance { get; private set; }
 
     [Header("Server Setting")]
-    /// Base URL of the backend server.
-    [SerializeField] private string baseUrl = "http://localhost:8080";
+    [SerializeField] private bool useNgrok = false;
+    [SerializeField] private string ngrokUrl = "https://payroll-fleshy-reselect.ngrok-free.dev";
+    [SerializeField] private string localUrl = "http://localhost:8080";
     [SerializeField] private int timeout = 10;
+
+    /// Base URL of the backend server.
+    private string baseUrl => useNgrok ? ngrokUrl : localUrl;
 
     private void Awake()
     {

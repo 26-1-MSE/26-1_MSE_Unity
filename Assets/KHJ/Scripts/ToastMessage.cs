@@ -10,10 +10,15 @@ public class ToastMessage : MonoBehaviour
 {
     [SerializeField] private CanvasGroup toastCanvasGroup;
     [SerializeField] private TMP_Text toastText;
+
+    // Time to fade from transparent to fully visible
     [SerializeField] private float fadeInDuration = 0.3f;
+    // Time the toast stays fully visible before fading out
     [SerializeField] private float displayDuration = 1f;
+    // Time to fade from fully visible to transparent
     [SerializeField] private float fadeOutDuration = 0.3f;
 
+    // Tracks the currently running animation so it can be cancelled by a new toast
     private Coroutine currentToastCoroutine;
 
     public void ShowToast(string message)

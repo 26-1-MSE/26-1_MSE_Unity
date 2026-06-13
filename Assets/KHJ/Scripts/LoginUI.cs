@@ -13,6 +13,7 @@ public class LoginUI : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInputField;
 
     [SerializeField] private ToastMessage toastMessage;
+    // Login button, disabled while a request is in flight
     [SerializeField] private Button loginButton;
 
     // Bound to the login button's OnClick event
