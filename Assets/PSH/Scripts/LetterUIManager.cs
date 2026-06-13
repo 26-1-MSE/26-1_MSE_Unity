@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +31,7 @@ public class LetterUIManager : MonoBehaviour
     [SerializeField] private TMP_Text readStateText;
     [SerializeField] private Image readStateBg;
 
-    // Fetches mail detail from server, updates local data, and shows detail panel
+    
     private List<MailData> mails = new List<MailData>();
     private PublicUIManager publicUI;
 
@@ -52,7 +54,7 @@ public class LetterUIManager : MonoBehaviour
     }
 
 
-
+    // Fetches mail detail from server, updates local data, and shows detail panel
     public void OpenDetail(MailData mail)
     {
         NetworkManager.Instance.RequestMailDetail(
@@ -157,7 +159,7 @@ public class LetterUIManager : MonoBehaviour
             NoteItemUI itemUI = item.GetComponent<NoteItemUI>();
             if (itemUI == null)
             {
-                Debug.LogError("NoteItem 프리팹에 NoteItemUI 스크립트가 없음");
+                Debug.LogError("[LetterUIManager] NoteItemUI component missing on prefab");
                 return;
             }
 
