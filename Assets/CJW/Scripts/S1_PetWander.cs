@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Makes a pet wander randomly within a designated area.
+/// The pet alternates between moving and waiting states.
+/// </summary>
 public class PetWanderInArea : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1.5f;
@@ -20,11 +24,13 @@ public class PetWanderInArea : MonoBehaviour
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    // Selects the first random destination.
     private void Start()
     {
         SetNewTarget();
     }
 
+    // Moves toward the target position or waits before selecting a new one.
     private void Update()
     {
         if (moveArea == null) return;
@@ -60,6 +66,7 @@ public class PetWanderInArea : MonoBehaviour
         }
     }
 
+    // Chooses a new random destination within the movement area.
     private void SetNewTarget()
     {
         Bounds bounds = moveArea.bounds;
@@ -67,6 +74,7 @@ public class PetWanderInArea : MonoBehaviour
         isMoving = true;
     }
 
+    // Assigns the movement area for this pet.
     public void SetMoveArea(BoxCollider2D area)
     {
         moveArea = area;

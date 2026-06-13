@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Manages the pet inventory UI.
+/// Displays owned pets and updates inventory slots with corresponding pet sprites.
+/// </summary>
 public class DisplayPetUI : MonoBehaviour
 {
     [Header("Pet Slot Images")]
@@ -12,6 +17,7 @@ public class DisplayPetUI : MonoBehaviour
     [SerializeField] private Sprite deerSprite;
     [SerializeField] private Sprite boarSprite;
 
+    // Refreshes the pet inventory UI
     public void RefreshPetInventory()
     {
         Debug.Log("[DisplayPetInventoryUI] RefreshPetInventory »£√‚µ ");
@@ -50,6 +56,7 @@ public class DisplayPetUI : MonoBehaviour
         }
     }
 
+    // Clears all inventory slots.
     private void ClearAllSlots()
     {
         for (int i = 0; i < petImages.Length; i++)
@@ -58,6 +65,7 @@ public class DisplayPetUI : MonoBehaviour
         }
     }
 
+    // Clears a single inventory slot.
     private void ClearSlot(int index)
     {
         if (petImages[index] != null)
@@ -68,6 +76,7 @@ public class DisplayPetUI : MonoBehaviour
         }
     }
 
+    // Returns the sprite corresponding to the given pet type ID.
     private Sprite GetPetSprite(int petTypeId)
     {
         switch (petTypeId)

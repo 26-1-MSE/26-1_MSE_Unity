@@ -1,6 +1,10 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Displays player profile information.
+/// Updates nickname and pet shop name when profile data changes.
+/// </summary>
 public class ProfileUI : MonoBehaviour
 {
     [Header("Profile Text")]
@@ -18,6 +22,7 @@ public class ProfileUI : MonoBehaviour
         DataManager.OnProfileChanged -= RefreshProfile;
     }
 
+    // Updates profile UI using the latest data stored in DataManager.
     private void RefreshProfile()
     {
         if (DataManager.Data == null)

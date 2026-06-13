@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Spawns owned pets in the Pet Town scene.
+/// Pets are created using inventory data stored in DataManager.
+/// </summary>
 public class PetSpawner : MonoBehaviour
 {
     [System.Serializable]
@@ -15,11 +19,7 @@ public class PetSpawner : MonoBehaviour
     [Header("Random Spawn Area")]
     [SerializeField] private BoxCollider2D spawnArea;
 
-    private void Start()
-    {
-
-    }
-
+    // Spawns all owned pets using data stored in DataManager
     public void SpawnPets()
     {
         if (DataManager.Data == null)
@@ -43,6 +43,7 @@ public class PetSpawner : MonoBehaviour
         }
     }
 
+    // Returns a random position within the spawn area.
     private Vector3 GetRandomPositionInArea()
     {
         Bounds bounds = spawnArea.bounds;
@@ -53,6 +54,7 @@ public class PetSpawner : MonoBehaviour
         return new Vector3(randomX, randomY, 0f);
     }
 
+    // Returns the prefab corresponding to a pet type ID.
     private GameObject GetPrefab(int petTypeId)
     {
         foreach (var entry in petPrefabs)
@@ -64,6 +66,7 @@ public class PetSpawner : MonoBehaviour
         return null;
     }
 
+    // Returns the visual scale associated with a pet level.
     private float GetScaleByLevel(int level)
     {
         switch (level)

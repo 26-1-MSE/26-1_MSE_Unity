@@ -1,6 +1,10 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Displays the player's nickname.
+/// Updates automatically when profile data changes.
+/// </summary>
 public class NicknameUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text nicknameText;
@@ -30,6 +34,8 @@ public class NicknameUI : MonoBehaviour
         DataManager.OnProfileChanged -= RefreshNickname;
     }
 
+
+    // Updates nickname text using the latest profile data from DataManager.
     private void RefreshNickname()
     {
         if (DataManager.Data == null || nicknameText == null)

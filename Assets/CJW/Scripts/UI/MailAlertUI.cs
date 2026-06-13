@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+// Controls the unread mail notification icon.
 public class MailAlertUI : MonoBehaviour
 {
     [SerializeField] private GameObject unreadMailIcon;
@@ -9,6 +11,7 @@ public class MailAlertUI : MonoBehaviour
         RefreshFromDataManager();
     }
 
+    // Updates the unread mail icon using the current mail state stored in DataManager.
     public void RefreshFromDataManager()
     {
         if (DataManager.Data == null)
