@@ -41,6 +41,8 @@ public class PlayerFootstepHandler : MonoBehaviour
 
         if (sceneIndex == 3)
             AudioManager.SFXInstance?.PlayOneShot(23);
+        else if (sceneIndex == 1)
+            AudioManager.SFXInstance?.PlayOneShot(7);
     }
 
     /// <summary>
@@ -52,5 +54,7 @@ public class PlayerFootstepHandler : MonoBehaviour
 
         if (sceneIndex == 3)
             AudioManager.SFXInstance?.PlayOneShot(22);
+        else if (sceneIndex == 1)
+            AudioManager.SFXInstance?.PlayOneShot(6);
     }
 }
