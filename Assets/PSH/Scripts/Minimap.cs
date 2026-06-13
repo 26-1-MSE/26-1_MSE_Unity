@@ -1,5 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
+
+/// <summary>
+/// Makes the minimap camera follow the player's position directly.
+/// </summary>
 
 public class Minimap : MonoBehaviour
 {

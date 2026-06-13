@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Handles drag-and-drop placement of pets from inventory slots into the pet room.
+/// </summary>
+
 public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private GameObject rabbitPrefab;
@@ -19,6 +23,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private GameObject previewPet;
     private bool isDragging;
 
+    // Sets the pet's id and type before dragging begins
     public void SetPetData(int id, int typeId)
     {
         petId = id;
@@ -36,7 +41,8 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
 
         previewPet = Instantiate(prefab);
-        // 생성된 펫 크기 조정
+        
+        // Scale up the preview pet
         previewPet.transform.localScale = new Vector3(10f, 10f, 1f);
         isDragging = true;
 
@@ -50,6 +56,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         previewPet.transform.position = worldPos;
     }
 
+    // Drops the pet if released inside the drop area, otherwise cancels placement
     public void OnPointerUp(PointerEventData eventData)
     {
         Debug.Log($"[PetSlotDrag] PointerUp 감지 / slot:{gameObject.name}");
@@ -66,7 +73,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (!isInsideDropArea)
         {
-            Debug.LogWarning("[PetSlotDrag] DropArea 밖이라 previewPet 삭제");
+            Debug.LogWarning("[PetSlotDrag] Outside drop area, destroying previewPet");
             Destroy(previewPet);
 
             previewPet = null;
@@ -79,7 +86,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (NetworkManager.Instance == null)
         {
-            Debug.LogError("[PetSlotDrag] NetworkManager.Instance 없음");
+            Debug.LogError("[PetSlotDrag] NetworkManager.Instance is null");
             Destroy(placedPetTransform.gameObject);
 
             previewPet = null;
@@ -89,7 +96,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (petId <= 0)
         {
-            Debug.LogError($"[PetSlotDrag] 유효하지 않은 petId:{petId}");
+            Debug.LogError("[PetSlotDrag] Invalid petId:{petId}");
             Destroy(placedPetTransform.gameObject);
 
             previewPet = null;
@@ -101,7 +108,7 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             petId,
             response =>
             {
-                Debug.Log("[PetSlotDrag] 펫 데이터 수신 성공");
+                Debug.Log("[PetSlotDrag] Pet data received successfully");
 
                 if (inventoryManager != null)
                 {
@@ -113,12 +120,12 @@ public class PetSlotDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 else
                 {
-                    Debug.LogError("[PetSlotDrag] inventoryManager 연결 안 됨");
+                    Debug.LogError("[PetSlotDrag] inventoryManager is not assigned");
                 }
             },
             error =>
             {
-                Debug.LogError("[PetSlotDrag] 펫 데이터 요청 실패: " + error);
+                Debug.LogError("[PetSlotDrag] Failed to request pet data: " + error);
 
                 if (placedPetTransform != null)
                 {

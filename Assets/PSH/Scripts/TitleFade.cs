@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+
+/// <summary>
+/// Fades a title UI in, holds it, then fades out and deactivates it.
+/// </summary>
+
 public class TitleFade : MonoBehaviour
 {
     [SerializeField] private CanvasGroup canvasGroup;
@@ -14,11 +19,11 @@ public class TitleFade : MonoBehaviour
 
     private IEnumerator FadeSequence()
     {
-        // 페이드 인
+        // fade in
         yield return StartCoroutine(Fade(0f, 1f));
-        // 3초 유지
+        // hold it
         yield return new WaitForSeconds(displayDuration);
-        // 페이드 아웃
+        // fade out
         yield return StartCoroutine(Fade(1f, 0f));
 
         gameObject.SetActive(false);

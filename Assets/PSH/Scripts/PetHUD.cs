@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Displays the current pet's name, level, and food/water status on the HUD.
+/// </summary>
 public class PetHUD : MonoBehaviour
 {
     [SerializeField] private TMP_Text petNameText;
@@ -11,6 +14,7 @@ public class PetHUD : MonoBehaviour
     [SerializeField] private TMP_Text foodCountText;
     [SerializeField] private TMP_Text waterCountText;
 
+    // Updates all HUD elements with the given pet's status
     public void SetHUD(string petName, int level, int foodCurrent, int foodMax, int waterCurrent, int waterMax)
     {
         petNameText.text = petName;

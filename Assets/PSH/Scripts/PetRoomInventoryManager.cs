@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-//펫 슬롯 UI, 인벤토리 전환
+/// <summary>
+/// Manages the pet slot UI in the pet room and switching between pet/food inventory panels.
+/// </summary>
 public class PetRoomInventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel_Pet;
@@ -26,6 +28,7 @@ public class PetRoomInventoryManager : MonoBehaviour
         RefreshPetInventory();
     }
 
+    // Updates pet slot icons and passes pet data to each PetSlotDrag
     private void RefreshPetInventory()
     {
         if (DataManager.Data == null)
@@ -40,7 +43,7 @@ public class PetRoomInventoryManager : MonoBehaviour
                 petSlotImages[i].sprite = null;
                 petSlotImages[i].enabled = false;
 
-                // PetSlotDrag에 0 전달
+                // Pass empty data to PetSlotDrag
                 PetSlotDrag dragEmpty = petSlotImages[i].GetComponentInParent<PetSlotDrag>();
                 if (dragEmpty != null)
                     dragEmpty.SetPetData(0, 0);
@@ -51,14 +54,14 @@ public class PetRoomInventoryManager : MonoBehaviour
             petSlotImages[i].sprite = GetPetSprite(pets[i].petTypeId);
             petSlotImages[i].enabled = true;
 
-            // PetSlotDrag에 typeId 전달
+            // Pass pet id and type to PetSlotDrag
             PetSlotDrag drag = petSlotImages[i].GetComponentInParent<PetSlotDrag>();
             if (drag != null)
                 drag.SetPetData(pets[i].petId, pets[i].petTypeId);
         }
     }
 
-    //typeId에 맞는 동물 스프라이트
+    // Returns the sprite matching the given pet type id
     private Sprite GetPetSprite(int petTypeId)
     {
         switch (petTypeId)
@@ -71,7 +74,7 @@ public class PetRoomInventoryManager : MonoBehaviour
         }
     }
 
-
+    // Called when a pet is successfully placed in the room
     public void OnPetPlaced(PetRoomResponse response, Transform placedPetTransform)
     {
         if (petGrowthManager != null)
