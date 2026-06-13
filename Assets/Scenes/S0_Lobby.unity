@@ -2156,7 +2156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f663339ac23014c9a24a146b7d3c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkManager
-  baseUrl: https://payroll-fleshy-reselect.ngrok-free.dev
+  baseUrl: http://localhost:8080
   timeout: 10
 --- !u!4 &1847688972
 Transform:
