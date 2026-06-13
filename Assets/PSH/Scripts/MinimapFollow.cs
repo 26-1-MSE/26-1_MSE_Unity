@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+/// <summary>
+/// Makes the minimap camera follow the player, clamped within defined bounds.
+/// </summary>
 public class MinimapFollow : MonoBehaviour
 {
     public Transform player;

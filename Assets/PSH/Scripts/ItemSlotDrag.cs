@@ -3,12 +3,15 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections.Generic;
 
+/// <summary>
+/// Handles dragging food items from inventory onto a pet to use them.
+/// </summary>
 public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Sprite foodSprite;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private TMP_Text countText;
-    [SerializeField] private GameObject foodImage; // BG 안의 음식 스프라이트 오브젝트
+    [SerializeField] private GameObject foodImage;// Food sprite object inside the slot background
     [SerializeField] private PetGrowthManager petGrowthManager;
 
     private List<int> itemIds = new List<int>();
@@ -16,6 +19,7 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private int count;
     private GameObject preview;
 
+    // Sets the slot's item data and updates the count display
     public void SetItemData(List<int> ids, int typeId, int itemCount, Sprite sprite)
     {
         itemIds = ids;
@@ -34,15 +38,15 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         if (petGrowthManager != null && petGrowthManager.IsUsingItem())
         {
-            Debug.LogWarning("[ItemSlotDrag] 아이템 사용 처리 중이라 드래그 막음");
+            Debug.LogWarning("[ItemSlotDrag] Drag blocked, item use already in progress");
             return;
         }
-        // 미리보기 오브젝트 생성
+        // Create drag preview object
         preview = new GameObject("FoodPreview");
         SpriteRenderer sr = preview.AddComponent<SpriteRenderer>();
         sr.sprite = foodSprite;
         sr.sortingOrder = 20;
-        // 크기 조정
+        
         preview.transform.localScale = new Vector3(3f, 3f, 1f); 
     }
 
@@ -53,6 +57,7 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         preview.transform.position = worldPos;
     }
 
+    // Checks drop target, applies item to pet if valid, then removes preview
     public void OnEndDrag(PointerEventData eventData)
     {
         if (preview == null)
@@ -64,11 +69,11 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         if (hit == null)
         {
-            Debug.LogWarning("[ItemSlotDrag] 드롭 위치에 Collider2D 없음");
+            Debug.LogWarning("[ItemSlotDrag] No Collider2D found at drop position");
         }
         else
         {
-            Debug.Log($"[ItemSlotDrag] 드롭 위치 Collider 감지 / name:{hit.gameObject.name}, tag:{hit.gameObject.tag}");
+            Debug.Log($"[ItemSlotDrag] Collider detected at drop position / name:{hit.gameObject.name}, tag:{hit.gameObject.tag}");
         }
 
         bool isOnPet = hit != null &&
@@ -76,11 +81,11 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         if (isOnPet)
         {
-            Debug.Log($"[ItemSlotDrag] 아이템 드롭 성공 / itemTypeId:{itemTypeId}");
+            Debug.Log($"[ItemSlotDrag] Item drop succeeded / itemTypeId:{itemTypeId}");
 
             if (petGrowthManager == null)
             {
-                Debug.LogError("[ItemSlotDrag] petGrowthManager 연결 안 됨");
+                Debug.LogError("[ItemSlotDrag] petGrowthManager is not assigned");
                 Destroy(preview);
                 preview = null;
                 return;
@@ -88,7 +93,7 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
             int petId = petGrowthManager.GetCurrentPetId();
 
-            Debug.Log($"[ItemSlotDrag] 사용 요청 / petId:{petId}, itemTypeId:{itemTypeId}, count:{count}");
+            Debug.Log($"[ItemSlotDrag] Use request / petId:{petId}, itemTypeId:{itemTypeId}, count:{count}");
 
             int useItemId = itemIds[0];
 
@@ -108,7 +113,7 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             );
         }
 
-        // 성공/실패/바깥 드롭 상관없이 드래그 미리보기는 무조건 제거
+        // Preview is always destroyed regardless of success, failure, or outside drop
         Destroy(preview);
         preview = null;
     }
@@ -117,8 +122,11 @@ public class ItemSlotDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         Vector3 screenPos = eventData.position;
         screenPos.z = Mathf.Abs(mainCamera.transform.position.z);
+       
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(screenPos);
         worldPos.z = 0f;
+        
+        
         return worldPos;
     }
 }

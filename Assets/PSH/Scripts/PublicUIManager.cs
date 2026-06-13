@@ -2,6 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+/// <summary>
+/// Manages opening/closing of UI panels, background overlay, and close delay.
+/// </summary>
+
 public class PublicUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject background;
@@ -28,6 +33,8 @@ public class PublicUIManager : MonoBehaviour
         currentPanel = null;
     }
 
+
+    // Plays close animation, then deactivates panel and background
     private IEnumerator CloseAfterDelay(GameObject panel)
     {
         Animator anim = panel.GetComponent<Animator>();
@@ -38,7 +45,7 @@ public class PublicUIManager : MonoBehaviour
     }
 
 
-    // lobby 씬으로 돌아감
+    // Returns to the lobby scene
     public void ExitGame()
     {
         SceneManager.LoadScene("S0_Lobby");

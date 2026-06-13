@@ -1,3 +1,8 @@
+/// <summary>
+/// Serializable data structure representing a single mail/letter item.
+/// </summary>
+
+
 [System.Serializable]
 public class MailData
 {

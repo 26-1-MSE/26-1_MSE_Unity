@@ -1,5 +1,10 @@
 using UnityEngine;
 
+
+/// <summary>
+/// Manages the multi-page tutorial UI, 
+/// including page navigation and button visibility.
+/// </summary>
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private GameObject tutorialPanel;
@@ -39,6 +44,7 @@ public class TutorialManager : MonoBehaviour
             ShowPage(currentPage - 1);
     }
 
+    // Activates the target page and updates prev/next button visibility
     private void ShowPage(int index)
     {
         for (int i = 0; i < pages.Length; i++)

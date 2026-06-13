@@ -3,6 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the mail list and detail UI, 
+/// including loading mails from the server and read-state tracking.
+/// </summary>
 public class LetterUIManager : MonoBehaviour
 {
     [Header("Panels")]
@@ -25,6 +29,7 @@ public class LetterUIManager : MonoBehaviour
     [SerializeField] private TMP_Text readStateText;
     [SerializeField] private Image readStateBg;
 
+    // Fetches mail detail from server, updates local data, and shows detail panel
     private List<MailData> mails = new List<MailData>();
     private PublicUIManager publicUI;
 
@@ -78,7 +83,7 @@ public class LetterUIManager : MonoBehaviour
             },
             error =>
             {
-                Debug.LogError("[LetterUIManager] 메일 상세 조회 실패: " + error);
+                Debug.LogError("[LetterUIManager] Failed to load mail detail: " + error);
             }
         );
     }
@@ -88,6 +93,7 @@ public class LetterUIManager : MonoBehaviour
         detailPanel.SetActive(false);
     }
 
+    // Fetches the mail list from the server and rebuilds local data
     private void LoadMailListFromServer()
     {
         NetworkManager.Instance.RequestMailList(
@@ -113,29 +119,29 @@ public class LetterUIManager : MonoBehaviour
             },
             error =>
             {
-                Debug.LogError("메일 목록 조회 실패: " + error);
+                Debug.LogError("[LetterUIManager] Failed to load mail list: " + error);
             }
         );
     }
 
-
+    // Rebuilds the mail list UI and updates the new-mail count
     private void RefreshList()
     {
         if (contentParent == null)
         {
-            Debug.LogError("Content Parent가 비어있음");
+            Debug.LogError("[LetterUIManager] Content Parent is not assigned");
             return;
         }
 
         if (noteItemPrefab == null)
         {
-            Debug.LogError("Note Item Prefab이 비어있음");
+            Debug.LogError("[LetterUIManager] Note Item Prefab is not assigned");
             return;
         }
 
         if (noteCountText == null)
         {
-            Debug.LogError("Note Count Text가 비어있음");
+            Debug.LogError("[LetterUIManager] Note Count Text is not assigned");
             return;
         }
 
@@ -158,7 +164,7 @@ public class LetterUIManager : MonoBehaviour
             itemUI.Setup(mail, this);
         }
 
-        //new 개수 세서 표시
+        
         int newCount = 0;
         foreach (MailData mail in mails)
             if (!mail.isRead) newCount++;
@@ -167,6 +173,8 @@ public class LetterUIManager : MonoBehaviour
             ? $"{newCount} NEW / {mails.Count}"
             : $"{mails.Count} / {mails.Count}";
     }
+
+    // Shows or hides the "new mail" notification bubble
     private void RefreshNewBubble()
     {
         bool hasNew = false;

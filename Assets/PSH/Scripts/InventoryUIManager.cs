@@ -32,7 +32,7 @@ public class InventoryUIManager : MonoBehaviour
             },
             error =>
             {
-                Debug.LogError("[InventoryUIManager] /inventory 응답 실패 : " + error);
+                Debug.LogError("[InventoryUIManager] /inventory response failed : " + error);
                 ShowPetInventory();
             }
         );
