@@ -54,7 +54,7 @@ public class PlayerInteraction : MonoBehaviour
                 interactText.text = message; 
                 interactText.gameObject.SetActive(true);
             }
-            Debug.Log($"[PlayerInteraction] 상호작용 범위 진입: {other.name}");
+            Debug.Log($"[PlayerInteraction] In Interaction Range : {other.name}");
         }
     }
 
@@ -66,7 +66,7 @@ public class PlayerInteraction : MonoBehaviour
             currentInteractable = null;
             if (interactText != null)
                 interactText.gameObject.SetActive(false);
-            Debug.Log($"[PlayerInteraction] 상호작용 범위 이탈: {other.name}");
+            Debug.Log($"[PlayerInteraction] Out of Interaction Range : {other.name}");
         }
     }
 

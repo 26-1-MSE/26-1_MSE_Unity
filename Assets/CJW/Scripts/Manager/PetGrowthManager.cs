@@ -9,8 +9,7 @@ using TMPro;
 /// </summary>
 
 public class PetGrowthManager : MonoBehaviour
-{
-    // HUD 연결
+{ 
     [Header("HUD")]
     // Displays the current status of the selected pet.
     [SerializeField] private TMP_Text levelText;
@@ -51,7 +50,7 @@ public class PetGrowthManager : MonoBehaviour
     
     public void SetCurrentPet(PetRoomResponse response, Transform petTransform)
     {
-        Debug.Log($"[PetGrowthManager] SetCurrentPet 시작 / time:{Time.time:F3}");
+        Debug.Log($"[PetGrowthManager] SetCurrentPet Start / time:{Time.time:F3}");
 
         currentPetId = response.data.pet.petId;
         currentLevel = response.data.pet.level;
@@ -65,12 +64,12 @@ public class PetGrowthManager : MonoBehaviour
 
         placedPetTransform = petTransform;
 
-        Debug.Log($"[PetGrowthManager] 초기 펫 데이터 / petId:{currentPetId}, level:{currentLevel}, food:{currentFood}/{currentFoodMax}, water:{currentWater}/{currentWaterMax}");
+        Debug.Log($"[PetGrowthManager] initial pet data / petId:{currentPetId}, level:{currentLevel}, food:{currentFood}/{currentFoodMax}, water:{currentWater}/{currentWaterMax}");
 
         ApplyPetScale();
         RefreshHUD();
 
-        Debug.Log($"[PetGrowthManager] SetCurrentPet 완료 / time:{Time.time:F3}");
+        Debug.Log($"[PetGrowthManager] SetCurrentPet completed / time:{Time.time:F3}");
     }
 
     // Returns the ID of the currently selected pet.
@@ -87,50 +86,48 @@ public class PetGrowthManager : MonoBehaviour
     
     public void UseItemOnCurrentPet(int itemTypeId, System.Action onSuccess)
     {
-        Debug.Log($"[PetGrowthManager] UseItemOnCurrentPet 호출 / time:{Time.time:F3}, petId:{currentPetId}, itemTypeId:{itemTypeId}");
+        Debug.Log($"[PetGrowthManager] call UseItemOnCurrentPet / time:{Time.time:F3}, petId:{currentPetId}, itemTypeId:{itemTypeId}");
 
         
         if (currentPetId <= 0)
         {
-            Debug.LogWarning("[PetGrowthManager] 현재 선택된 펫 없음");
+            Debug.LogWarning("[PetGrowthManager] no pet is sellected");
             return;
         }
 
         if (isUsingItem)
         {
-            Debug.LogWarning($"[PetGrowthManager] 아이템 사용 요청 처리 중이라 차단 / time:{Time.time:F3}");
+            Debug.LogWarning($"[PetGrowthManager] isUsingItem / time:{Time.time:F3}");
             return;
         }
 
         isUsingItem = true;
         useItemRequestStartTime = Time.time;
 
-        Debug.Log($"[PetGrowthManager] 서버 RequestUseItem 시작 / time:{useItemRequestStartTime:F3}");
+        Debug.Log($"[PetGrowthManager] Server starts RequestUseItem  / time:{useItemRequestStartTime:F3}");
 
         NetworkManager.Instance.RequestUseItem(
             currentPetId,
             itemTypeId,
             response =>
             {
-                //서버 응답 기반으로 펫 상태 갱신 -> 성공 콜백 -> 아이템 사용가능 상태 전환
-
                 float responseTime = Time.time;
-                Debug.Log($"[PetGrowthManager] 서버 RequestUseItem 응답 도착 / time:{responseTime:F3}, elapsed:{responseTime - useItemRequestStartTime:F3}s");
+                Debug.Log($"[PetGrowthManager] Server RequestUseItem Response  / time:{responseTime:F3}, elapsed:{responseTime - useItemRequestStartTime:F3}s");
 
                 ApplyUseItemData(response);
 
-                Debug.Log($"[PetGrowthManager] onSuccess 콜백 실행 전 / time:{Time.time:F3}");
+                Debug.Log($"[PetGrowthManager] before onSuccess callback / time:{Time.time:F3}");
                 onSuccess?.Invoke();
-                Debug.Log($"[PetGrowthManager] onSuccess 콜백 실행 후 / time:{Time.time:F3}");
+                Debug.Log($"[PetGrowthManager] after onSuccess callback / time:{Time.time:F3}");
 
                 isUsingItem = false;
 
-                Debug.Log($"[PetGrowthManager] 아이템 사용 처리 완료 / totalElapsed:{Time.time - useItemRequestStartTime:F3}s");
+                Debug.Log($"[PetGrowthManager] item is used / totalElapsed:{Time.time - useItemRequestStartTime:F3}s");
 
             },
             error =>
             {
-                Debug.LogError($"[PetGrowthManager] 아이템 사용 실패 / time:{Time.time:F3}, elapsed:{Time.time - useItemRequestStartTime:F3}s, error:{error}");
+                Debug.LogError($"[PetGrowthManager] using item failed / time:{Time.time:F3}, elapsed:{Time.time - useItemRequestStartTime:F3}s, error:{error}");
                 isUsingItem = false;
             }
         );
@@ -148,7 +145,7 @@ public class PetGrowthManager : MonoBehaviour
     /// </summary>
     public void ApplyUseItemData(UseItemResponse response)
     {
-        Debug.Log($"[PetGrowthManager] ApplyUseItemData 시작 / time:{Time.time:F3}");
+        Debug.Log($"[PetGrowthManager] Start ApplyUseItemData / time:{Time.time:F3}");
 
         int previousLevel = currentLevel;
 
@@ -160,59 +157,55 @@ public class PetGrowthManager : MonoBehaviour
         currentWater = response.data.pet.water.current;
         currentWaterMax = response.data.pet.water.max;
 
-        Debug.Log($"[PetGrowthManager] 서버 응답 데이터 반영 / prevLevel:{previousLevel}, newLevel:{currentLevel}, food:{currentFood}/{currentFoodMax}, water:{currentWater}/{currentWaterMax}");
+        Debug.Log($"[PetGrowthManager] reflect Server Response / prevLevel:{previousLevel}, newLevel:{currentLevel}, food:{currentFood}/{currentFoodMax}, water:{currentWater}/{currentWaterMax}");
 
         if (currentLevel > previousLevel)
         {
-            Debug.Log($"[PetGrowthManager] 레벨업 감지 / {previousLevel} -> {currentLevel}, time:{Time.time:F3}");
+            Debug.Log($"[PetGrowthManager] sensor LevelUp / {previousLevel} -> {currentLevel}, time:{Time.time:F3}");
 
             ApplyPetScale();
 
             if (currentLevel == 2)
             {
-                Debug.Log($"[PetGrowthManager] Lv2 레벨업 연출 시작 / time:{Time.time:F3}");
                 toastMessage?.ShowToast("Level up!");
                 AudioManager.SFXInstance?.PlayOneShot(4);
             }
             else if (currentLevel == 3)
             {
-                Debug.Log($"[PetGrowthManager] Lv3 성장 완료 연출 시작 / time:{Time.time:F3}");
                 toastMessage?.ShowToast("Your pet has finished growing.");
                 AudioManager.SFXInstance?.PlayOneShot(5);
             }
         }
         else
         {
-            Debug.Log($"[PetGrowthManager] 일반 아이템 사용 처리 / level:{currentLevel}, time:{Time.time:F3}");
+            Debug.Log($"[PetGrowthManager] item is used / level:{currentLevel}, time:{Time.time:F3}");
             AudioManager.SFXInstance?.PlayOneShot(3);
         }
 
         RefreshHUD();
-        Debug.Log($"[PetGrowthManager] ApplyUseItemData 완료 / time:{Time.time:F3}");
+        Debug.Log($"[PetGrowthManager] ApplyUseItemData completed / time:{Time.time:F3}");
     }
 
     /// Adjusts the pet's visual scale according to its level.
     private void ApplyPetScale()
     {
-        Debug.Log($"[PetGrowthManager] ApplyPetScale 호출 / time:{Time.time:F3}");
+        Debug.Log($"[PetGrowthManager] call ApplyPetScale / time:{Time.time:F3}");
 
         if (placedPetTransform == null)
         {
-            Debug.LogWarning("[PetGrowthManager] placedPetTransform 없음");
+            Debug.LogWarning("[PetGrowthManager] There's no  placedPetTransform ");
             return;
         }
 
        
         float scale = GetScaleByLevel(currentLevel);
         placedPetTransform.localScale = new Vector3(scale, scale, 1f);
-
-        Debug.Log($"[PetGrowthManager] 펫 크기 변경 완료 / level:{currentLevel}, scale:{scale}, actualScale:{placedPetTransform.localScale}, time:{Time.time:F3}");
     }
 
     /// Refreshes all pet-related HUD elements
     private void RefreshHUD()
     {
-        Debug.Log($"[PetGrowthManager] RefreshHUD 호출 / time:{Time.time:F3}");
+        Debug.Log($"[PetGrowthManager] Call RefreshHUD / time:{Time.time:F3}");
 
         if (levelText != null)
             levelText.text = "Lv. " + currentLevel;
@@ -248,9 +241,6 @@ public class PetGrowthManager : MonoBehaviour
                 ? "MAX / MAX"
                 : $"{currentWater} / {currentWaterMax}";
         }
-
-        Debug.Log($"[PetGrowthManager] RefreshHUD 완료 / levelText:{levelText?.text}, foodText:{foodCountText?.text}, waterText:{waterCountText?.text}, time:{Time.time:F3}");
-
 
 }
 

@@ -12,7 +12,7 @@ public class Portal : MonoBehaviour, IInteractable
         Island
     }
 
-    [Header("씬 이동")]
+    [Header("Move to Scene")]
     [SerializeField] private TargetScene targetScene;
 
     // Plays a portal sound effect and moves the player
@@ -20,7 +20,7 @@ public class Portal : MonoBehaviour, IInteractable
     {
         if (GameManager.Instance == null)
         {
-            Debug.LogWarning("GameManager.Instance가 없어서 씬 이동을 할 수 없습니다.");
+            Debug.LogWarning("There's no GameManager.Instance");
             return;
         }
 

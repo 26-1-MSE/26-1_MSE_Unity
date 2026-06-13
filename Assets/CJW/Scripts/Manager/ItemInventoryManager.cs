@@ -30,11 +30,11 @@ public class ItemInventoryManager : MonoBehaviour
     /// </summary>
     public void RefreshItemInventory()
     {
-        Debug.Log("[ItemInventoryManager] RefreshItemInventory 호출됨");
+        Debug.Log("[ItemInventoryManager] RefreshItemInventory is called");
 
         if (DataManager.Data == null)
         {
-            Debug.LogWarning("[ItemInventoryManager] DataManager.Data 없음");
+            Debug.LogWarning("[ItemInventoryManager] There's no DataManager.Data");
             return;
         }
 
@@ -42,12 +42,12 @@ public class ItemInventoryManager : MonoBehaviour
 
         if (items == null)
         {
-            Debug.LogWarning("[ItemInventoryManager] OwnedItemSlots 없음");
+            Debug.LogWarning("[ItemInventoryManager] There's no OwnedItemSlots");
             ClearAllSlots();
             return;
         }
 
-        Debug.Log($"[ItemInventoryManager] OwnedItemSlots 길이: {items.Length}");
+        Debug.Log($"[ItemInventoryManager] Length of OwnedItemSlots : {items.Length}");
 
         Dictionary<int, List<int>> itemIdMap = new Dictionary<int, List<int>>();
 
@@ -65,11 +65,11 @@ public class ItemInventoryManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"[ItemInventoryManager] itemIdMap 개수: {itemIdMap.Count}");
+        Debug.Log($"[ItemInventoryManager] itemIdMap count: {itemIdMap.Count}");
 
         foreach (var pair in itemIdMap)
         {
-            Debug.Log($"[ItemInventoryManager] 묶음 확인 / typeId:{pair.Key}, itemIds:{string.Join(",", pair.Value)}");
+            Debug.Log($"[ItemInventoryManager] bundle / typeId:{pair.Key}, itemIds:{string.Join(",", pair.Value)}");
         }
 
         int slotIndex = 0;
@@ -89,7 +89,7 @@ public class ItemInventoryManager : MonoBehaviour
             List<int> ids = new List<int>(pair.Value);
             Sprite itemSprite = GetItemSprite(itemTypeId);
 
-            Debug.Log($"[ItemInventoryManager] UI 세팅 / slot:{slotIndex}, typeId:{itemTypeId}, count:{ids.Count}, sprite:{itemSprite}");
+            Debug.Log($"[ItemInventoryManager] UI setting / slot:{slotIndex}, typeId:{itemTypeId}, count:{ids.Count}, sprite:{itemSprite}");
 
             bool hasItem = ids.Count > 0 && itemSprite != null;
 

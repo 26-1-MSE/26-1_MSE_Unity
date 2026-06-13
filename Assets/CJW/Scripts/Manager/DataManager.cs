@@ -224,7 +224,7 @@ public class DataManager : MonoBehaviour
 
         if (ownedPets == null)
         {
-            Debug.Log("[DataManager] 보유 펫 없음");
+            Debug.Log("[DataManager] No OwnedPet");
             return;
         }
 
@@ -236,7 +236,7 @@ public class DataManager : MonoBehaviour
             _ownedPetSlots[i].level = ownedPets[i].level;
         }
 
-        Debug.Log("[DataManager] 보유 펫 슬롯 저장 완료");
+        Debug.Log("[DataManager] OwnePetSlot saved");
     }
 
     /// <summary>
@@ -248,7 +248,7 @@ public class DataManager : MonoBehaviour
     {
         if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
         {
-            Debug.LogWarning("[DataManager] 잘못된 펫 슬롯 인덱스: " + slotIndex);
+            Debug.LogWarning("[DataManager] wrong pet index: " + slotIndex);
             return -1;
         }
 
@@ -259,7 +259,7 @@ public class DataManager : MonoBehaviour
     {
         if (slotIndex < 0 || slotIndex >= _ownedPetSlots.Length)
         {
-            Debug.LogWarning("[DataManager] 잘못된 펫 슬롯 인덱스: " + slotIndex);
+            Debug.LogWarning("[DataManager] wrong petslot index: " + slotIndex);
             return -1;
         }
 
@@ -280,12 +280,12 @@ public class DataManager : MonoBehaviour
                 _ownedPetSlots[i].petId = petId;
                 _ownedPetSlots[i].petTypeId = petTypeId;
 
-                Debug.Log($"[DataManager] 보유 펫 추가 저장 완료 / slot: {i}, petId: {petId}, petTypeId: {petTypeId}");
+                Debug.Log($"[DataManager] Added OwnedPet / slot: {i}, petId: {petId}, petTypeId: {petTypeId}");
                 return;
             }
         }
 
-        Debug.LogWarning("[DataManager] 보유 펫 슬롯이 가득 찼습니다.");
+        Debug.LogWarning("[DataManager] OwnedPetslot is full.");
     }
 
     /// <summary>
@@ -297,7 +297,7 @@ public class DataManager : MonoBehaviour
     {
         _ownedItemSlots = new OwnedItemSlot[12];
 
-        Debug.Log("[DataManager] InventoryItemData SetOwnedItems 호출됨");
+        Debug.Log("[DataManager] InventoryItemData SetOwnedItems is called");
 
         if (items == null || items.Length == 0)
             return;
@@ -349,7 +349,7 @@ public class DataManager : MonoBehaviour
             if (_ownedItemSlots[i].itemTypeId == itemTypeId)
             {
                 _ownedItemSlots[i].count = count;
-                Debug.Log($"[DataManager] 아이템 수량 갱신 / itemTypeId:{itemTypeId}, count:{count}");
+                Debug.Log($"[DataManager] renew ownedItem / itemTypeId:{itemTypeId}, count:{count}");
                 return;
             }
         }
@@ -362,12 +362,12 @@ public class DataManager : MonoBehaviour
                 _ownedItemSlots[i].itemTypeId = itemTypeId;
                 _ownedItemSlots[i].count = count;
 
-                Debug.Log($"[DataManager] 새 아이템 추가 / itemTypeId:{itemTypeId}, count:{count}");
+                Debug.Log($"[DataManager] add new item / itemTypeId:{itemTypeId}, count:{count}");
                 return;
             }
         }
 
-        Debug.LogWarning("[DataManager] 아이템 슬롯이 가득 찼습니다.");
+        Debug.LogWarning("[DataManager] itemSlot is full");
     }
 
 

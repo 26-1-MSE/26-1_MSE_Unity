@@ -113,7 +113,7 @@ public class NetworkManager : MonoBehaviour
         try { return JsonUtility.FromJson<T>(raw); }
         catch (Exception e)
         {
-            Debug.LogWarning("[NetworkManager] JSON 파싱 실패: " + e.Message + " / raw: " + raw);
+            Debug.LogWarning("[NetworkManager] JSON parsing failed: " + e.Message + " / raw: " + raw);
             return null;
         }
     }
@@ -132,8 +132,8 @@ public class NetworkManager : MonoBehaviour
 
     public void TestConnection() => StartCoroutine(GetRoutine("", (code, raw) =>
     {
-        if (code == -1) Debug.LogError("[NetworkManager] 연결 실패");
-        else Debug.Log("[NetworkManager] 연결 성공: " + raw);
+        if (code == -1) Debug.LogError("[NetworkManager] connection failed");
+        else Debug.Log("[NetworkManager] connection success: " + raw);
     }));
 
     /// <summary>
@@ -147,7 +147,7 @@ public class NetworkManager : MonoBehaviour
             JsonUtility.ToJson(new LoginRequest { userId = loginId, password = password }),
             (code, raw) =>
             {
-                Debug.Log("[NetworkManager] 로그인 응답 code: " + code + " / raw: " + raw);
+                Debug.Log("[NetworkManager] login response code: " + code + " / raw: " + raw);
 
                 if (code == -1) { onFail?.Invoke("Server connection failed"); return; }
 
@@ -159,7 +159,7 @@ public class NetworkManager : MonoBehaviour
 
                 if (response.ownedPets != null)
                 {
-                    Debug.Log("[NetworkManager] 보유 펫 수: " + response.ownedPets.Length);
+                    Debug.Log("[NetworkManager] OwnedPet count: " + response.ownedPets.Length);
 
                     for (int i = 0; i < response.ownedPets.Length; i++)
                     {
@@ -168,10 +168,10 @@ public class NetworkManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("[NetworkManager] 보유 펫 없음");
+                    Debug.Log("[NetworkManager] No OwnedPet");
                 }
 
-                Debug.Log("[NetworkManager] 파싱 결과");
+                Debug.Log("[NetworkManager] parsing result");
                 Debug.Log("  accessToken: " + response.accessToken);
                 Debug.Log("  nickname: "    + response.nickname);
                 Debug.Log("  shopName: "    + response.shopName);
@@ -212,7 +212,7 @@ public class NetworkManager : MonoBehaviour
             }),
             (code, raw) =>
             {
-                Debug.Log("[NetworkManager] 회원가입 응답 code: " + code + " / raw: " + raw);
+                Debug.Log("[NetworkManager] SignUp Response code: " + code + " / raw: " + raw);
 
                 if (code == -1) { onResult?.Invoke(false, "Server connection failed"); return; }
 
@@ -246,11 +246,11 @@ public class NetworkManager : MonoBehaviour
     Action<LoginResponse> onSuccess = null,
     Action<string> onFail = null)
     {
-        Debug.Log("[NetworkManager] auth/status 요청 시작");
+        Debug.Log("[NetworkManager] auth/status request start");
 
         StartCoroutine(GetRoutine("/auth/status", (code, raw) =>
         {
-            Debug.Log("[NetworkManager] auth/status 응답 code: " + code);
+            Debug.Log("[NetworkManager] auth/status response code: " + code);
             Debug.Log("[NetworkManager] auth/status raw: " + raw);
 
             if (code == -1)
@@ -280,7 +280,7 @@ public class NetworkManager : MonoBehaviour
                 DataManager.Data.SetOwnedPets(response.ownedPets);
             }
 
-            Debug.Log("[NetworkManager] auth/status DataManager 저장 완료");
+            Debug.Log("[NetworkManager] auth/status DataManager saved");
 
             onSuccess?.Invoke(response);
         }));
@@ -295,18 +295,18 @@ public class NetworkManager : MonoBehaviour
     {
         StartCoroutine(GetRoutine("/pet/petroom?petId=" + petId, (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 펫 데이터 응답 code: " + code);
+            Debug.Log("[NetworkManager] petdata response code: " + code);
             Debug.Log("[NetworkManager] raw: " + raw);
 
             if (code == -1)
             {
-                Debug.LogError("[NetworkManager] 서버 연결 실패");
+                Debug.LogError("[NetworkManager] server connection failed");
                 return;
             }
 
             if (code != 200)
             {
-                Debug.LogError("[NetworkManager] 펫 데이터 요청 실패: " + code);
+                Debug.LogError("[NetworkManager] pet data request failed: " + code);
                 return;
             }
 
@@ -314,17 +314,17 @@ public class NetworkManager : MonoBehaviour
 
             if (response == null)
             {
-                Debug.LogError("[NetworkManager] 펫 데이터 JSON 파싱 실패");
+                Debug.LogError("[NetworkManager] petdata parsing failed");
                 return;
             }
 
             if (!response.success)
             {
-                Debug.LogError("[NetworkManager] 펫 데이터 요청 실패");
+                Debug.LogError("[NetworkManager] petdata response failed");
                 return;
             }
 
-            Debug.Log("[NetworkManager] 펫 데이터 요청 성공");
+            Debug.Log("[NetworkManager] Petdata Request success");
             Debug.Log("petId: " + response.data.pet.petId);
             Debug.Log("petTypeId: " + response.data.pet.petTypeId);
             Debug.Log("level: " + response.data.pet.level);
@@ -334,12 +334,12 @@ public class NetworkManager : MonoBehaviour
             Debug.Log("items count: " + response.data.items.Length);
             if (DataManager.Data != null && response.data.items != null)
             {
-                Debug.Log("[NetworkManager] 펫룸 items DataManager 저장 호출");
+                Debug.Log("[NetworkManager] PetRoom items DataManager call");
                 DataManager.Data.SetOwnedItems(response.data.items);
             }
             else
             {
-                Debug.LogWarning("[NetworkManager] DataManager 또는 items null");
+                Debug.LogWarning("[NetworkManager] DataManager for items null");
             }
             
             onSuccess?.Invoke(response);
@@ -360,7 +360,7 @@ public class NetworkManager : MonoBehaviour
 
         StartCoroutine(PostRoutine("/pet/acquire", json, (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 펫 획득 응답 code: " + code + " / raw: " + raw);
+            Debug.Log("[NetworkManager] PetAcquire response code: " + code + " / raw: " + raw);
 
             if (code == -1)
             {
@@ -388,7 +388,7 @@ public class NetworkManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log("[NetworkManager] 펫 획득 성공");
+            Debug.Log("[NetworkManager] PetAcquire success");
             Debug.Log("petId: " + response.data.pet.petId);
             Debug.Log("petTypeId: " + response.data.pet.petTypeId);
             Debug.Log("level: " + response.data.pet.level);
@@ -402,7 +402,7 @@ public class NetworkManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("[NetworkManager] DataManager.Data가 없어서 보유 펫을 갱신할 수 없습니다.");
+                Debug.LogWarning("[NetworkManager] There's no DataManager.Data");
             }
 
             onSuccess?.Invoke();
@@ -418,7 +418,7 @@ public class NetworkManager : MonoBehaviour
     {
         StartCoroutine(GetRoutine("/inventory", (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 인벤토리 응답 code: " + code);
+            Debug.Log("[NetworkManager] Inventory response code: " + code);
             Debug.Log("[NetworkManager] raw: " + raw);
 
             if (code == -1)
@@ -492,18 +492,18 @@ public class NetworkManager : MonoBehaviour
 
         StartCoroutine(PostRoutine("/item/use", json, (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 아이템 사용 응답 code: " + code);
+            Debug.Log("[NetworkManager] use item reponse code: " + code);
             Debug.Log("[NetworkManager] raw: " + raw);
 
             if (code == -1)
             {
-                onFail?.Invoke("서버 연결 실패");
+                onFail?.Invoke("Server connection failed");
                 return;
             }
 
             if (code != 200)
             {
-                onFail?.Invoke("아이템 사용 실패: " + code);
+                onFail?.Invoke("using item failed: " + code);
                 return;
             }
 
@@ -511,7 +511,7 @@ public class NetworkManager : MonoBehaviour
 
             if (response == null)
             {
-                onFail?.Invoke("JSON 파싱 실패");
+                onFail?.Invoke("JSON parsing failed");
                 return;
             }
 
@@ -540,7 +540,7 @@ public class NetworkManager : MonoBehaviour
 
         StartCoroutine(PostRoutine("/item/acquire", json, (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 아이템 획득 응답 code: " + code + " / raw: " + raw);
+            Debug.Log("[NetworkManager] itemAcquire Response code: " + code + " / raw: " + raw);
 
             if (code == -1)
             {
@@ -568,7 +568,7 @@ public class NetworkManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log("[NetworkManager] 아이템 획득 성공");
+            Debug.Log("[NetworkManager] itemAquire success");
             Debug.Log("itemId: " + response.data.item.itemId);
             Debug.Log("itemTypeId: " + response.data.item.itemTypeId);
             Debug.Log("count: " + response.data.item.count);
@@ -596,18 +596,18 @@ public class NetworkManager : MonoBehaviour
     {
         StartCoroutine(GetRoutine("/mail/list", (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 메일 목록 응답 code: " + code);
+            Debug.Log("[NetworkManager] mailList Response code: " + code);
             Debug.Log("[NetworkManager] raw: " + raw);
 
             if (code == -1)
             {
-                onFail?.Invoke("서버 연결 실패");
+                onFail?.Invoke("Server connection failed");
                 return;
             }
 
             if (code != 200)
             {
-                onFail?.Invoke("메일 목록 조회 실패: " + code);
+                onFail?.Invoke("mailList check failed: " + code);
                 return;
             }
 
@@ -615,7 +615,7 @@ public class NetworkManager : MonoBehaviour
 
             if (response == null)
             {
-                onFail?.Invoke("메일 목록 JSON 파싱 실패");
+                onFail?.Invoke("JSON parsing failed");
                 return;
             }
 
@@ -639,18 +639,18 @@ public class NetworkManager : MonoBehaviour
     {
         StartCoroutine(GetRoutine("/mail/" + mailId, (code, raw) =>
         {
-            Debug.Log("[NetworkManager] 메일 상세 응답 code: " + code);
+            Debug.Log("[NetworkManager] mailDetail response code: " + code);
             Debug.Log("[NetworkManager] raw: " + raw);
 
             if (code == -1)
             {
-                onFail?.Invoke("서버 연결 실패");
+                onFail?.Invoke("Server connection failed");
                 return;
             }
 
             if (code != 200)
             {
-                onFail?.Invoke("메일 상세 조회 실패: " + code);
+                onFail?.Invoke("mailDetail check failed: " + code);
                 return;
             }
 
@@ -658,7 +658,7 @@ public class NetworkManager : MonoBehaviour
 
             if (response == null)
             {
-                onFail?.Invoke("메일 상세 JSON 파싱 실패");
+                onFail?.Invoke("JSON parsing failed ");
                 return;
             }
 

@@ -20,11 +20,11 @@ public class DisplayPetUI : MonoBehaviour
     // Refreshes the pet inventory UI
     public void RefreshPetInventory()
     {
-        Debug.Log("[DisplayPetInventoryUI] RefreshPetInventory 호출됨");
+        Debug.Log("[DisplayPetInventoryUI] RefreshPetInventory is called");
 
         if (DataManager.Data == null)
         {
-            Debug.LogWarning("[DisplayPetInventoryUI] DataManager.Data 없음");
+            Debug.LogWarning("[DisplayPetInventoryUI] There's no DataManager.Data ");
             return;
         }
 
@@ -32,7 +32,7 @@ public class DisplayPetUI : MonoBehaviour
 
         if (pets == null)
         {
-            Debug.LogWarning("[DisplayPetInventoryUI] OwnedPetSlots 없음");
+            Debug.LogWarning("[DisplayPetInventoryUI] There's no OwnedPetSlots ");
             ClearAllSlots();
             return;
         }
@@ -52,7 +52,7 @@ public class DisplayPetUI : MonoBehaviour
             petImages[i].sprite = petSprite;
             petImages[i].enabled = hasPet;
 
-            Debug.Log($"[DisplayPetInventoryUI] UI 세팅 / slot:{i}, petId:{pets[i].petId}, typeId:{pets[i].petTypeId}, sprite:{petSprite}");
+            Debug.Log($"[DisplayPetInventoryUI] UI setting / slot:{i}, petId:{pets[i].petId}, typeId:{pets[i].petTypeId}, sprite:{petSprite}");
         }
     }
 

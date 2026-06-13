@@ -27,9 +27,6 @@ public class GameManager : MonoBehaviour
     public AudioManager AudioManager => _audioManager;
 
 
-    // =========================================================
-    // 3. 씬 설정
-
     [Header("Scene Configuration")]
 #if UNITY_EDITOR
 
@@ -71,13 +68,11 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // 씬 로드 완료 이벤트 등록.
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
     {
-        // 시작 시 현재 위치를 한 번 전달한다.
         BroadcastCurrentLocation();
     }
 
@@ -98,14 +93,14 @@ public class GameManager : MonoBehaviour
         // When entering PetTown, refresh user and pet data from the server.
         if (scene.name == "S1_PetTown")
         {
-            Debug.Log("[GameManager] PetTown 진입 : auth/status 요청");
+            Debug.Log("[GameManager] Enter PetTown  : auth/status request");
 
             if (NetworkManager.Instance != null)
             {
                 NetworkManager.Instance.RequestAuthStatus(
                     response =>
                     {
-                        Debug.Log("[GameManager] auth/status 성공");
+                        Debug.Log("[GameManager] auth/status success");
 
                         PetSpawner petSpawner = FindFirstObjectByType<PetSpawner>();
                         if (petSpawner != null)
@@ -120,7 +115,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 현재 인스턴스가 본인일 때만 씬 로드 이벤트를 해제한다.
         if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
