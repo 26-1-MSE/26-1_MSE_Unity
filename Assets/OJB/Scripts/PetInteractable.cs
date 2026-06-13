@@ -1,14 +1,16 @@
 using UnityEngine;
 
+
+/// Interactable component attached to wild pet objects that triggers the rhythm mini-game when interacted with.
 public class PetInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] private int petTypeId;
-    private bool hasInteracted = false;
+    [SerializeField] private int petTypeId; // Server-side pet type identifier
+    private bool hasInteracted = false;// Prevents re-triggering after interaction
+
     public void Interact(PlayerInteraction player)
     {
-        if (hasInteracted) return; // 추가: 이미 상호작용했으면 무시
+        if (hasInteracted) return;
         hasInteracted = true;
-        // 미니게임 시작
         OcarinaGameManager.Instance.StartGame(gameObject, petTypeId);
     }
 
@@ -17,6 +19,8 @@ public class PetInteractable : MonoBehaviour, IInteractable
         if (hasInteracted) return null;
         return "E: Tame Pet";
     }
+
+    // Resets the interaction state to allow retry after a failed mini-game
     public void ResetInteraction()
     {
         hasInteracted = false;
