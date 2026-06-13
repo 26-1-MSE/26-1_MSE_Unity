@@ -1,14 +1,15 @@
 using UnityEngine;
 
+
+//Interactable component attached to pond objects that allows the player to collect water once per session.
 public class PondInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private SpriteRenderer pondSprite;
 
-    // 물
-    [SerializeField] private int itemTypeId = 5;
-    [SerializeField] private int acquireCount = 1;
+    [SerializeField] private int itemTypeId = 5; // Server-side item type ID for water
+    [SerializeField] private int acquireCount = 1; // Amount of water collected per interaction
 
-    private bool hasWater = true;
+    private bool hasWater = true; // False after water has been collected
 
     public void Interact(PlayerInteraction player)
     {
@@ -16,7 +17,7 @@ public class PondInteractable : MonoBehaviour, IInteractable
 
         hasWater = false;
 
-        Debug.Log("[PondInteractable] 물 획득!");
+        //Debug.Log("[PondInteractable] 물 획득!");
 
         if (NetworkManager.Instance != null)
         {
@@ -25,7 +26,7 @@ public class PondInteractable : MonoBehaviour, IInteractable
                 acquireCount,
                 () =>
                 {
-                    Debug.Log("[PondInteractable] 서버 물 획득 저장 성공");
+                    //Debug.Log("[PondInteractable] 서버 물 획득 저장 성공");
                     AudioManager.SFXInstance?.PlayOneShot(25);
                 },
                 (error) =>
@@ -35,9 +36,11 @@ public class PondInteractable : MonoBehaviour, IInteractable
             );
         }
 
+        //Hide the pond sprite after water is collected
         if (pondSprite != null)
             pondSprite.enabled = false;
 
+        //Play the scooping animation on the player
         Animator playerAnimator = player.GetComponent<Animator>();
         if (playerAnimator != null)
         {
