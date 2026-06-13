@@ -8,6 +8,7 @@ using TMPro;
 /// </summary>
 public class TabInputField : MonoBehaviour
 {
+    // Ordered list of fields the Tab key cycles through
     [SerializeField] private TMP_InputField[] inputFields;
 
     void Update()

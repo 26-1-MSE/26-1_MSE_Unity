@@ -11,6 +11,7 @@ public class CameraBounds : MonoBehaviour
     // Direct reference to the player Transform the camera follows
     [SerializeField] private Transform target;
 
+    // World-space boundaries of the map the camera is allowed to show
     [SerializeField] private float MAP_MIN_X = -84.66f;
     [SerializeField] private float MAP_MAX_X = 10.25f;
     [SerializeField] private float MAP_MIN_Y = -5.28f;

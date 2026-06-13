@@ -20,6 +20,7 @@ public class SignUpUI : MonoBehaviour
     [SerializeField] private Button checkIdButton;
     [SerializeField] private Button signUpButton;
 
+    // Invoked after the server confirms the account was created successfully
     [SerializeField] private UnityEvent onSignUpSuccess;
 
     // Bound to the ID duplicate check button
